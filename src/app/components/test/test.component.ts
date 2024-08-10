@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TestService } from '../services/TestService.service';
+import { TestService } from '../../services/TestService.service';
 
 export interface WeatherForecast {
   date: string;
