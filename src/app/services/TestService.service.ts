@@ -6,7 +6,7 @@ import { catchError, Observable, of, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class TestService {
-  private apiUrl = 'http://localhost:5221/WeatherForecast'; // Replace <port> with your actual port
+  private apiUrl = 'http://localhost:5032/WeatherForecast'; 
 
   constructor(private http: HttpClient) {}
 
@@ -15,7 +15,7 @@ export class TestService {
       tap(data => console.log('Weather Data:', data)),
       catchError(error => {
         console.error('Error fetching weather data:', error);
-        return of([]); // Handle error gracefully
+        return of([]); 
       })
     );
   }
