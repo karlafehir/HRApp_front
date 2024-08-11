@@ -11,6 +11,7 @@ import { TestComponent } from './components/test/test.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MenuComponent } from './components/menu/menu.component';
 import { JobsComponent } from './components/jobs/jobs.component';
+import { JobCardComponent } from './components/jobs/job-card/job-card.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { JobsComponent } from './components/jobs/jobs.component';
     RegisterComponent,
     LoginComponent,
     MenuComponent,
-    JobsComponent
+    JobsComponent,
+    JobCardComponent
   ],
   imports: [
     BrowserModule,
