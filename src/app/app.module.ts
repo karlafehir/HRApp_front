@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MenuComponent } from './components/menu/menu.component';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { JobCardComponent } from './components/jobs/job-card/job-card.component';
+import { RecruitmentComponent } from './components/recruitment/recruitment.component';
+import { RecruitmentCardComponent } from './components/recruitment/recruitment-card/recruitment-card.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { JobCardComponent } from './components/jobs/job-card/job-card.component'
     LoginComponent,
     MenuComponent,
     JobsComponent,
-    JobCardComponent
+    JobCardComponent,
+    RecruitmentComponent,
+    RecruitmentCardComponent
   ],
   imports: [
     BrowserModule,

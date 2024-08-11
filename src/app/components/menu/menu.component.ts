@@ -15,7 +15,7 @@ export class MenuComponent {
     { name: 'Dashboard', icon: 'dashboard', route:'/'  },
     { name: 'Projects', icon: 'folder', route:'/'   },
     { name: 'Jobs', icon: 'work', route:'/jobs' },
-    { name: 'Recruitment', icon: 'group_add', route:'/'   },
+    { name: 'Recruitment', icon: 'group_add', route:'/recruitment'   },
     { name: 'Employees', icon: 'people', route:'/'   },
     { name: 'Payroll', icon: 'account_balance', route:'/'   },
     { name: 'Reports', icon: 'assessment', route:'/'   }
