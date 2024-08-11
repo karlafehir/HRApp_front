@@ -1,8 +1,22 @@
 :host {
-    display: block;
-    min-height: 100vh;
-    background-color: var(--background-color);
-    margin: 0;
-    padding: 0;
-  }
-  
+  display: block;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex-grow: 1;
+}
+
+.loaded-component {
+  flex-grow: 1;
+}

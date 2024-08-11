@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,14 +9,20 @@ import { Component, OnInit } from '@angular/core';
 
 export class MenuComponent {
 
+  constructor(private router: Router) {}
+
   menuItems = [
-    { name: 'Dashboard', icon: 'dashboard' },
-    { name: 'Projects', icon: 'folder' },
-    { name: 'Jobs', icon: 'work' },
-    { name: 'Recruitment', icon: 'group_add' },
-    { name: 'Employees', icon: 'people' },
-    { name: 'Payroll', icon: 'account_balance' },
-    { name: 'Reports', icon: 'assessment' }
+    { name: 'Dashboard', icon: 'dashboard', route:'/'  },
+    { name: 'Projects', icon: 'folder', route:'/'   },
+    { name: 'Jobs', icon: 'work', route:'/jobs' },
+    { name: 'Recruitment', icon: 'group_add', route:'/'   },
+    { name: 'Employees', icon: 'people', route:'/'   },
+    { name: 'Payroll', icon: 'account_balance', route:'/'   },
+    { name: 'Reports', icon: 'assessment', route:'/'   }
   ];
+
+  navigateTo(route: string) {
+    this.router.navigate([route]);
+  }
   
 }

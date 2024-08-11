@@ -1,7 +1,8 @@
 <div class="menu-wrapper">
-    <h1 class="menu-title">Workflow</h1>
-      <div *ngFor="let item of menuItems" class="menu-item">
-        <mat-icon>{{ item.icon }}</mat-icon> 
-        <div class="menu-item-text">{{ item.name }}</div>
-      </div>
+  <h1 class="menu-title">Workflow</h1>
+  <div *ngFor="let item of menuItems" class="menu-item"
+    (click)="navigateTo(item.route)">
+    <mat-icon>{{ item.icon }}</mat-icon>
+    <div class="menu-item-text">{{ item.name }}</div>
+  </div>
 </div>
