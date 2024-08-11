@@ -21,8 +21,11 @@ export class MenuComponent {
     { name: 'Reports', icon: 'assessment', route:'/'   }
   ];
 
+  selectedRoute: string = '/dashboard'; // Default selected route
+
   navigateTo(route: string) {
+    this.selectedRoute = route; // Update selected route
     this.router.navigate([route]);
   }
-  
+
 }
