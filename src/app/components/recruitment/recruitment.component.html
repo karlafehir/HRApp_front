@@ -1,3 +1,11 @@
-<p>recruitment</p>
-
-<app-recruitment-card></app-recruitment-card>
+<div class="recruitment-cards-wrapper">
+    <div *ngFor="let column of recruitmentStatuses" class="recruitment-column-wrapper">
+      <div class="status-tab-wrapper">
+        <div class="status-text">{{ column.status }}</div>
+        <div class="status-text">{{ column.count }}</div>
+      </div>
+      <div class="recruitment-column-cards-wrapper">
+        <app-recruitment-card *ngFor="let card of [].constructor(column.count)"></app-recruitment-card>
+      </div>
+    </div>
+</div>

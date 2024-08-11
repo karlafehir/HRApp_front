@@ -1,0 +1,35 @@
+.recruitment-cards-wrapper{
+    display: flex;
+    gap: 32px;
+    background-color: white;
+    margin: 32px 0 0 32px;
+    padding: 40px;
+    border-radius: 12px;
+    height: 100vh;
+
+    .recruitment-column-wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .status-tab-wrapper {
+            display: flex;
+            justify-content: space-between;
+            width: 260px;
+            border-radius: 8px;
+            padding: 6px 20px;
+            background-color: var(--secondary-color);
+
+            .status-text{
+                color: var(--primary-color);
+                font-family: 'Poppins-Medium';
+            }
+        }
+
+        .recruitment-column-cards-wrapper{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+}
