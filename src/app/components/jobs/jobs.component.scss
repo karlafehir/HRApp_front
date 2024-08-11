@@ -1,0 +1,22 @@
+.job-screen-wrapper{
+    background-color: white;
+    margin: 32px 0 0 32px;
+    padding: 40px;
+    border-radius: 12px;
+    height: 100vh;
+
+    .filter-wrapper{
+        display: flex;
+        gap: 32px;
+
+        .filter-dropdown{
+            display: flex;
+        }
+    }
+}
+
+.job-cards-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
