@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.scss']
 })
 
-export class MenuComponent {
+export class MenuComponent implements OnInit {
 
   constructor(private router: Router) {}
 
@@ -21,10 +22,18 @@ export class MenuComponent {
     { name: 'Reports', icon: 'assessment', route:'/'   }
   ];
 
-  selectedRoute: string = '/dashboard'; // Default selected route
+  selectedRoute: string = '/dashboard';
+
+  ngOnInit() {
+    this.selectedRoute = this.router.url;
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.selectedRoute = event.urlAfterRedirects;
+    });
+  }
 
   navigateTo(route: string) {
-    this.selectedRoute = route; // Update selected route
     this.router.navigate([route]);
   }
 
