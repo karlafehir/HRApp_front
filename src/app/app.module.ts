@@ -14,6 +14,7 @@ import { JobsComponent } from './components/jobs/jobs.component';
 import { JobCardComponent } from './components/jobs/job-card/job-card.component';
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 import { RecruitmentCardComponent } from './components/recruitment/recruitment-card/recruitment-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RecruitmentCardComponent } from './components/recruitment/recruitment-c
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    BrowserAnimationsModule
   ],
   providers: [
     provideClientHydration()
