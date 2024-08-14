@@ -15,6 +15,10 @@ import { JobCardComponent } from './components/jobs/job-card/job-card.component'
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 import { RecruitmentCardComponent } from './components/recruitment/recruitment-card/recruitment-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     JobsComponent,
     JobCardComponent,
     RecruitmentComponent,
-    RecruitmentCardComponent
+    RecruitmentCardComponent,
+    EmployeesComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [
     provideClientHydration()
