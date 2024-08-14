@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 import { EmployeesComponent } from './components/employees/employees.component';
+import { EmployeeProfileComponent } from './components/employees/employee-profile/employee-profile.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
     path: 'employees',
     component: EmployeesComponent
   },
+  {
+    path: 'employee-profile',
+    component: EmployeeProfileComponent
+  }
 ];
 
 @NgModule({

@@ -19,6 +19,7 @@ import { EmployeesComponent } from './components/employees/employees.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { EmployeeProfileComponent } from './components/employees/employee-profile/employee-profile.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     JobCardComponent,
     RecruitmentComponent,
     RecruitmentCardComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    EmployeeProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Employee } from '../../models/employeeModel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -17,6 +18,8 @@ export class EmployeesComponent {
 
   displayedColumns: string[] = ['id', 'name', 'position', 'department', 'dateOfJoining'];
 
+  constructor(private router: Router) {}
+
   getFilteredEmployees(): Employee[] {
     if (!this.searchText) {
       return this.employees;
@@ -24,5 +27,9 @@ export class EmployeesComponent {
     return this.employees.filter(employee =>
       employee.name.toLowerCase().includes(this.searchText.toLowerCase())
     );
+  }
+
+  goToEmployeeProfile(){
+    this.router.navigate(['employee-profile'])
   }
 }

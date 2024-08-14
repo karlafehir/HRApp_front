@@ -1,0 +1,13 @@
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="profile-header">
+      <h2>{{ employee.name }}</h2>
+      <p class="position">{{ employee.position }}</p>
+    </div>
+    <div class="profile-details">
+      <p><strong>ID:</strong> {{ employee.id }}</p>
+      <p><strong>Department:</strong> {{ employee.department }}</p>
+      <p><strong>Date of Joining:</strong> {{ employee.dateOfJoining | date: 'longDate' }}</p>
+    </div>
+  </div>
+</div>
