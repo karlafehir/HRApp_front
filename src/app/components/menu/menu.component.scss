@@ -6,10 +6,8 @@
     display: flex;
     gap: 12px;
     flex-direction: column;
-
-    .menu-title{
-        margin-left: 12px;
-    }
+    border-right: 4px solid var(--border-color); 
+ 
 
     .menu-item {
         display: flex;

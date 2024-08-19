@@ -1,5 +1,4 @@
 <div class="menu-wrapper">
-  <h1 class="menu-title">Workflow</h1>
   <div *ngFor="let item of menuItems" class="menu-item"
     [class.selected]="item.route === selectedRoute"
     (click)="navigateTo(item.route)">

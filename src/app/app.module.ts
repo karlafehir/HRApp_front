@@ -20,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EmployeeProfileComponent } from './components/employees/employee-profile/employee-profile.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { EmployeeProfileComponent } from './components/employees/employee-profil
     RecruitmentComponent,
     RecruitmentCardComponent,
     EmployeesComponent,
-    EmployeeProfileComponent
+    EmployeeProfileComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
