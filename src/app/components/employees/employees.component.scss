@@ -1,0 +1,13 @@
+.employees-screen-wrapper{
+    background-color: white;
+    margin: 32px 0 0 32px;
+    padding: 40px;
+    border-radius: 12px;
+    height: 100vh;
+
+    .employee-name:hover{       
+        background-color: var(--secondary-color);
+        cursor: pointer;
+    }
+
+}

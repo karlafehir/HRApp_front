@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { fadeInAnimation } from '../../../shared/animations/fadeInAnimation';
 
 @Component({
   selector: 'app-employee-profile',
   templateUrl: './employee-profile.component.html',
   styleUrls: ['./employee-profile.component.scss'],
+  animations: [fadeInAnimation]
 })
 
 export class EmployeeProfileComponent {

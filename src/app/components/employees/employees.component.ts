@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Employee } from '../../models/employeeModel';
 import { Router } from '@angular/router';
+import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
 
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.scss']
+  styleUrls: ['./employees.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class EmployeesComponent {
   employees: Employee[] = [
