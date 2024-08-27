@@ -1,10 +1,16 @@
 <div class="employees-screen-wrapper" @fadeInAnimation>
 
   <div class="employee-container">
-    <mat-form-field appearance="outline">
-      <mat-label>Search Employee</mat-label>
-      <input matInput [(ngModel)]="searchText" placeholder="Enter employee name">
-    </mat-form-field>
+
+    <div class="filter-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Search Employee</mat-label>
+        <input matInput [(ngModel)]="searchText" placeholder="Enter employee name">
+      </mat-form-field>
+      <div class="button-add">
+        + Add new employee
+      </div>
+    </div>
   
     <table mat-table [dataSource]="getFilteredEmployees()">
       <ng-container matColumnDef="id">

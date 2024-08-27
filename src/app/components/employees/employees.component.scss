@@ -5,6 +5,20 @@
     border-radius: 12px;
     height: 100vh;
 
+    .filter-container{
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .button-add{
+        padding: 12px 32px;
+        background-color: var(--primary-color);
+        color: white;
+        height: fit-content;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+
     .employee-name:hover{       
         background-color: var(--secondary-color);
         cursor: pointer;
