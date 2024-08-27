@@ -12,10 +12,8 @@
     </div>
 
     <div class="job-cards-wrapper">
-        <app-job-card></app-job-card>
-        <app-job-card></app-job-card>
-        <app-job-card></app-job-card>
-        <app-job-card></app-job-card>
-        <app-job-card></app-job-card>
+        @for (job of jobs; track job) {
+            <app-job-card [job]="job"></app-job-card>
+        }
     </div>    
 </div>
