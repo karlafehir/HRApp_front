@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Candidate } from '../../../models/candidateModel';
 
 @Component({
   selector: 'app-recruitment-card',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
 })
 
 export class RecruitmentCardComponent {
-
+  @Input() candidate! : Candidate;
 }

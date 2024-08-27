@@ -5,7 +5,9 @@
         <div class="status-text">{{ column.count }}</div>
       </div>
       <div class="recruitment-column-cards-wrapper">
-        <app-recruitment-card *ngFor="let card of [].constructor(column.count)"></app-recruitment-card>
+        @for (candidate of candidates; track candidate){
+          <app-recruitment-card [candidate]="candidate"></app-recruitment-card>
+        }
       </div>
     </div>
 </div>
