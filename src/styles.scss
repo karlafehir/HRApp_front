@@ -69,3 +69,12 @@ body {
   --border-color: #ECECEC;
   --text-50-color: #00000080;
 }
+
+.button-add{
+  padding: 12px 32px;
+  background-color: var(--primary-color);
+  color: white;
+  height: fit-content;
+  border-radius: 12px;
+  cursor: pointer;
+}

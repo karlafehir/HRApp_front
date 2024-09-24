@@ -28,7 +28,7 @@ export class RecruitmentComponent {
   }
 
   GetJobByIdWithCandidates(){
-    this.jobService.GetJobByIdWithCandidates(3).subscribe(
+    this.jobService.getJobByIdWithCandidates(3).subscribe(
       (response: Job) => {
         this.candidates = response.candidates;
         console.log(this.candidates);
@@ -38,4 +38,6 @@ export class RecruitmentComponent {
       }
     );
   }
+
+
 }

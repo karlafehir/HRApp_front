@@ -12,3 +12,4 @@ export interface Job {
     priority: string;
     candidates: Candidate[];
 }
+ 

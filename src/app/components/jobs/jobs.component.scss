@@ -5,12 +5,18 @@
     border-radius: 12px;
     height: 100vh;
 
-    .filter-wrapper{
+    .filter-button-wrapper{
         display: flex;
-        gap: 32px;
-
-        .filter-dropdown{
+        align-items: center;
+        justify-content: space-between;
+        
+        .filter-wrapper{
             display: flex;
+            gap: 32px;
+    
+            .filter-dropdown{
+                display: flex;
+            }
         }
     }
 }
