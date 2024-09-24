@@ -1,7 +1,15 @@
 export interface Employee {
   id: number;
-  name: string;
-  position: string;
-  department: string;
-  dateOfJoining: Date;
+  firstName: string;
+  lastName: string;
+  email: string;
+  address: string;
+  phoneNumber: string;
+  dateOfHire: Date;
+  jobId: number;
+  departmentId: number;
+  managerId: number;
+  jobTitle: string;
+  salary: number;
+  employmentStatus: string;
 }
