@@ -22,6 +22,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { EmployeeProfileComponent } from './components/employees/employee-profile/employee-profile.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { PayrollComponent } from './components/payroll/payroll.component';
+import { EmployeeFormDialogComponent } from './components/employees/employee-form-dialog/employee-form-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,8 @@ import { PayrollComponent } from './components/payroll/payroll.component';
     EmployeesComponent,
     EmployeeProfileComponent,
     NavBarComponent,
-    PayrollComponent
+    PayrollComponent,
+    EmployeeFormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,10 @@ import { PayrollComponent } from './components/payroll/payroll.component';
     BrowserAnimationsModule,
     MatTableModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule,
+    MatButtonModule,
+    ReactiveFormsModule, 
   ],
   providers: [
     provideClientHydration()

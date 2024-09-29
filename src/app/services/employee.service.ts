@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Job } from '../models/jobModel';
-import { Candidate } from '../models/candidateModel';
 import { Employee } from '../models/employeeModel';
 
 @Injectable({
@@ -22,4 +20,7 @@ export class EmployeeService {
       return this.http.get<Employee>(`${this.apiUrl}/api/Employees/GetEmployeeById/${id}`);
     }
 
+    addEmployee(employee: Employee): Observable<Employee> {
+      return this.http.post<Employee>(`${this.apiUrl}/api/Employees/AddEmployee`, employee);
+    }
 }
