@@ -19,7 +19,11 @@ export class MenuComponent implements OnInit {
     { name: 'Recruitment', icon: 'group_add', route:'/recruitment'   },
     { name: 'Employees', icon: 'people', route:'/employees'   },
     { name: 'Payroll', icon: 'account_balance', route:'/payroll'   },
-    { name: 'Reports', icon: 'assessment', route:'/'   }
+    { name: 'Reports', icon: 'assessment', route:'/'   },
+    { name: 'Attendance', icon: 'card_travel', route:'/'   },
+    { name: 'Departments', icon: 'door_back', route:'/'   },
+    { name: 'Training', icon: 'auto_stories', route:'/'   },
+    { name: 'Budget', icon: 'attach_money', route:'/'   }
   ];
 
   selectedRoute: string = '/dashboard';
