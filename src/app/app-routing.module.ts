@@ -4,6 +4,7 @@ import { JobsComponent } from './components/jobs/jobs.component';
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { EmployeeProfileComponent } from './components/employees/employee-profile/employee-profile.component';
+import { PayrollComponent } from './components/payroll/payroll.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'employee-profile/:id',
     component: EmployeeProfileComponent
+  },
+  {
+    path: 'payroll',
+    component: PayrollComponent
   }
 ];
 
