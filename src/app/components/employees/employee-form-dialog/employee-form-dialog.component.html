@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Add New Employee</h2>
+<h2 mat-dialog-title>{{ isEdit ? 'Edit Employee' : 'Add New Employee' }}</h2>
 <mat-dialog-content>
   <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">
@@ -63,6 +63,6 @@
       <input matInput formControlName="employmentStatus">
     </mat-form-field>
 
-    <button mat-button type="submit">Add Employee</button>
+    <button mat-button type="submit">{{ isEdit ? 'Edit Employee' : 'Add Employee' }}</button>
   </form>
 </mat-dialog-content>
