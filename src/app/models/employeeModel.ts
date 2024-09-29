@@ -1,3 +1,5 @@
+import { Job } from "./jobModel";
+
 export interface Employee {
   id: number;
   firstName: string;
@@ -6,10 +8,13 @@ export interface Employee {
   address: string;
   phoneNumber: string;
   dateOfHire: Date;
+  
   jobId: number;
+  job: Job;
   departmentId: number;
   managerId: number;
+  
   jobTitle: string;
-  salary: number;
+  salary: number; 
   employmentStatus: string;
 }

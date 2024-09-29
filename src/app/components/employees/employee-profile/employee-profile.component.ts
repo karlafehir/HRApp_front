@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Employee } from '../../../models/employeeModel';
+import { EmployeeService } from '../../../services/employee.service';
 import { fadeInAnimation } from '../../../shared/animations/fadeInAnimation';
 
 @Component({
@@ -7,13 +10,27 @@ import { fadeInAnimation } from '../../../shared/animations/fadeInAnimation';
   styleUrls: ['./employee-profile.component.scss'],
   animations: [fadeInAnimation]
 })
+export class EmployeeProfileComponent implements OnInit {
+  
+  employee?: Employee;
 
-export class EmployeeProfileComponent {
-  employee = {
-    id: 1,
-    name: 'John Doe',
-    position: 'Software Engineer',
-    department: 'IT',
-    dateOfJoining: new Date('2019-01-15'),
-  };
+  constructor(
+    private employeeService: EmployeeService,
+    private route: ActivatedRoute 
+  ) {}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
+      if (id) {
+        this.getEmployeeById(id);
+      }
+    });
+  }
+
+  getEmployeeById(id: number): void {
+    this.employeeService.getEmployeeById(id).subscribe((response: Employee) => {
+      this.employee = response;
+    });
+  }
 }

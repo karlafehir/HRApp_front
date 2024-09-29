@@ -37,6 +37,6 @@ export class EmployeesComponent implements OnInit {
   }
 
   goToEmployeeProfile(employee: Employee): void {
-    this.router.navigate(['employee-profile']);
+    this.router.navigate(['employee-profile', employee.id]);
   }
 }

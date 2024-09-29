@@ -14,10 +14,18 @@
     .profile-picture {
       height: 120px;
       width: 120px;
-      border-radius: 70px;
+      border-radius: 50%;
       background-color: var(--secondary-color);
+      overflow: hidden;
+    
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
     }
-
+      
     .employee-info {
       display: flex;
       flex-direction: column;
@@ -80,7 +88,7 @@
 
         hr {
           border: 1px solid var(--background-color);
-          margin: -1px;
+          margin: 1px;
         }
       }
     }
