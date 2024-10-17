@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
-import { Candidate } from '../../models/candidateModel';
+import { Candidate, CandidateStatus } from '../../models/candidateModel';
 import { JobService } from '../../services/job.service';
 import { Job } from '../../models/jobModel';
 
@@ -11,12 +11,14 @@ import { Job } from '../../models/jobModel';
   animations: [fadeInAnimation]
 })
 
-export class RecruitmentComponent {
+export class RecruitmentComponent implements OnInit {
 
-  recruitmentStatuses: any[] = [
-    { status: 'New Applied'},
-    { status: 'Interview'},
-    { status: 'Hired'}
+  recruitmentStatuses: { status: CandidateStatus, count: number, candidates: Candidate[] }[] = [
+    { status: CandidateStatus.NewApplied, count: 0, candidates: [] },
+    { status: CandidateStatus.Shortlisted, count: 0, candidates: [] },
+    { status: CandidateStatus.Interview, count: 0, candidates: [] },
+    { status: CandidateStatus.Test, count: 0, candidates: [] },
+    { status: CandidateStatus.Hired, count: 0, candidates: [] }
   ];
 
   candidates: Candidate[] = [];
@@ -31,6 +33,7 @@ export class RecruitmentComponent {
     this.jobService.getJobByIdWithCandidates(3).subscribe(
       (response: Job) => {
         this.candidates = response.candidates;
+        this.groupCandidatesByStatus();
         console.log(this.candidates);
       },
       error => {
@@ -39,5 +42,22 @@ export class RecruitmentComponent {
     );
   }
 
+  private groupCandidatesByStatus() {
+    this.recruitmentStatuses.forEach(status => {
+      status.count = 0;
+      status.candidates = [];
+    });
 
+    this.candidates.forEach(candidate => {
+      const statusGroup = this.recruitmentStatuses.find(group => group.status === candidate.status);
+      if (statusGroup) {
+        statusGroup.candidates.push(candidate);
+        statusGroup.count++;
+      }
+    });
+  }
+
+  getStatusLabel(status: CandidateStatus): string {
+    return CandidateStatus[status];
+  }
 }

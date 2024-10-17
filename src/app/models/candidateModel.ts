@@ -5,4 +5,14 @@ export interface Candidate {
     phone: string;
     resumeUrl: string;
     jobId: number;
+    status: CandidateStatus; 
 }
+
+export enum CandidateStatus {
+    NewApplied = 0,
+    Shortlisted = 1,
+    Interview = 2,
+    Test = 3,
+    Hired = 4
+}
+

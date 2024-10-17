@@ -1,13 +1,13 @@
 <div class="recruitment-cards-wrapper" @fadeInAnimation>
     <div *ngFor="let column of recruitmentStatuses" class="recruitment-column-wrapper">
       <div class="status-tab-wrapper">
-        <div class="status-text">{{ column.status }}</div>
+        <div class="status-text">{{ getStatusLabel(column.status) }}</div> <!-- Use getStatusLabel -->
         <div class="status-text">{{ column.count }}</div>
       </div>
       <div class="recruitment-column-cards-wrapper">
-        @for (candidate of candidates; track candidate){
+        <ng-container *ngFor="let candidate of column.candidates">
           <app-recruitment-card [candidate]="candidate"></app-recruitment-card>
-        }
+        </ng-container>
       </div>
     </div>
 </div>
