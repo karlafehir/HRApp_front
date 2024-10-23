@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
     { name: 'Payroll', icon: 'account_balance', route:'/payroll'   },
     { name: 'Reports', icon: 'assessment', route:'/'   },
     { name: 'Attendance', icon: 'card_travel', route:'/'   },
-    { name: 'Departments', icon: 'door_back', route:'/'   },
+    { name: 'Departments', icon: 'door_back', route:'/departments'   },
     { name: 'Training', icon: 'auto_stories', route:'/'   },
     { name: 'Budget', icon: 'attach_money', route:'/'   }
   ];

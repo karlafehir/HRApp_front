@@ -26,6 +26,7 @@ import { EmployeeFormDialogComponent } from './components/employees/employee-for
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DepartmentsComponent } from './components/departments/departments.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     EmployeeProfileComponent,
     NavBarComponent,
     PayrollComponent,
-    EmployeeFormDialogComponent
+    EmployeeFormDialogComponent,
+    DepartmentsComponent
   ],
   imports: [
     BrowserModule,

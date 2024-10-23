@@ -5,6 +5,7 @@ import { RecruitmentComponent } from './components/recruitment/recruitment.compo
 import { EmployeesComponent } from './components/employees/employees.component';
 import { EmployeeProfileComponent } from './components/employees/employee-profile/employee-profile.component';
 import { PayrollComponent } from './components/payroll/payroll.component';
+import { DepartmentsComponent } from './components/departments/departments.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'payroll',
     component: PayrollComponent
+  },
+  {
+    path: 'departments',
+    component: DepartmentsComponent
   }
 ];
 
