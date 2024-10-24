@@ -32,7 +32,7 @@ export class EmployeeFormDialogComponent {
       managerId: [data?.managerId || 0],
       jobTitle: [data?.jobTitle || ''],
       salary: [data?.salary || 0, Validators.min(0)],
-      employmentStatus: [data?.employmentStatus || ''],
+      employmentStatus: [data?.employmentStatus || '', Validators.required],
     });
   }
 
@@ -40,10 +40,11 @@ export class EmployeeFormDialogComponent {
     if (this.employeeForm.valid) {
       const employeeData: Employee = {
         ...this.employeeForm.value,
-        id: this.data?.id || null,
       };
 
       if (this.isEdit) {
+        employeeData.id = this.data?.id; // Include ID when editing
+
         this.employeeService.updateEmployee(employeeData).subscribe(
           response => {
             console.log('Employee updated successfully:', response);
@@ -54,6 +55,8 @@ export class EmployeeFormDialogComponent {
           }
         );
       } else {
+        delete employeeData.id; // Ensure ID is not sent when adding
+
         this.employeeService.addEmployee(employeeData).subscribe(
           response => {
             console.log('Employee added successfully:', response);

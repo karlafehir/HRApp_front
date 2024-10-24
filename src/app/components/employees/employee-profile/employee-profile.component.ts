@@ -31,21 +31,31 @@ export class EmployeeProfileComponent implements OnInit {
     });
   }
 
-  getEmployeeById(id: number): void {
-    this.employeeService.getEmployeeById(id).subscribe((response: Employee) => {
-      this.employee = response;
-    });
+  getEmployeeById(id?: number): void {
+    if (id !== undefined && id !== null) {
+      this.employeeService.getEmployeeById(id).subscribe((response: Employee) => {
+        this.employee = response;
+      });
+    } else {
+      console.error('Employee ID is undefined or null');
+    }
   }
+  
 
   openEditEmployeeDialog(employee: Employee) {
     const dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
       data: employee,
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Employee updated successfully');
-        this.getEmployeeById(employee.id);
+        // Ensure employee.id is defined before passing it
+        if (employee.id !== undefined && employee.id !== null) {
+          this.getEmployeeById(employee.id);
+        } else {
+          console.error('Employee ID is undefined or null');
+        }
       }
     });
   }

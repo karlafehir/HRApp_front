@@ -3,7 +3,7 @@ import { Job } from "./jobModel";
 
 
 export interface Employee {
-  id: number;
+  id?: number;
   firstName: string;
   lastName: string;
   email: string;
