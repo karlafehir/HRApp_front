@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
 import { Job } from '../../models/jobModel';
 import { JobService } from '../../services/job.service';
+import { MatDialog } from '@angular/material/dialog';
+import { JobFormDialogComponent } from './job-form-dialog/job-form-dialog.component';
 
 @Component({
   selector: 'app-jobs',
@@ -17,7 +19,7 @@ export class JobsComponent implements OnInit{
   selectedSortOption: string = 'Newest';
   selectedPriorityOption: string = 'All';
 
-  constructor(private jobService: JobService) {}
+  constructor(private jobService: JobService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getAllJobs();
@@ -63,7 +65,18 @@ export class JobsComponent implements OnInit{
     this.filterAndSortJobs();
   }
 
-  trackByJobId(index: number, job: Job): number {
+  trackByJobId(index: number, job: Job) {
     return job.id;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(JobFormDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Dialog closed with result:', result);
+        this.getAllJobs();
+      }
+    });
   }
 }

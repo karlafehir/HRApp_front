@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>{{ isEdit ? 'Edit Job' : 'Add New Job' }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Job Title</mat-label>
+      <input matInput formControlName="title" required>
+      <mat-error *ngIf="jobForm.get('title')?.hasError('required')">
+        Job Title is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Job Description</mat-label>
+      <textarea matInput formControlName="description" required></textarea>
+      <mat-error *ngIf="jobForm.get('description')?.hasError('required')">
+        Job Description is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Department</mat-label>
+      <mat-select formControlName="department" required>
+        <mat-option *ngFor="let dept of departmentOptions" [value]="dept">{{ dept }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="jobForm.get('department')?.hasError('required')">
+        Department is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Posted Date</mat-label>
+      <input matInput type="date" formControlName="postedDate" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Closing Date</mat-label>
+      <input matInput type="date" formControlName="closingDate" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option *ngFor="let stat of statusOptions" [value]="stat">{{ stat }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Location</mat-label>
+      <mat-select formControlName="location" required>
+        <mat-option *ngFor="let loc of locationOptions" [value]="loc">{{ loc }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority" required>
+        <mat-option *ngFor="let pri of priorityOptions" [value]="pri">{{ pri }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-button type="submit">{{ isEdit ? 'Edit Job' : 'Add Job' }}</button>
+  </form>
+</mat-dialog-content>

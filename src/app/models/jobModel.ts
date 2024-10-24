@@ -1,7 +1,7 @@
 import { Candidate } from "./candidateModel";
 
 export interface Job {
-    id: number;
+    id?: number;
     title: string;
     description: string;
     department: string;

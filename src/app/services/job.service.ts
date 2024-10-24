@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Job } from '../models/jobModel';
-import { Candidate } from '../models/candidateModel';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +20,11 @@ export class JobService {
       return this.http.get<Job>(`${this.apiUrl}/api/Jobs/GetJobByIdWithCandidates/${id}`);
     }
 
+    addJob(job: Job): Observable<Job> {
+      return this.http.post<Job>(`${this.apiUrl}/api/Jobs/AddJob`, job);
+    }
+
+    updateJob(job: Job): Observable<Job> {
+      return this.http.put<Job>(`${this.apiUrl}/api/Jobs/UpdateJob/${job.id}`, job);
+    }
 }

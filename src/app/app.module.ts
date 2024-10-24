@@ -28,6 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DepartmentsComponent } from './components/departments/departments.component';
 import { MatOption, MatSelect } from '@angular/material/select';
+import { JobFormDialogComponent } from './components/jobs/job-form-dialog/job-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { MatOption, MatSelect } from '@angular/material/select';
     NavBarComponent,
     PayrollComponent,
     EmployeeFormDialogComponent,
-    DepartmentsComponent
+    DepartmentsComponent,
+    JobFormDialogComponent
   ],
   imports: [
     BrowserModule,
