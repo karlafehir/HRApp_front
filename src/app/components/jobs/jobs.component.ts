@@ -15,6 +15,7 @@ export class JobsComponent implements OnInit{
   jobs: Job[] = [];
   sortedJobs: Job[] = [];
   selectedSortOption: string = 'Newest';
+  selectedPriorityOption: string = 'All';
 
   constructor(private jobService: JobService) {}
 
@@ -22,28 +23,44 @@ export class JobsComponent implements OnInit{
     this.getAllJobs();
   }
 
-  getAllJobs(){
+  getAllJobs() {
     this.jobService.getAllJobs().subscribe(
       response => {
         this.jobs = response;
-        this.sortJobs(this.selectedSortOption);
+        this.filterAndSortJobs();
       }
-    )
+    );
   }
 
-  sortJobs(option: string) {
-    if (option === 'Newest') {
-      this.sortedJobs = this.jobs.sort((a, b) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime());
-    } else if (option === 'Oldest') {
-      this.sortedJobs = this.jobs.sort((a, b) => new Date(a.postedDate).getTime() - new Date(b.postedDate).getTime());
-    } else if (option === 'A-Z') {
-      this.sortedJobs = this.jobs.sort((a, b) => a.title.localeCompare(b.title));
+  filterAndSortJobs() {
+    let filteredJobs = this.jobs;
+
+    if (this.selectedPriorityOption !== 'All') {
+      filteredJobs = this.jobs.filter(job => job.priority === this.selectedPriorityOption);
     }
+
+    this.sortedJobs = this.sortJobs(filteredJobs, this.selectedSortOption);
+  }
+
+  sortJobs(jobs: Job[], option: string): Job[] {
+    if (option === 'Newest') {
+      return jobs.sort((a, b) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime());
+    } else if (option === 'Oldest') {
+      return jobs.sort((a, b) => new Date(a.postedDate).getTime() - new Date(b.postedDate).getTime());
+    } else if (option === 'A-Z') {
+      return jobs.sort((a, b) => a.title.localeCompare(b.title));
+    }
+    return jobs;
   }
 
   onSortOptionChange(event: any) {
     this.selectedSortOption = event.value;
-    this.sortJobs(this.selectedSortOption);
+    this.filterAndSortJobs();
+  }
+
+  onPriorityOptionChange(event: any) {
+    this.selectedPriorityOption = event.value;
+    this.filterAndSortJobs();
   }
 
   trackByJobId(index: number, job: Job): number {

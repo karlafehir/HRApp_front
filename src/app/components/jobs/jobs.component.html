@@ -3,7 +3,7 @@
     <div class="filter-button-wrapper">
         <div class="filter-wrapper">
             <div class="filter-dropdown">
-                <mat-form-field >
+                <mat-form-field>
                     <mat-select [(value)]="selectedSortOption" (selectionChange)="onSortOptionChange($event)">
                         <mat-option value="Newest">Newest</mat-option>
                         <mat-option value="Oldest">Oldest</mat-option>
@@ -12,8 +12,14 @@
                 </mat-form-field>
             </div>
             <div class="filter-dropdown">
-                <div>High Priority</div>
-                <mat-icon>expand_more</mat-icon>
+                <mat-form-field>
+                    <mat-select [(value)]="selectedPriorityOption" (selectionChange)="onPriorityOptionChange($event)">
+                        <mat-option value="All">All</mat-option>
+                        <mat-option value="High">High</mat-option>
+                        <mat-option value="Medium">Medium</mat-option>
+                        <mat-option value="Low">Low</mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
         </div>
         <div class="button-add">
