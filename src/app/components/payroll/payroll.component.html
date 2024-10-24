@@ -5,9 +5,6 @@
         <mat-label>Search Payroll</mat-label>
         <input matInput [(ngModel)]="searchText" placeholder="Enter payroll name">
       </mat-form-field>
-      <div class="button-add">
-        + Add new payroll
-      </div>
     </div>
 
     <table mat-table [dataSource]="getFilteredPayrollEmployees()">
@@ -39,7 +36,7 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToEmployeeProfile(row.employee)">
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
       </tr>
     </table>
   </div>

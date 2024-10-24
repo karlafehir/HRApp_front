@@ -44,7 +44,7 @@ export class PayrollComponent implements OnInit {
     );
   }
 
-  goToEmployeeProfile(employee: Employee): void {
-    this.router.navigate(['employee-profile', employee.id]);
-  }
+  // goToEmployeeProfile(employee: Employee): void {
+  //   this.router.navigate(['employee-profile', employee.id]);
+  // }
 }
