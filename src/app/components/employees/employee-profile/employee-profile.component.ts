@@ -45,6 +45,7 @@ export class EmployeeProfileComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Employee updated successfully');
+        this.getEmployeeById(employee.id);
       }
     });
   }
