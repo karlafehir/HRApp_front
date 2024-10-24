@@ -3,8 +3,13 @@
     <div class="filter-button-wrapper">
         <div class="filter-wrapper">
             <div class="filter-dropdown">
-                <div>Recent</div>
-                <mat-icon>expand_more</mat-icon>
+                <mat-form-field >
+                    <mat-select [(value)]="selectedSortOption" (selectionChange)="onSortOptionChange($event)">
+                        <mat-option value="Newest">Newest</mat-option>
+                        <mat-option value="Oldest">Oldest</mat-option>
+                        <mat-option value="A-Z">A-Z</mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
             <div class="filter-dropdown">
                 <div>High Priority</div>
@@ -17,8 +22,6 @@
     </div>
 
     <div class="job-cards-wrapper">
-        @for (job of jobs; track job) {
-            <app-job-card [job]="job"></app-job-card>
-        }
+        <app-job-card *ngFor="let job of sortedJobs; trackBy: trackByJobId" [job]="job"></app-job-card>
     </div>    
 </div>

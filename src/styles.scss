@@ -78,3 +78,19 @@ body {
   border-radius: 12px;
   cursor: pointer;
 }
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent !important; 
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+   border-bottom-color: transparent !important; 
+}
+
+::ng-deep .mat-mdc-select-value {
+  font-family: 'Poppins' !important;
+}
+
+::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
+  font-family: 'Poppins' !important;
+}

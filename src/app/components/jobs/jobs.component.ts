@@ -13,6 +13,8 @@ import { JobService } from '../../services/job.service';
 export class JobsComponent implements OnInit{
 
   jobs: Job[] = [];
+  sortedJobs: Job[] = [];
+  selectedSortOption: string = 'Newest';
 
   constructor(private jobService: JobService) {}
 
@@ -24,8 +26,27 @@ export class JobsComponent implements OnInit{
     this.jobService.getAllJobs().subscribe(
       response => {
         this.jobs = response;
-        console.log(this.jobs);
+        this.sortJobs(this.selectedSortOption);
       }
     )
+  }
+
+  sortJobs(option: string) {
+    if (option === 'Newest') {
+      this.sortedJobs = this.jobs.sort((a, b) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime());
+    } else if (option === 'Oldest') {
+      this.sortedJobs = this.jobs.sort((a, b) => new Date(a.postedDate).getTime() - new Date(b.postedDate).getTime());
+    } else if (option === 'A-Z') {
+      this.sortedJobs = this.jobs.sort((a, b) => a.title.localeCompare(b.title));
+    }
+  }
+
+  onSortOptionChange(event: any) {
+    this.selectedSortOption = event.value;
+    this.sortJobs(this.selectedSortOption);
+  }
+
+  trackByJobId(index: number, job: Job): number {
+    return job.id;
   }
 }

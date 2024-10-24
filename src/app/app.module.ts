@@ -27,6 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DepartmentsComponent } from './components/departments/departments.component';
+import { MatOption, MatSelect } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,8 @@ import { DepartmentsComponent } from './components/departments/departments.compo
     MatDialogModule,
     MatButtonModule,
     ReactiveFormsModule, 
+    MatSelect,
+    MatOption
   ],
   providers: [
     provideClientHydration()
