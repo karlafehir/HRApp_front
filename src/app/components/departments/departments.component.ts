@@ -6,6 +6,7 @@ import { EmployeeService } from '../../services/employee.service';
 import { PayrollEmployee } from '../../models/payrollEmployeeModel'; // Ensure you import the model
 import { MatDialog } from '@angular/material/dialog';
 import { DepartmentService } from '../../services/department.service';
+import { DepartmentFormDialogComponent } from './department-form-dialog/department-form-dialog.component';
 
 @Component({
   selector: 'app-departments',
@@ -47,13 +48,14 @@ export class DepartmentsComponent implements OnInit {
   }
 
   openDialog(): void {
-    // const dialogRef = this.dialog.open(DepartmentFormDialogComponent);
+    const dialogRef = this.dialog.open(DepartmentFormDialogComponent);
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     console.log('Dialog closed with result:', result);
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Dialog closed with result:', result);
+        this.getAllDepartments();
+      }
+    });
   }
 
 }

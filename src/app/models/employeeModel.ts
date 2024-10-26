@@ -37,7 +37,7 @@ export interface Manager {
 }
 
 export interface Department {
-  id: number;
+  id?: number;
   name: string;
   managerId: number;
   manager: Manager;
