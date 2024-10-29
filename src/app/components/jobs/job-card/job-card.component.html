@@ -1,9 +1,15 @@
 <div class="job-card-wrapper">
     <div class="job-card-title-wrapper">
-        <div class="img"></div>
-        <div class="title-wrapper">
-            <div class="card-title">{{ job.title }}</div>
-            <div class="card-subtitle">{{ job.location }}</div>
+        <div class="icon-title-wrapper">
+            <div class="img"></div>
+            <div class="title-wrapper">
+                <div class="card-title">{{ job.title }}</div>
+                <div class="card-subtitle">{{ job.location }}</div>
+            </div>
+        </div>
+        <div class="icons-wrapper">
+            <mat-icon class="icon" (click)="onEditClick()">edit</mat-icon>
+            <mat-icon class="icon" (click)="onDeleteClick()">delete</mat-icon>            
         </div>
     </div>
 

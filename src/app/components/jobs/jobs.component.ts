@@ -79,4 +79,26 @@ export class JobsComponent implements OnInit{
       }
     });
   }
+
+  openEditDialog(job: Job): void {
+    const dialogRef = this.dialog.open(JobFormDialogComponent, {
+      data: job,
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Dialog closed with result:', result);
+        this.getAllJobs();
+      }
+    });
+  }
+
+  deleteJob(id: number): void {
+    this.jobService.deleteJob(id).subscribe(() => {
+      console.log(`Job with ID ${id} deleted`);
+      this.getAllJobs();
+    });
+  }
+  
+  
 }

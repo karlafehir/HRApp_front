@@ -28,6 +28,11 @@
     </div>
 
     <div class="job-cards-wrapper">
-        <app-job-card *ngFor="let job of sortedJobs; trackBy: trackByJobId" [job]="job"></app-job-card>
+        <app-job-card
+            *ngFor="let job of sortedJobs; trackBy: trackByJobId"
+            [job]="job"
+            (editJob)="openEditDialog($event)"
+            (deleteJob)="deleteJob($event)">
+        </app-job-card>
     </div>    
 </div>
