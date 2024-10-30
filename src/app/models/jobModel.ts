@@ -5,6 +5,7 @@ export interface Job {
     title: string;
     description: string;
     department: string;
+    departmentId: number;
     postedDate: string;
     closingDate: string;
     status: string;

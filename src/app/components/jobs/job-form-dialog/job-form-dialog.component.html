@@ -20,8 +20,10 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Department</mat-label>
-      <mat-select formControlName="department" required>
-        <mat-option *ngFor="let dept of departmentOptions" [value]="dept">{{ dept }}</mat-option>
+      <mat-select formControlName="departmentId">
+        <mat-option *ngFor="let department of departmentOptions" [value]="department.id">
+          {{ department.name }}
+        </mat-option>
       </mat-select>
       <mat-error *ngIf="jobForm.get('department')?.hasError('required')">
         Department is required.
