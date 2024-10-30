@@ -17,10 +17,10 @@ export interface Employee {
   jobTitle: string;
   salary: number;
   employmentStatus: string;
-  annualLeaveDays?: number; 
-  sickLeaveDays?: number; 
-  remainingAnnualLeave?: number; 
-  remainingSickLeave?: number; 
+  annualLeaveDays?: number | null;
+  sickLeaveDays?: number | null;
+  remainingAnnualLeave?: number | null;
+  remainingSickLeave?: number | null;
 }
 
 export interface Manager {

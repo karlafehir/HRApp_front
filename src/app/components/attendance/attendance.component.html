@@ -1,0 +1,56 @@
+<div class="attendance-screen-wrapper" @fadeInAnimation>
+  <div class="attendance-container">
+    <div class="filter-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Search Employee</mat-label>
+        <input matInput [(ngModel)]="searchText" placeholder="Enter employee name">
+      </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="getFilteredEmployees()">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let employee"> {{employee.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let employee" class="employee-name"> {{employee.firstName}} {{employee.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let employee"> {{employee.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+        <td mat-cell *matCellDef="let employee"> {{employee.phoneNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sickLeaveDays">
+        <th mat-header-cell *matHeaderCellDef> Sick Leave Days </th>
+        <td mat-cell *matCellDef="let employee"> {{employee.sickLeaveDays}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="remainingSickLeave">
+        <th mat-header-cell *matHeaderCellDef> Remaining Sick Leave </th>
+        <td mat-cell *matCellDef="let employee"> {{employee.remainingSickLeave}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="annualLeaveDays">
+        <th mat-header-cell *matHeaderCellDef> Annual Leave Days </th>
+        <td mat-cell *matCellDef="let employee"> {{employee.annualLeaveDays}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="remainingAnnualLeave">
+        <th mat-header-cell *matHeaderCellDef> Remaining Annual Leave </th>
+        <td mat-cell *matCellDef="let employee"> {{employee.remainingAnnualLeave}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToEmployeeProfile(row)">
+      </tr>
+    </table>
+  </div>
+</div>

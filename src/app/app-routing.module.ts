@@ -6,6 +6,7 @@ import { EmployeesComponent } from './components/employees/employees.component';
 import { EmployeeProfileComponent } from './components/employees/employee-profile/employee-profile.component';
 import { PayrollComponent } from './components/payroll/payroll.component';
 import { DepartmentsComponent } from './components/departments/departments.component';
+import { AttendanceComponent } from './components/attendance/attendance.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'departments',
     component: DepartmentsComponent
+  },
+  {
+    path: 'attendance',
+    component: AttendanceComponent
   }
 ];
 

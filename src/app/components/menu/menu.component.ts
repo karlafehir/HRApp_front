@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
     { name: 'Employees', icon: 'people', route:'/employees'   },
     { name: 'Payroll', icon: 'account_balance', route:'/payroll'   },
     { name: 'Reports', icon: 'assessment', route:'/'   },
-    { name: 'Attendance', icon: 'card_travel', route:'/'   },
+    { name: 'Attendance', icon: 'card_travel', route:'/attendance'   },
     { name: 'Departments', icon: 'door_back', route:'/departments'   },
     { name: 'Training', icon: 'auto_stories', route:'/'   },
     { name: 'Budget', icon: 'attach_money', route:'/'   }

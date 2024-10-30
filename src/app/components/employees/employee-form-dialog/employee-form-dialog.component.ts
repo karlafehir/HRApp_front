@@ -21,8 +21,8 @@ export class EmployeeFormDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService,
-    private jobService : JobService,
-    private departmentService : DepartmentService,
+    private jobService: JobService,
+    private departmentService: DepartmentService,
     private dialogRef: MatDialogRef<EmployeeFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Employee 
   ) {
@@ -41,6 +41,10 @@ export class EmployeeFormDialogComponent implements OnInit {
       jobTitle: [data?.jobTitle || ''],
       salary: [data?.salary || 0, Validators.min(0)],
       employmentStatus: [data?.employmentStatus || '', Validators.required],
+      annualLeaveDays: [data?.annualLeaveDays || null, [Validators.min(0)]],
+      sickLeaveDays: [data?.sickLeaveDays || null, [Validators.min(0)]],
+      remainingAnnualLeave: [data?.remainingAnnualLeave || null, [Validators.min(0)]],
+      remainingSickLeave: [data?.remainingSickLeave || null, [Validators.min(0)]],
     });
   }
 

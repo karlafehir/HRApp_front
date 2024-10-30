@@ -30,6 +30,7 @@ import { DepartmentsComponent } from './components/departments/departments.compo
 import { MatOption, MatSelect } from '@angular/material/select';
 import { JobFormDialogComponent } from './components/jobs/job-form-dialog/job-form-dialog.component';
 import { DepartmentFormDialogComponent } from './components/departments/department-form-dialog/department-form-dialog.component';
+import { AttendanceComponent } from './components/attendance/attendance.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DepartmentFormDialogComponent } from './components/departments/departme
     EmployeeFormDialogComponent,
     DepartmentsComponent,
     JobFormDialogComponent,
-    DepartmentFormDialogComponent
+    DepartmentFormDialogComponent,
+    AttendanceComponent
   ],
   imports: [
     BrowserModule,
