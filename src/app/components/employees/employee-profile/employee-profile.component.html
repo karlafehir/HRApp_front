@@ -1,5 +1,4 @@
 <div class="employee-profile" @fadeInAnimation>
-
   <div class="profile-header" *ngIf="employee">
     <div class="profile-picture">
       <img src="/assets/icons/default-avatar.png" alt="{{ employee.firstName }} {{ employee.lastName }}">
@@ -15,12 +14,12 @@
       <div class="statistics-card">
         <mat-icon>people</mat-icon>
         <div class="card-title">Vacation Days Left</div>
-        <div class="card-value">12 / 28</div>
+        <div class="card-value">{{ employee.remainingAnnualLeave ?? 0 }} / {{ employee.annualLeaveDays ?? 0 }}</div>
       </div>
       <div class="statistics-card">
         <mat-icon>schedule</mat-icon>
         <div class="card-title">Sick Days Left</div>
-        <div class="card-value">5 / 10</div>
+        <div class="card-value">{{ employee.remainingSickLeave ?? 0 }} / {{ employee.sickLeaveDays ?? 0 }}</div>
       </div>
       <div class="statistics-card">
         <mat-icon>assignment</mat-icon>
