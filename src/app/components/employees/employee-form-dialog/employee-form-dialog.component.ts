@@ -1,20 +1,28 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EmployeeService } from '../../../services/employee.service';
-import { Employee } from '../../../models/employeeModel';
+import { Department, Employee } from '../../../models/employeeModel';
+import { Job } from '../../../models/jobModel';
+import { JobService } from '../../../services/job.service';
+import { DepartmentService } from '../../../services/department.service';
 
 @Component({
   selector: 'app-employee-form-dialog',
   templateUrl: './employee-form-dialog.component.html',
 })
-export class EmployeeFormDialogComponent {
+export class EmployeeFormDialogComponent implements OnInit {
   employeeForm: FormGroup;
   isEdit: boolean = false;
+  jobs: Job[] = [];
+  departments: Department[] = [];
+  managers: Employee[] = []; 
 
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService,
+    private jobService : JobService,
+    private departmentService : DepartmentService,
     private dialogRef: MatDialogRef<EmployeeFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Employee 
   ) {
@@ -27,13 +35,52 @@ export class EmployeeFormDialogComponent {
       address: [data?.address || ''],
       phoneNumber: [data?.phoneNumber || ''],
       dateOfHire: [data?.dateOfHire || new Date().toISOString(), Validators.required],
-      jobId: [data?.jobId || 0, Validators.required],
-      departmentId: [data?.departmentId || 0],
-      managerId: [data?.managerId || 0],
+      jobId: [data?.jobId || null],
+      departmentId: [data?.departmentId || null], 
+      managerId: [data?.managerId || null], 
       jobTitle: [data?.jobTitle || ''],
       salary: [data?.salary || 0, Validators.min(0)],
       employmentStatus: [data?.employmentStatus || '', Validators.required],
     });
+  }
+
+  ngOnInit() {
+    this.loadJobs();
+    this.loadDepartments();
+    this.loadManagers();
+  }
+
+  loadJobs() {
+    this.jobService.getAllJobs().subscribe(
+      (jobs: Job[]) => {
+        this.jobs = jobs;
+      },
+      (error) => {
+        console.error('Error fetching jobs:', error);
+      }
+    );
+  }
+
+  loadDepartments() {
+    this.departmentService.getAllDepartments().subscribe(
+      (departments: Department[]) => {
+        this.departments = departments;
+      },
+      (error) => {
+        console.error('Error fetching departments:', error);
+      }
+    );
+  }
+
+  loadManagers() {
+    this.employeeService.getAllEmployees().subscribe(
+      (employees: Employee[]) => {
+        this.managers = employees;
+      },
+      (error) => {
+        console.error('Error fetching managers:', error);
+      }
+    );
   }
 
   onSubmit() {
