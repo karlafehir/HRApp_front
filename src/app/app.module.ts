@@ -31,6 +31,7 @@ import { MatOption, MatSelect } from '@angular/material/select';
 import { JobFormDialogComponent } from './components/jobs/job-form-dialog/job-form-dialog.component';
 import { DepartmentFormDialogComponent } from './components/departments/department-form-dialog/department-form-dialog.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AttendanceComponent } from './components/attendance/attendance.componen
     DepartmentsComponent,
     JobFormDialogComponent,
     DepartmentFormDialogComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
