@@ -30,7 +30,7 @@ export class RecruitmentComponent implements OnInit {
   }
 
   GetJobByIdWithCandidates(){
-    this.jobService.getJobByIdWithCandidates(3).subscribe(
+    this.jobService.getJobByIdWithCandidates(4003).subscribe(
       (response: Job) => {
         this.candidates = response.candidates;
         this.groupCandidatesByStatus();
