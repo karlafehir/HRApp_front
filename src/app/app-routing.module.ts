@@ -8,6 +8,7 @@ import { PayrollComponent } from './components/payroll/payroll.component';
 import { DepartmentsComponent } from './components/departments/departments.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,31 +17,38 @@ const routes: Routes = [
   },
   {
     path: 'jobs',
-    component: JobsComponent
+    component: JobsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'recruitment',
-    component: RecruitmentComponent
+    component: RecruitmentComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'employees',
-    component: EmployeesComponent
+    component: EmployeesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'employee-profile/:id',
-    component: EmployeeProfileComponent
+    component: EmployeeProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'payroll',
-    component: PayrollComponent
+    component: PayrollComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'departments',
-    component: DepartmentsComponent
+    component: DepartmentsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'attendance',
-    component: AttendanceComponent
+    component: AttendanceComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
