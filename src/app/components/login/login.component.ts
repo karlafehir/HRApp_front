@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/Auth.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,22 +14,23 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   onLogin() {
     const credentials = {
       email: this.email,
       password: this.password
     };
-
+  
     this.authService.login(credentials).subscribe(
-      response => {
+      (response) => {
         console.log('Login successful', response);
+        this.router.navigate(['/jobs']);
       },
-      error => {
+      (error) => {
         console.error('Login error', error);
       }
     );
   }
-
+  
 }

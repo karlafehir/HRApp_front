@@ -7,8 +7,13 @@ import { EmployeeProfileComponent } from './components/employees/employee-profil
 import { PayrollComponent } from './components/payroll/payroll.component';
 import { DepartmentsComponent } from './components/departments/departments.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent
+  },
   {
     path: 'jobs',
     component: JobsComponent
