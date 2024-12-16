@@ -32,7 +32,7 @@ export class JobFormDialogComponent implements OnInit {
       departmentId: [data?.departmentId || '', Validators.required], // Updated field
       postedDate: [data?.postedDate || new Date().toISOString(), Validators.required],
       closingDate: [data?.closingDate || '', Validators.required],
-      status: [data?.status || 'Open', Validators.required],
+      // status: [data?.status || 'Open', Validators.required],
       location: [data?.location || '', Validators.required],
       priority: [data?.priority || 'Medium', Validators.required],
       candidates: [[]],

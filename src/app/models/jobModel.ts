@@ -8,7 +8,7 @@ export interface Job {
     departmentId: number;
     postedDate: string;
     closingDate: string;
-    status: string;
+    status: number;
     location: string;
     priority: string;
     candidates: Candidate[];
