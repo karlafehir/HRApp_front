@@ -10,7 +10,7 @@ export interface Job {
     closingDate: string;
     status: number;
     location: string;
-    priority: string;
+    priority: number;
     candidates: Candidate[];
 }
  

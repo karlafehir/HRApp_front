@@ -17,7 +17,7 @@ export class JobsComponent implements OnInit{
   jobs: Job[] = [];
   sortedJobs: Job[] = [];
   selectedSortOption: string = 'Newest';
-  selectedPriorityOption: string = 'All';
+  selectedPriorityOption: number | null = null;
 
   constructor(private jobService: JobService, private dialog: MatDialog) {}
 
@@ -36,13 +36,14 @@ export class JobsComponent implements OnInit{
 
   filterAndSortJobs() {
     let filteredJobs = this.jobs;
-
-    if (this.selectedPriorityOption !== 'All') {
+  
+    if (this.selectedPriorityOption !== null) {
       filteredJobs = this.jobs.filter(job => job.priority === this.selectedPriorityOption);
     }
-
+  
     this.sortedJobs = this.sortJobs(filteredJobs, this.selectedSortOption);
   }
+  
 
   sortJobs(jobs: Job[], option: string): Job[] {
     if (option === 'Newest') {

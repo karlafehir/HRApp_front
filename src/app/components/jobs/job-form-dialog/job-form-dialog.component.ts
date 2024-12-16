@@ -13,9 +13,11 @@ import { Department } from '../../../models/employeeModel';
 export class JobFormDialogComponent implements OnInit {
   jobForm: FormGroup;
   isEdit: boolean = false;
-  priorityOptions = ['High', 'Medium', 'Low'];
-  locationOptions = ['Remote', 'Office', 'Hybrid'];
-  statusOptions = ['Open', 'Closed'];
+  priorityOptions = [
+    { value: 1, label: 'High' },
+    { value: 2, label: 'Medium' },
+    { value: 3, label: 'Low' }
+  ];
   departmentOptions: Department[] = [];
 
   constructor(
@@ -29,13 +31,10 @@ export class JobFormDialogComponent implements OnInit {
     this.jobForm = this.fb.group({
       title: [data?.title || '', Validators.required],
       description: [data?.description || '', Validators.required],
-      departmentId: [data?.departmentId || '', Validators.required], // Updated field
-      postedDate: [data?.postedDate || new Date().toISOString(), Validators.required],
-      closingDate: [data?.closingDate || '', Validators.required],
-      // status: [data?.status || 'Open', Validators.required],
-      location: [data?.location || '', Validators.required],
-      priority: [data?.priority || 'Medium', Validators.required],
-      candidates: [[]],
+      departmentId: [data?.departmentId || '', Validators.required],
+      postedDate: [data?.postedDate || new Date().toISOString().split('T')[0], Validators.required],
+      closingDate: [data?.closingDate || ''],
+      priority: [data?.priority || 2, Validators.required], // Default: Medium (2)
     });
   }
 
@@ -59,7 +58,7 @@ export class JobFormDialogComponent implements OnInit {
       const jobData: Job = {
         ...this.jobForm.value,
       };
-      
+
       if (this.isEdit) {
         jobData.id = this.data.id;
 
@@ -73,8 +72,6 @@ export class JobFormDialogComponent implements OnInit {
           }
         );
       } else {
-        delete jobData.id;
-
         this.jobService.addJob(jobData).subscribe(
           response => {
             console.log('Job added successfully:', response);

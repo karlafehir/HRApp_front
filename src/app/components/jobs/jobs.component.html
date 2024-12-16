@@ -14,12 +14,12 @@
             <div class="filter-dropdown">
                 <mat-form-field>
                     <mat-select [(value)]="selectedPriorityOption" (selectionChange)="onPriorityOptionChange($event)">
-                        <mat-option value="All">All</mat-option>
-                        <mat-option value="High">High</mat-option>
-                        <mat-option value="Medium">Medium</mat-option>
-                        <mat-option value="Low">Low</mat-option>
+                      <mat-option [value]="null">All</mat-option>
+                      <mat-option [value]="1">High</mat-option>
+                      <mat-option [value]="2">Medium</mat-option>
+                      <mat-option [value]="3">Low</mat-option>
                     </mat-select>
-                </mat-form-field>
+                  </mat-form-field>                  
             </div>
         </div>
         <div class="button-add" (click)="openDialog()">
