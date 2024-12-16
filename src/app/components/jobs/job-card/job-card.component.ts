@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Job } from '../../../models/jobModel';
+import { JobPriority } from '../../../enums/jobPriority';
 
 @Component({
   selector: 'app-job-card',
@@ -10,6 +11,8 @@ export class JobCardComponent {
   @Input() job!: Job;
   @Output() editJob = new EventEmitter<Job>();
   @Output() deleteJob = new EventEmitter<number>();
+
+  JobPriority = JobPriority; 
 
   onEditClick() {
     this.editJob.emit(this.job);
