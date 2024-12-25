@@ -27,30 +27,29 @@ export class AuthService {
   }
 
   login(credentials: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
-      tap(response => {
+    return this.http.post<any>(`${this.apiUrl}/api/auth/login`, credentials).pipe(
+      tap(() => {
         if (isPlatformBrowser(this.platformId)) {
-          localStorage.setItem('accessToken', response.accessToken);
-          localStorage.setItem('refreshToken', response.refreshToken);
+          localStorage.setItem('isLoggedIn', 'true'); // Mark user as logged in
           this.loggedInSubject.next(true); 
         }
       })
     );
   }
-
+  
   isLoggedIn(): boolean {
     if (isPlatformBrowser(this.platformId)) {
-      return !!localStorage.getItem('accessToken');
+      return localStorage.getItem('isLoggedIn') === 'true';
     }
     return false;
   }
-
+  
   logout(): void {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('isLoggedIn'); // Clear login flag
       this.loggedInSubject.next(false); 
     }
     this.router.navigate(['login']);
   }
+  
 }
