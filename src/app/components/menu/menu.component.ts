@@ -8,7 +8,6 @@ import { filter } from 'rxjs/operators';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-
 export class MenuComponent implements OnInit {
   selectedRoute: string = '';
   role: string | null = null;
@@ -38,10 +37,7 @@ export class MenuComponent implements OnInit {
         return true; 
       }
       if (this.role === 'Manager') {
-        return item.name !== 'Payroll' && item.name !== 'Departments'; // Exclude Payroll & Departments
-      }
-      if (this.role === 'Employee') {
-        return false; 
+        return item.name !== 'Payroll' && item.name !== 'Departments';
       }
       return false; 
     });

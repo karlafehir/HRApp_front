@@ -26,11 +26,16 @@ export class AuthGuard implements CanActivate {
         this.router.navigate(['/']);
         return false;
       }
+      return true;
     }
 
     if (role === 'Employee') {
-      this.router.navigate(['/']);
-      return false;
+      const employeeId = this.authService.getEmployeeId();
+      if (employeeId && !routePath?.includes('employee-profile')) {
+        this.router.navigate([`/employee-profile/${employeeId}`]);
+        return false;
+      }
+      return true; 
     }
 
     return true;

@@ -31,7 +31,8 @@ export class AuthService {
       tap(response => {
         if (isPlatformBrowser(this.platformId)) {
           localStorage.setItem('isLoggedIn', 'true');
-          localStorage.setItem('role', response.role); 
+          localStorage.setItem('role', response.role);
+          localStorage.setItem('employeeId', response.employeeId); 
           this.loggedInSubject.next(true);
         }
       })
@@ -41,6 +42,13 @@ export class AuthService {
   getRole(): string | null {
     if (isPlatformBrowser(this.platformId)) {
       return localStorage.getItem('role');
+    }
+    return null;
+  }
+
+  getEmployeeId(): string | null {
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem('employeeId');
     }
     return null;
   }
@@ -56,6 +64,7 @@ export class AuthService {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('isLoggedIn');
       localStorage.removeItem('role');
+      localStorage.removeItem('employeeId');
       this.loggedInSubject.next(false);
     }
     this.router.navigate(['login']);
