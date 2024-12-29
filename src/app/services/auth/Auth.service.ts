@@ -28,15 +28,23 @@ export class AuthService {
 
   login(credentials: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/api/auth/login`, credentials).pipe(
-      tap(() => {
+      tap(response => {
         if (isPlatformBrowser(this.platformId)) {
-          localStorage.setItem('isLoggedIn', 'true'); // Mark user as logged in
-          this.loggedInSubject.next(true); 
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('role', response.role); 
+          this.loggedInSubject.next(true);
         }
       })
     );
   }
-  
+
+  getRole(): string | null {
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem('role');
+    }
+    return null;
+  }
+
   isLoggedIn(): boolean {
     if (isPlatformBrowser(this.platformId)) {
       return localStorage.getItem('isLoggedIn') === 'true';
@@ -46,8 +54,9 @@ export class AuthService {
   
   logout(): void {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.removeItem('isLoggedIn'); // Clear login flag
-      this.loggedInSubject.next(false); 
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('role');
+      this.loggedInSubject.next(false);
     }
     this.router.navigate(['login']);
   }

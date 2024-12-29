@@ -1,5 +1,5 @@
 <div class="menu-wrapper">
-  <div *ngFor="let item of menuItems" class="menu-item"
+  <div *ngFor="let item of filteredMenuItems" class="menu-item"
     [class.selected]="item.route === selectedRoute"
     (click)="navigateTo(item.route)">
     <mat-icon>{{ item.icon }}</mat-icon>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { AuthService } from '../../services/auth/Auth.service';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -9,26 +10,42 @@ import { filter } from 'rxjs/operators';
 })
 
 export class MenuComponent implements OnInit {
-
-  constructor(private router: Router) {}
+  selectedRoute: string = '';
+  role: string | null = null;
+  filteredMenuItems: any[] = [];
 
   menuItems = [
-    { name: 'Dashboard', icon: 'dashboard', route:'/'  },
-    { name: 'Projects', icon: 'folder', route:'/'   },
-    { name: 'Jobs', icon: 'work', route:'/jobs' },
-    { name: 'Recruitment', icon: 'group_add', route:'/recruitment'   },
-    { name: 'Employees', icon: 'people', route:'/employees'   },
-    { name: 'Payroll', icon: 'account_balance', route:'/payroll'   },
-    { name: 'Reports', icon: 'assessment', route:'/'   },
-    { name: 'Attendance', icon: 'card_travel', route:'/attendance'   },
-    { name: 'Departments', icon: 'door_back', route:'/departments'   },
-    { name: 'Training', icon: 'auto_stories', route:'/'   },
-    { name: 'Budget', icon: 'attach_money', route:'/'   }
+    // { name: 'Dashboard', icon: 'dashboard', route: '/' },
+    // { name: 'Projects', icon: 'folder', route: '/' },
+    { name: 'Jobs', icon: 'work', route: '/jobs' },
+    { name: 'Recruitment', icon: 'group_add', route: '/recruitment' },
+    { name: 'Employees', icon: 'people', route: '/employees' },
+    { name: 'Payroll', icon: 'account_balance', route: '/payroll' },
+    // { name: 'Reports', icon: 'assessment', route: '/' },
+    { name: 'Attendance', icon: 'card_travel', route: '/attendance' },
+    { name: 'Departments', icon: 'door_back', route: '/departments' },
+    // { name: 'Training', icon: 'auto_stories', route: '/' },
+    // { name: 'Budget', icon: 'attach_money', route: '/' }
   ];
 
-  selectedRoute: string = '/dashboard';
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
+    this.role = this.authService.getRole();
+
+    this.filteredMenuItems = this.menuItems.filter(item => {
+      if (this.role === 'Admin') {
+        return true; 
+      }
+      if (this.role === 'Manager') {
+        return item.name !== 'Payroll' && item.name !== 'Departments'; // Exclude Payroll & Departments
+      }
+      if (this.role === 'Employee') {
+        return false; 
+      }
+      return false; 
+    });
+
     this.selectedRoute = this.router.url;
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
