@@ -25,7 +25,13 @@ export class AttendanceComponent implements OnInit {
 
   getAllEmployees(): void {
     this.employeeService.getAllEmployees().subscribe(response => {
-      this.employees = response;
+      this.employees = response.map(employee => ({
+        ...employee,
+        sickLeaveDays: employee.employeeLeaveRecord?.sickLeaveDays || 0,
+        remainingSickLeave: employee.employeeLeaveRecord?.remainingSickLeave || 0,
+        annualLeaveDays: employee.employeeLeaveRecord?.annualLeaveDays || 0,
+        remainingAnnualLeave: employee.employeeLeaveRecord?.remainingAnnualLeave || 0,
+      }));
     });
   }
 
