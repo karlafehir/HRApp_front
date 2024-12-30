@@ -3,6 +3,8 @@ import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
 import { Candidate, CandidateStatus } from '../../models/candidateModel';
 import { JobService } from '../../services/job.service';
 import { Job } from '../../models/jobModel';
+import { MatDialog } from '@angular/material/dialog';
+import { CandidateFormDialogComponent } from './candidate-form-dialog/candidate-form-dialog.component';
 
 @Component({
   selector: 'app-recruitment',
@@ -23,7 +25,7 @@ export class RecruitmentComponent implements OnInit {
 
   candidates: Candidate[] = [];
 
-  constructor(private jobService: JobService) {}
+  constructor(private jobService: JobService,  public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.GetJobByIdWithCandidates();
@@ -59,5 +61,16 @@ export class RecruitmentComponent implements OnInit {
 
   getStatusLabel(status: CandidateStatus): string {
     return CandidateStatus[status];
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CandidateFormDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Dialog closed with result:', result);
+        this.GetJobByIdWithCandidates();
+      }
+    });
   }
 }

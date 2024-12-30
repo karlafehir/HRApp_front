@@ -1,0 +1,65 @@
+<h2 mat-dialog-title>{{ isEdit ? 'Edit Candidate' : 'Add New Candidate' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+
+    <!-- Personal Information Section -->
+    <h3>Personal Information</h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="candidateForm.get('name')?.hasError('required')">
+        Name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" required>
+      <mat-error *ngIf="candidateForm.get('email')?.hasError('email')">
+        Invalid email format.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Phone</mat-label>
+      <input matInput type="tel" formControlName="phone" required>
+      <mat-error *ngIf="candidateForm.get('phone')?.hasError('required')">
+        Phone is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Resume URL</mat-label>
+      <input matInput formControlName="resumeUrl">
+    </mat-form-field>
+
+    <!-- Job Information Section -->
+    <h3>Job Information</h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Job</mat-label>
+      <mat-select formControlName="jobId" required>
+        <mat-option *ngFor="let job of jobs" [value]="job.id">{{ job.title }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="candidateForm.get('jobId')?.hasError('required')">
+        Job is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option *ngFor="let status of candidateStatuses" [value]="status.value">
+          {{ status.label }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="candidateForm.get('status')?.hasError('required')">
+        Status is required.
+      </mat-error>
+    </mat-form-field>
+    
+
+    <button mat-button type="submit">{{ isEdit ? 'Edit Candidate' : 'Add Candidate' }}</button>
+
+  </form>
+</mat-dialog-content>

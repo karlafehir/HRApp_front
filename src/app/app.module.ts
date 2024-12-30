@@ -32,6 +32,7 @@ import { JobFormDialogComponent } from './components/jobs/job-form-dialog/job-fo
 import { DepartmentFormDialogComponent } from './components/departments/department-form-dialog/department-form-dialog.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { CandidateFormDialogComponent } from './components/recruitment/candidate-form-dialog/candidate-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { LayoutComponent } from './components/layout/layout.component';
     JobFormDialogComponent,
     DepartmentFormDialogComponent,
     AttendanceComponent,
-    LayoutComponent
+    LayoutComponent,
+    CandidateFormDialogComponent
   ],
   imports: [
     BrowserModule,
