@@ -93,7 +93,7 @@ export class EmployeeFormDialogComponent implements OnInit {
     if (this.employeeForm.valid) {
       const employeeData: Employee = {
         ...this.employeeForm.value,
-        leave: { ...this.employeeForm.value.leave }, // Extract leave data
+        employeeLeaveRecord: { ...this.employeeForm.value.employeeLeaveRecord }, // Extract leave data
       };
 
       if (this.isEdit) {
