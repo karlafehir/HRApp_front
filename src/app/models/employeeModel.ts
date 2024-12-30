@@ -7,20 +7,23 @@ export interface Employee {
   firstName: string;
   lastName: string;
   email: string;
-  address: string;
-  phoneNumber: string;
-  dateOfHire: Date; 
-  jobId: number;
-  job: any; 
-  departmentId: number;
-  managerId: number | null;
-  jobTitle: string;
-  salary: number;
+  address?: string;
+  phoneNumber?: string;
+  dateOfHire: Date;
+  jobId?: number;
+  departmentId?: number;
+  managerId?: number;
+  jobTitle?: string;
+  salary?: number;
   employmentStatus: string;
-  annualLeaveDays?: number | null;
-  sickLeaveDays?: number | null;
-  remainingAnnualLeave?: number | null;
-  remainingSickLeave?: number | null;
+  employeeLeaveRecord?: EmployeeLeaveRecord; 
+}
+
+export interface EmployeeLeaveRecord {
+  annualLeaveDays?: number;
+  sickLeaveDays?: number;
+  remainingAnnualLeave?: number;
+  remainingSickLeave?: number;
 }
 
 export interface Manager {

@@ -16,7 +16,7 @@ export class EmployeeFormDialogComponent implements OnInit {
   isEdit: boolean = false;
   jobs: Job[] = [];
   departments: Department[] = [];
-  managers: Employee[] = []; 
+  managers: Employee[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -41,10 +41,12 @@ export class EmployeeFormDialogComponent implements OnInit {
       jobTitle: [data?.jobTitle || ''],
       salary: [data?.salary || 0, Validators.min(0)],
       employmentStatus: [data?.employmentStatus || '', Validators.required],
-      annualLeaveDays: [data?.annualLeaveDays || null, [Validators.min(0)]],
-      sickLeaveDays: [data?.sickLeaveDays || null, [Validators.min(0)]],
-      remainingAnnualLeave: [data?.remainingAnnualLeave || null, [Validators.min(0)]],
-      remainingSickLeave: [data?.remainingSickLeave || null, [Validators.min(0)]],
+      employeeLeaveRecord: this.fb.group({
+        annualLeaveDays: [data?.employeeLeaveRecord?.annualLeaveDays || 20, [Validators.min(0)]],
+        sickLeaveDays: [data?.employeeLeaveRecord?.sickLeaveDays || 10, [Validators.min(0)]],
+        remainingAnnualLeave: [data?.employeeLeaveRecord?.remainingAnnualLeave || 20, [Validators.min(0)]],
+        remainingSickLeave: [data?.employeeLeaveRecord?.remainingSickLeave || 10, [Validators.min(0)]],
+      }),
     });
   }
 
@@ -91,17 +93,18 @@ export class EmployeeFormDialogComponent implements OnInit {
     if (this.employeeForm.valid) {
       const employeeData: Employee = {
         ...this.employeeForm.value,
+        leave: { ...this.employeeForm.value.leave }, // Extract leave data
       };
 
       if (this.isEdit) {
         employeeData.id = this.data?.id; // Include ID when editing
 
         this.employeeService.updateEmployee(employeeData).subscribe(
-          response => {
+          (response) => {
             console.log('Employee updated successfully:', response);
             this.dialogRef.close(true);
           },
-          error => {
+          (error) => {
             console.error('Error updating employee:', error);
           }
         );
@@ -109,11 +112,11 @@ export class EmployeeFormDialogComponent implements OnInit {
         delete employeeData.id; // Ensure ID is not sent when adding
 
         this.employeeService.addEmployee(employeeData).subscribe(
-          response => {
+          (response) => {
             console.log('Employee added successfully:', response);
             this.dialogRef.close(true);
           },
-          error => {
+          (error) => {
             console.error('Error adding employee:', error);
           }
         );
