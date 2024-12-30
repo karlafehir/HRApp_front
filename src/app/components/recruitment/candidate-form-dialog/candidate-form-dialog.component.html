@@ -29,10 +29,11 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Resume URL</mat-label>
-      <input matInput formControlName="resumeUrl">
-    </mat-form-field>
+    <!-- Resume File Upload -->
+    <div>
+      <label for="resume">Resume File:</label>
+      <input id="resume" type="file" (change)="onFileSelected($event)">
+    </div>
 
     <!-- Job Information Section -->
     <h3>Job Information</h3>

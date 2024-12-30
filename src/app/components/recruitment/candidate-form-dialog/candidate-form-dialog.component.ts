@@ -14,6 +14,8 @@ export class CandidateFormDialogComponent implements OnInit {
   candidateForm: FormGroup;
   isEdit: boolean = false;
   jobs: Job[] = [];
+  selectedFile: File | null = null;
+
   candidateStatuses = [
     { value: CandidateStatus.NewApplied, label: 'New Applied' },
     { value: CandidateStatus.Shortlisted, label: 'Shortlisted' },
@@ -21,7 +23,7 @@ export class CandidateFormDialogComponent implements OnInit {
     { value: CandidateStatus.Test, label: 'Test' },
     { value: CandidateStatus.Hired, label: 'Hired' }
   ];
-  
+
   constructor(
     private fb: FormBuilder,
     private candidateService: CandidateService,
@@ -35,9 +37,8 @@ export class CandidateFormDialogComponent implements OnInit {
       name: [data?.name || '', Validators.required],
       email: [data?.email || '', [Validators.required, Validators.email]],
       phone: [data?.phone || '', Validators.required],
-      resumeUrl: [data?.resumeUrl || ''],
       jobId: [data?.jobId || null, Validators.required],
-      status: [data?.status || 'NewApplied', Validators.required],
+      status: [data?.status || CandidateStatus.NewApplied, Validators.required],
     });
   }
 
@@ -56,14 +57,28 @@ export class CandidateFormDialogComponent implements OnInit {
     );
   }
 
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
+
   onSubmit() {
     if (this.candidateForm.valid) {
-      const candidateData: Candidate = { ...this.candidateForm.value };
-  
+      const formData = new FormData();
+      formData.append('name', this.candidateForm.get('name')?.value);
+      formData.append('email', this.candidateForm.get('email')?.value);
+      formData.append('phone', this.candidateForm.get('phone')?.value);
+      formData.append('jobId', this.candidateForm.get('jobId')?.value);
+      formData.append('status', this.candidateForm.get('status')?.value);
+      if (this.selectedFile) {
+        formData.append('resumeFile', this.selectedFile);
+      }
+
       if (this.isEdit) {
-        candidateData.id = this.data?.id; 
-  
-        this.candidateService.updateCandidate(candidateData).subscribe(
+        formData.append('id', this.data.id.toString());
+        this.candidateService.updateCandidateWithFile(formData).subscribe(
           (response) => {
             console.log('Candidate updated successfully:', response);
             this.dialogRef.close(true);
@@ -73,7 +88,7 @@ export class CandidateFormDialogComponent implements OnInit {
           }
         );
       } else {
-        this.candidateService.addCandidate(candidateData).subscribe(
+        this.candidateService.addCandidateWithFile(formData).subscribe(
           (response) => {
             console.log('Candidate added successfully:', response);
             this.dialogRef.close(true);

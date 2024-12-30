@@ -31,4 +31,13 @@ export class CandidateService {
     deleteCandidate(id: number): Observable<void> {
       return this.http.delete<void>(`${this.apiUrl}/api/Candidates/DeleteCandidate/${id}`);
     }
+
+    addCandidateWithFile(formData: FormData): Observable<any> {
+      return this.http.post(`${this.apiUrl}/api/Candidates/AddCandidateWithFile`, formData);
+    }
+    
+    updateCandidateWithFile(formData: FormData): Observable<any> {
+      return this.http.put(`${this.apiUrl}/api/Candidates/UpdateCandidateWithFile/${formData.get('id')}`, formData);
+    }
+    
 }
