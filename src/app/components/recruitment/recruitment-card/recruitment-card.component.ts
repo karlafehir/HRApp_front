@@ -50,6 +50,17 @@ export class RecruitmentCardComponent {
         verticalPosition: 'top',
       });
     }
-}
+  }
+
+  viewGithub(candidate: Candidate): void {
+    if (candidate.githubUrl) {
+        window.open(candidate.githubUrl, '_blank');
+    } else {
+        this.snackBar.open('No GitHub link provided for this candidate.', 'Close', {
+            duration: 3000,
+            verticalPosition: 'top',
+        });
+    }
+  }
 
 }

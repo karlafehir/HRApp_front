@@ -37,6 +37,10 @@ export class CandidateFormDialogComponent implements OnInit {
       name: [data?.name || '', Validators.required],
       email: [data?.email || '', [Validators.required, Validators.email]],
       phone: [data?.phone || '', Validators.required],
+      githubUrl: [
+        data?.githubUrl || '',
+        Validators.pattern('^(https?://)?(www.)?github.com/([a-zA-Z0-9_-]+)$')
+      ],
       jobId: [data?.jobId || null, Validators.required],
       status: [data?.status || CandidateStatus.NewApplied, Validators.required],
     });
@@ -70,12 +74,13 @@ export class CandidateFormDialogComponent implements OnInit {
       formData.append('name', this.candidateForm.get('name')?.value);
       formData.append('email', this.candidateForm.get('email')?.value);
       formData.append('phone', this.candidateForm.get('phone')?.value);
+      formData.append('githubUrl', this.candidateForm.get('githubUrl')?.value); // Add GitHub URL
       formData.append('jobId', this.candidateForm.get('jobId')?.value);
       formData.append('status', this.candidateForm.get('status')?.value);
       if (this.selectedFile) {
         formData.append('resumeFile', this.selectedFile);
       }
-
+  
       if (this.isEdit) {
         formData.append('id', this.data.id.toString());
         this.candidateService.updateCandidateWithFile(formData).subscribe(

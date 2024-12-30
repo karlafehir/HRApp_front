@@ -4,6 +4,7 @@ export interface Candidate {
     email: string;
     phone: string;
     resumeUrl: string;
+    githubUrl: string,
     jobId: number;
     status: CandidateStatus; 
 }

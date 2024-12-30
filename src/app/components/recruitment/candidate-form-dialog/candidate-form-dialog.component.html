@@ -29,6 +29,15 @@
       </mat-error>
     </mat-form-field>
 
+    <!-- GitHub URL -->
+    <mat-form-field appearance="fill">
+      <mat-label>GitHub URL</mat-label>
+      <input matInput formControlName="githubUrl" placeholder="https://github.com/username">
+      <mat-error *ngIf="candidateForm.get('githubUrl')?.hasError('pattern')">
+        Please enter a valid GitHub URL.
+      </mat-error>
+    </mat-form-field>
+
     <!-- Resume File Upload -->
     <div>
       <label for="resume">Resume File:</label>
@@ -58,7 +67,6 @@
         Status is required.
       </mat-error>
     </mat-form-field>
-    
 
     <button mat-button type="submit">{{ isEdit ? 'Edit Candidate' : 'Add Candidate' }}</button>
 
