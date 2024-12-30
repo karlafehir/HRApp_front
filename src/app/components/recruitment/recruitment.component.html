@@ -10,7 +10,10 @@
       </div>
       <div class="recruitment-column-cards-wrapper">
         <ng-container *ngFor="let candidate of column.candidates">
-          <app-recruitment-card [candidate]="candidate"></app-recruitment-card>
+          <app-recruitment-card 
+            [candidate]="candidate"
+            (statusUpdated)="GetJobByIdWithCandidates()"
+          ></app-recruitment-card>
         </ng-container>
       </div>
     </div>

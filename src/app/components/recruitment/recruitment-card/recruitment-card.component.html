@@ -2,8 +2,16 @@
     <div class="job-card-title-wrapper">
         <div class="img"></div>
         <div class="title-wrapper">
-            <div class="card-title">{{candidate.name}}</div>
-            <div class="card-subtitle">{{candidate.email}}</div>
+            <div class="card-title">{{ candidate.name }}</div>
+            <div class="card-subtitle">{{ candidate.email }}</div>
+            <!-- Candidate Status Dropdown -->
+            <mat-form-field appearance="outline" class="status-dropdown">
+                <mat-select [(value)]="candidate.status" (selectionChange)="updateStatus(candidate)">
+                    <mat-option *ngFor="let status of candidateStatuses" [value]="status.value">
+                        {{ status.label }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </div>
     <hr>
