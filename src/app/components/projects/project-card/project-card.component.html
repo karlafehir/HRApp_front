@@ -1,4 +1,4 @@
-<div class="project-card-wrapper">
+<div class="project-card-wrapper" (click)="openProjectDetails()" style="cursor: pointer;">
     <div class="project-card-title-wrapper">
         <div class="img"></div>
         <div class="title-wrapper">
@@ -9,7 +9,7 @@
     </div>
     <hr>
     <div class="details-wrapper">
-        <div class="card-subtitle link" (click)="viewDetails(project)">Details</div>
-        <mat-icon (click)="deleteProject(project)">delete</mat-icon>
+        <!-- <div class="card-subtitle link" (click)="viewDetails(project)">Details</div> -->
+        <!-- <mat-icon (click)="deleteProject(project)">delete</mat-icon> -->
     </div>    
 </div>

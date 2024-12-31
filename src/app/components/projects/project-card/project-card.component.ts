@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Project } from '../../../models/projectModel';
 import { ProjectService } from '../../../services/project.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ProjectDetailsDialogComponent } from '../project-details-dialog/project-details-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-project-card',
@@ -11,7 +13,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProjectCardComponent {
   @Input() project!: Project;
 
-  constructor(private projectService: ProjectService, private snackBar: MatSnackBar) {}
+  constructor(private projectService: ProjectService, 
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+  ) {}
 
   @Output() statusUpdated = new EventEmitter<void>();
   @Output() projectDeleted = new EventEmitter<number>();
@@ -40,8 +45,15 @@ export class ProjectCardComponent {
     );
   }
 
-  viewDetails(project: Project): void {
-    console.log(`View details for project ${project.name}`);
-    // Implement navigation or modal logic to show project details
+  openProjectDetails(): void {
+    const dialogRef = this.dialog.open(ProjectDetailsDialogComponent, {
+      width: '500px',
+      data: this.project 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+      }
+    });
   }
 }
