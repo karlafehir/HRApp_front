@@ -1,0 +1,22 @@
+.projects-cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    background-color: white;
+    margin: 32px 0 0 32px;
+    padding: 40px;
+    border-radius: 12px;
+    height: 100vh;
+
+    .projects-column-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .projects-column-cards-wrapper {
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 20px;
+        }
+    }
+}

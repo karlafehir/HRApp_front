@@ -9,6 +9,7 @@ import { DepartmentsComponent } from './components/departments/departments.compo
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ProjectsComponent } from './components/projects/projects.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,11 @@ const routes: Routes = [
   {
     path: 'attendance',
     component: AttendanceComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'projects',
+    component: ProjectsComponent,
     canActivate: [AuthGuard]
   }
 ];

@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
 
   menuItems = [
     // { name: 'Dashboard', icon: 'dashboard', route: '/' },
-    // { name: 'Projects', icon: 'folder', route: '/' },
+    { name: 'Projects', icon: 'folder', route: '/projects' },
     { name: 'Jobs', icon: 'work', route: '/jobs' },
     { name: 'Recruitment', icon: 'group_add', route: '/recruitment' },
     { name: 'Employees', icon: 'people', route: '/employees' },
