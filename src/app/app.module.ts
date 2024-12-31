@@ -35,6 +35,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { CandidateFormDialogComponent } from './components/recruitment/candidate-form-dialog/candidate-form-dialog.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ProjectCardComponent } from './components/projects/project-card/project-card.component';
+import { ProjectFormDialogComponent } from './components/projects/project-form-dialog/project-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ProjectCardComponent } from './components/projects/project-card/project
     LayoutComponent,
     CandidateFormDialogComponent,
     ProjectsComponent,
-    ProjectCardComponent
+    ProjectCardComponent,
+    ProjectFormDialogComponent
   ],
   imports: [
     BrowserModule,
