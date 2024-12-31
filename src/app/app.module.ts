@@ -34,6 +34,7 @@ import { AttendanceComponent } from './components/attendance/attendance.componen
 import { LayoutComponent } from './components/layout/layout.component';
 import { CandidateFormDialogComponent } from './components/recruitment/candidate-form-dialog/candidate-form-dialog.component';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { ProjectCardComponent } from './components/projects/project-card/project-card.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ProjectsComponent } from './components/projects/projects.component';
     AttendanceComponent,
     LayoutComponent,
     CandidateFormDialogComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    ProjectCardComponent
   ],
   imports: [
     BrowserModule,

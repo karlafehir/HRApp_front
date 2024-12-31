@@ -6,7 +6,10 @@
     <div class="projects-column-wrapper">
         <div class="projects-column-cards-wrapper">
             <ng-container *ngFor="let project of projects">
-               <!-- add card -->
+              <app-project-card 
+                [project]="project"
+                (projectDeleted)="GetAllProjects()"
+              ></app-project-card>
             </ng-container>
         </div>
     </div>
