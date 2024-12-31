@@ -64,12 +64,13 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Manager</mat-label>
-      <mat-select formControlName="managerId">
-        <mat-option *ngFor="let manager of managers" [value]="manager.id">
-          {{ manager.firstName }} {{ manager.lastName }}
-        </mat-option>
+      <mat-label>Project</mat-label>
+      <mat-select formControlName="projectId">
+        <mat-option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</mat-option>
       </mat-select>
+      <mat-error *ngIf="employeeForm.get('projectId')?.hasError('required')">
+        Project is required.
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -114,25 +115,8 @@
           Sick Leave Days must be a non-negative number.
         </mat-error>
       </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Remaining Annual Leave</mat-label>
-        <input matInput type="number" formControlName="remainingAnnualLeave" min="0">
-        <mat-error *ngIf="employeeForm.get('employeeLeaveRecord.remainingAnnualLeave')?.hasError('min')">
-          Remaining Annual Leave must be a non-negative number.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Remaining Sick Leave</mat-label>
-        <input matInput type="number" formControlName="remainingSickLeave" min="0">
-        <mat-error *ngIf="employeeForm.get('employeeLeaveRecord.remainingSickLeave')?.hasError('min')">
-          Remaining Sick Leave must be a non-negative number.
-        </mat-error>
-      </mat-form-field>
     </div>
 
     <button mat-button type="submit">{{ isEdit ? 'Edit Employee' : 'Add Employee' }}</button>
-
   </form>
 </mat-dialog-content>

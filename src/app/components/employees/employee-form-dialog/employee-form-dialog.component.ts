@@ -4,8 +4,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EmployeeService } from '../../../services/employee.service';
 import { Department, Employee } from '../../../models/employeeModel';
 import { Job } from '../../../models/jobModel';
+import { Project } from '../../../models/projectModel';
 import { JobService } from '../../../services/job.service';
 import { DepartmentService } from '../../../services/department.service';
+import { ProjectService } from '../../../services/project.service';
 
 @Component({
   selector: 'app-employee-form-dialog',
@@ -17,14 +19,16 @@ export class EmployeeFormDialogComponent implements OnInit {
   jobs: Job[] = [];
   departments: Department[] = [];
   managers: Employee[] = [];
+  projects: Project[] = [];
 
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService,
     private jobService: JobService,
     private departmentService: DepartmentService,
+    private projectService: ProjectService,
     private dialogRef: MatDialogRef<EmployeeFormDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Employee 
+    @Inject(MAT_DIALOG_DATA) public data: Employee
   ) {
     this.isEdit = !!data;
 
@@ -36,29 +40,31 @@ export class EmployeeFormDialogComponent implements OnInit {
       phoneNumber: [data?.phoneNumber || ''],
       dateOfHire: [data?.dateOfHire || new Date().toISOString(), Validators.required],
       jobId: [data?.jobId || null],
-      departmentId: [data?.departmentId || null], 
-      managerId: [data?.managerId || null], 
+      departmentId: [data?.departmentId || null],
+      projectId: [data?.id || null],
       jobTitle: [data?.jobTitle || ''],
       salary: [data?.salary || 0, Validators.min(0)],
       employmentStatus: [data?.employmentStatus || '', Validators.required],
       employeeLeaveRecord: this.fb.group({
+        id: [data?.employeeLeaveRecord?.id || null], // Include the ID
         annualLeaveDays: [data?.employeeLeaveRecord?.annualLeaveDays || 20, [Validators.min(0)]],
         sickLeaveDays: [data?.employeeLeaveRecord?.sickLeaveDays || 10, [Validators.min(0)]],
         remainingAnnualLeave: [data?.employeeLeaveRecord?.remainingAnnualLeave || 20, [Validators.min(0)]],
         remainingSickLeave: [data?.employeeLeaveRecord?.remainingSickLeave || 10, [Validators.min(0)]],
       }),
     });
+    
   }
 
   ngOnInit() {
     this.loadJobs();
     this.loadDepartments();
-    this.loadManagers();
+    this.loadProjects();
   }
 
   loadJobs() {
     this.jobService.getAllJobs().subscribe(
-      (jobs: Job[]) => {
+      (jobs) => {
         this.jobs = jobs;
       },
       (error) => {
@@ -69,7 +75,7 @@ export class EmployeeFormDialogComponent implements OnInit {
 
   loadDepartments() {
     this.departmentService.getAllDepartments().subscribe(
-      (departments: Department[]) => {
+      (departments) => {
         this.departments = departments;
       },
       (error) => {
@@ -78,13 +84,13 @@ export class EmployeeFormDialogComponent implements OnInit {
     );
   }
 
-  loadManagers() {
-    this.employeeService.getAllEmployees().subscribe(
-      (employees: Employee[]) => {
-        this.managers = employees;
+  loadProjects() {
+    this.projectService.getAllProjects().subscribe(
+      (projects) => {
+        this.projects = projects;
       },
       (error) => {
-        console.error('Error fetching managers:', error);
+        console.error('Error fetching projects:', error);
       }
     );
   }
@@ -93,11 +99,11 @@ export class EmployeeFormDialogComponent implements OnInit {
     if (this.employeeForm.valid) {
       const employeeData: Employee = {
         ...this.employeeForm.value,
-        employeeLeaveRecord: { ...this.employeeForm.value.employeeLeaveRecord }, // Extract leave data
+        employeeLeaveRecord: { ...this.employeeForm.value.employeeLeaveRecord },
       };
 
       if (this.isEdit) {
-        employeeData.id = this.data?.id; // Include ID when editing
+        employeeData.id = this.data?.id;
 
         this.employeeService.updateEmployee(employeeData).subscribe(
           (response) => {
@@ -109,7 +115,7 @@ export class EmployeeFormDialogComponent implements OnInit {
           }
         );
       } else {
-        delete employeeData.id; // Ensure ID is not sent when adding
+        delete employeeData.id;
 
         this.employeeService.addEmployee(employeeData).subscribe(
           (response) => {

@@ -20,6 +20,7 @@ export interface Employee {
 }
 
 export interface EmployeeLeaveRecord {
+  id: number;
   annualLeaveDays?: number;
   sickLeaveDays?: number;
   remainingAnnualLeave?: number;
