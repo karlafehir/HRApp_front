@@ -1,39 +1,53 @@
-<h2 mat-dialog-title>{{ isEdit ? 'Edit Project' : 'Add New Project' }}</h2>
-<mat-dialog-content>
-  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+<div class="form-wrapper">
+  <h2 mat-dialog-title>{{ isEdit ? 'Edit Project' : 'Add New Project' }}</h2>
+  <mat-dialog-content>
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="form-container">
+      
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="input-wide">
+          <mat-label>Project Name</mat-label>
+          <input matInput formControlName="name" required>
+          <mat-error *ngIf="projectForm.get('name')?.hasError('required')">
+            Project Name is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="input-wide">
+          <mat-label>Project Description</mat-label>
+          <textarea matInput formControlName="description" required></textarea>
+          <mat-error *ngIf="projectForm.get('description')?.hasError('required')">
+            Project Description is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill" >
+          <mat-label>Start Date</mat-label>
+          <input matInput type="date" formControlName="startDate" required>
+          <mat-error *ngIf="projectForm.get('startDate')?.hasError('required')">
+            Start Date is required.
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>End Date</mat-label>
+          <input matInput type="date" formControlName="endDate">
+          <mat-error *ngIf="projectForm.get('endDate')?.hasError('dateAfter')">
+            End Date must be after the Start Date.
+          </mat-error>
+        </mat-form-field>
+      </div>
     
-    <mat-form-field appearance="fill">
-      <mat-label>Project Name</mat-label>
-      <input matInput formControlName="name" required>
-      <mat-error *ngIf="projectForm.get('name')?.hasError('required')">
-        Project Name is required.
-      </mat-error>
-    </mat-form-field>
+  
+   
+  
+    
+  
+      <button mat-button type="submit">{{ isEdit ? 'Edit Project' : 'Add Project' }}</button>
+    </form>
+  </mat-dialog-content>
+</div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Project Description</mat-label>
-      <textarea matInput formControlName="description" required></textarea>
-      <mat-error *ngIf="projectForm.get('description')?.hasError('required')">
-        Project Description is required.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Start Date</mat-label>
-      <input matInput type="date" formControlName="startDate" required>
-      <mat-error *ngIf="projectForm.get('startDate')?.hasError('required')">
-        Start Date is required.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>End Date</mat-label>
-      <input matInput type="date" formControlName="endDate">
-      <mat-error *ngIf="projectForm.get('endDate')?.hasError('dateAfter')">
-        End Date must be after the Start Date.
-      </mat-error>
-    </mat-form-field>
-
-    <button mat-button type="submit">{{ isEdit ? 'Edit Project' : 'Add Project' }}</button>
-  </form>
-</mat-dialog-content>

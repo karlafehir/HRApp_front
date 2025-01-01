@@ -163,3 +163,12 @@ h3 {
   font-weight: 500;
   color: black;
 }
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wide{
+  width: calc(100% - 16px);
+}
