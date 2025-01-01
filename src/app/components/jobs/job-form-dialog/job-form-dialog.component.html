@@ -1,64 +1,74 @@
-<h2 mat-dialog-title>{{ isEdit ? 'Edit Job' : 'Add New Job' }}</h2>
-<mat-dialog-content>
-  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+<div class="form-wrapper">
+  <h2 mat-dialog-title>{{ isEdit ? 'Edit Job' : 'Add New Job' }}</h2>
+  <mat-dialog-content>
+    <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="form-container">
+      
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="input-wide">
+          <mat-label>Job Title</mat-label>
+          <input matInput formControlName="title" required>
+          <mat-error *ngIf="jobForm.get('title')?.hasError('required')">
+            Job Title is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="input-wide">
+          <mat-label>Job Description</mat-label>
+          <textarea matInput formControlName="description" required></textarea>
+          <mat-error *ngIf="jobForm.get('description')?.hasError('required')">
+            Job Description is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Department</mat-label>
+          <mat-select formControlName="departmentId">
+            <mat-option *ngFor="let department of departmentOptions" [value]="department.id">
+              {{ department.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="jobForm.get('departmentId')?.hasError('required')">
+            Department is required.
+          </mat-error>
+        </mat-form-field>
     
-    <mat-form-field appearance="fill">
-      <mat-label>Job Title</mat-label>
-      <input matInput formControlName="title" required>
-      <mat-error *ngIf="jobForm.get('title')?.hasError('required')">
-        Job Title is required.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Job Description</mat-label>
-      <textarea matInput formControlName="description" required></textarea>
-      <mat-error *ngIf="jobForm.get('description')?.hasError('required')">
-        Job Description is required.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Department</mat-label>
-      <mat-select formControlName="departmentId">
-        <mat-option *ngFor="let department of departmentOptions" [value]="department.id">
-          {{ department.name }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="jobForm.get('departmentId')?.hasError('required')">
-        Department is required.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Posted Date</mat-label>
-      <input matInput type="date" formControlName="postedDate" required>
-      <mat-error *ngIf="jobForm.get('postedDate')?.hasError('required')">
-        Posted Date is required.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Closing Date</mat-label>
-      <input matInput type="date" formControlName="closingDate">
-      <mat-error *ngIf="jobForm.get('closingDate')?.hasError('dateAfter')">
-        Closing Date must be after the Posted Date.
-      </mat-error>
-    </mat-form-field>
-
-    <!-- Priority -->
-    <mat-form-field appearance="fill">
-      <mat-label>Priority</mat-label>
-      <mat-select formControlName="priority" required>
-        <mat-option *ngFor="let priority of priorityOptions" [value]="priority.value">
-          {{ priority.label }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="jobForm.get('priority')?.hasError('required')">
-        Priority is required.
-      </mat-error>
-    </mat-form-field>
-
-    <button mat-button type="submit">{{ isEdit ? 'Edit Job' : 'Add Job' }}</button>
-  </form>
-</mat-dialog-content>
+        <!-- Priority -->
+        <mat-form-field appearance="fill">
+          <mat-label>Priority</mat-label>
+          <mat-select formControlName="priority" required>
+            <mat-option *ngFor="let priority of priorityOptions" [value]="priority.value">
+              {{ priority.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="jobForm.get('priority')?.hasError('required')">
+            Priority is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Posted Date</mat-label>
+          <input matInput type="date" formControlName="postedDate" required>
+          <mat-error *ngIf="jobForm.get('postedDate')?.hasError('required')">
+            Posted Date is required.
+          </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+          <mat-label>Closing Date</mat-label>
+          <input matInput type="date" formControlName="closingDate">
+          <mat-error *ngIf="jobForm.get('closingDate')?.hasError('dateAfter')">
+            Closing Date must be after the Posted Date.
+          </mat-error>
+        </mat-form-field>
+      </div>  
+      <button mat-button type="submit">{{ isEdit ? 'Edit Job' : 'Add Job' }}</button>
+    </form>
+  </mat-dialog-content>
+  
+</div>
