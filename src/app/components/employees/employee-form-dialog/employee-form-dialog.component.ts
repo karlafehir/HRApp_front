@@ -46,7 +46,7 @@ export class EmployeeFormDialogComponent implements OnInit {
       salary: [data?.salary || 0, Validators.min(0)],
       employmentStatus: [data?.employmentStatus || '', Validators.required],
       employeeLeaveRecord: this.fb.group({
-        id: [data?.employeeLeaveRecord?.id || null], // Include the ID
+        // id: [data?.employeeLeaveRecord?.id || null], // Include the ID
         annualLeaveDays: [data?.employeeLeaveRecord?.annualLeaveDays || 20, [Validators.min(0)]],
         sickLeaveDays: [data?.employeeLeaveRecord?.sickLeaveDays || 10, [Validators.min(0)]],
         remainingAnnualLeave: [data?.employeeLeaveRecord?.remainingAnnualLeave || 20, [Validators.min(0)]],

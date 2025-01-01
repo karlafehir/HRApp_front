@@ -1,3 +1,5 @@
+<div class="form-wrapper">
+
 <h2 mat-dialog-title>{{ isEdit ? 'Edit Employee' : 'Add New Employee' }}</h2>
 
 <mat-dialog-content>
@@ -73,10 +75,10 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <!-- <mat-form-field appearance="fill">
       <mat-label>Job Title</mat-label>
       <input matInput formControlName="jobTitle">
-    </mat-form-field>
+    </mat-form-field> -->
 
     <mat-form-field appearance="fill">
       <mat-label>Salary</mat-label>
@@ -120,3 +122,4 @@
     <button mat-button type="submit">{{ isEdit ? 'Edit Employee' : 'Add Employee' }}</button>
   </form>
 </mat-dialog-content>
+</div>
