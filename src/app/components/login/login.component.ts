@@ -1,11 +1,13 @@
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/Auth.service';
 import { Component, OnInit } from '@angular/core';
+import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [fadeInAnimation]
 })
 
 export class LoginComponent {
