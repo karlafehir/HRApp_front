@@ -16,10 +16,26 @@
     align-items: center;
     gap: 32px;
 
+    .nav-item{
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 8px 24px !important;
+      height: fit-content;
+      border-radius: 8px;
+      margin-right: -32px;
+
+      &:hover {
+        background-color: var(--secondary-color);
+
+      }
+    }
+
     .employee-info-wrapper{
       display: flex;
       gap: 20px;
       align-content: center;
+      align-items: center;
     }
 
     .employee-info {
@@ -49,9 +65,12 @@
       transition: background-color 0.3s ease;
       display: flex;
       align-items: center;
+      gap: 12px;
+      padding: 8px 20px;
+      border-radius: 8px;
   
       &:hover {
-        color: var(--primary-color)
+        background-color: var(--secondary-color);
       }
     }
   }

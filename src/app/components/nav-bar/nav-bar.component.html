@@ -1,6 +1,7 @@
 <div class="navbar">
   <div class="menu-title">Workflow</div>
   <div class="nav-left">
+    <div class="nav-item" *ngIf="!isLoggedIn" (click)="navigateToJobs()">Jobs</div>
     <div *ngIf="isLoggedIn; else loginTemplate" class="employee-info-wrapper">
       <div class="employee-info">
         <div class="employee-name">Karla Fehir</div>
@@ -13,9 +14,10 @@
     </div>
 
     <ng-template #loginTemplate>
-      <button class="btn-login" (click)="onLogin()">
+      <div class="btn-logout" (click)="onLogin()">
+        <mat-icon>login</mat-icon>
         Login
-      </button>
+      </div>
     </ng-template>
   </div>
 </div>

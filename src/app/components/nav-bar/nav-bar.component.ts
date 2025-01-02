@@ -26,4 +26,8 @@ export class NavBarComponent implements OnInit {
   onLogin() {
     this.router.navigate(['/login']); 
   }
+
+  navigateToJobs() {
+    this.router.navigate(['/jobs'])
+  }
 }
