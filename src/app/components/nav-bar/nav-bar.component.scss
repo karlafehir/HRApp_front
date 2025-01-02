@@ -16,6 +16,12 @@
     align-items: center;
     gap: 32px;
 
+    .employee-info-wrapper{
+      display: flex;
+      gap: 20px;
+      align-content: center;
+    }
+
     .employee-info {
       display: flex;
       flex-direction: column;
@@ -41,6 +47,8 @@
     .btn-logout {
       cursor: pointer;
       transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
   
       &:hover {
         color: var(--primary-color)

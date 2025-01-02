@@ -1,13 +1,21 @@
 <div class="navbar">
   <div class="menu-title">Workflow</div>
   <div class="nav-left">
-    <div class="employee-info">
-      <div class="employee-name">Karla Fehir</div>
-      <div class="employee-department">Front-End Developer</div>
+    <div *ngIf="isLoggedIn; else loginTemplate" class="employee-info-wrapper">
+      <div class="employee-info">
+        <div class="employee-name">Karla Fehir</div>
+        <div class="employee-department">Front-End Developer</div>
+      </div>
+      <div class="employee-avatar"></div>
+      <div class="btn-logout" (click)="onLogout()">
+        <mat-icon>logout</mat-icon>
+      </div>
     </div>
-    <div class="employee-avatar"></div>
-    <div class="btn-logout" (click)="onLogout()">
-      <mat-icon>logout</mat-icon>
-    </div>
+
+    <ng-template #loginTemplate>
+      <button class="btn-login" (click)="onLogin()">
+        Login
+      </button>
+    </ng-template>
   </div>
 </div>

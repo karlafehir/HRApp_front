@@ -13,7 +13,10 @@ export class AuthGuard implements CanActivate {
     const routePath = route.routeConfig?.path;
 
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['login']);
+      if (routePath === 'jobs') {
+        return true; 
+      }
+      this.router.navigate(['login']); 
       return false;
     }
 
@@ -31,11 +34,15 @@ export class AuthGuard implements CanActivate {
 
     if (role === 'Employee') {
       const employeeId = this.authService.getEmployeeId();
+      if (routePath === 'jobs') {
+        this.router.navigate([`/employee-profile/${employeeId}`]); 
+        return false;
+      }
       if (employeeId && !routePath?.includes('employee-profile')) {
         this.router.navigate([`/employee-profile/${employeeId}`]);
         return false;
       }
-      return true; 
+      return true;
     }
 
     return true;

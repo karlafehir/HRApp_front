@@ -19,7 +19,6 @@ const routes: Routes = [
   {
     path: 'jobs',
     component: JobsComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'recruitment',
@@ -55,7 +54,10 @@ const routes: Routes = [
     path: 'projects',
     component: ProjectsComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  { path: '', redirectTo: '/jobs', pathMatch: 'full' },
+  { path: '**', redirectTo: '/jobs' }, // Wildcard route for unknown paths
+
 ];
 
 @NgModule({
