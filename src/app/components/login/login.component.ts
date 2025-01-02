@@ -2,7 +2,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/Auth.service';
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,7 +24,16 @@ export class LoginComponent {
     this.authService.login(credentials).subscribe(
       (response) => {
         console.log('Login successful', response);
-        this.router.navigate(['/jobs']);
+        const role = this.authService.getRole();
+        const employeeId = this.authService.getEmployeeId();
+
+        if (role === 'Admin' || role === 'Manager') {
+          this.router.navigate(['/projects']);
+        } else if (role === 'Employee' && employeeId) {
+          this.router.navigate([`/employee-profile/${employeeId}`]); 
+        } else {
+          this.router.navigate(['/']);
+        }
       },
       (error) => {
         console.error('Login error', error);

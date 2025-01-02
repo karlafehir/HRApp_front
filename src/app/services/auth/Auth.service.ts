@@ -67,7 +67,6 @@ export class AuthService {
       localStorage.removeItem('employeeId');
       this.loggedInSubject.next(false);
     }
-    this.router.navigate(['login']);
   }
   
 }
