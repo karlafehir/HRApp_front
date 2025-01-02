@@ -30,4 +30,9 @@ export class NavBarComponent implements OnInit {
   navigateToJobs() {
     this.router.navigate(['/jobs'])
   }
+
+  navigateToProfile() {
+    const employeeId = this.authService.getEmployeeId();
+    this.router.navigate([`/employee-profile/${employeeId}`]); 
+  }
 }
