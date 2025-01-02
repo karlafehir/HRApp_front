@@ -1,5 +1,6 @@
-.recruitment-cards-wrapper{
+.recruitment-screen-wrapper{
     display: flex;
+    flex-direction: column;
     gap: 32px;
     background-color: white;
     margin: 32px 0 0 32px;
@@ -7,29 +8,34 @@
     border-radius: 12px;
     height: 100vh;
 
-    .recruitment-column-wrapper{
+    .recruitment-cards-wrapper{
         display: flex;
-        flex-direction: column;
-        gap: 20px;
+        gap: 30px;
 
-        .status-tab-wrapper {
-            display: flex;
-            justify-content: space-between;
-            width: 260px;
-            border-radius: 8px;
-            padding: 6px 20px;
-            background-color: var(--secondary-color);
-
-            .status-text{
-                color: var(--primary-color);
-                font-family: 'Poppins-Medium';
-            }
-        }
-
-        .recruitment-column-cards-wrapper{
+        .recruitment-column-wrapper{
             display: flex;
             flex-direction: column;
             gap: 20px;
+
+            .status-tab-wrapper {
+                display: flex;
+                justify-content: space-between;
+                width: 260px;
+                border-radius: 8px;
+                padding: 6px 20px;
+                background-color: var(--secondary-color);
+
+                .status-text{
+                    color: var(--primary-color);
+                    font-family: 'Poppins-Medium';
+                }
+            }
+
+            .recruitment-column-cards-wrapper{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
         }
     }
 }

@@ -1,11 +1,23 @@
-<div class="button-add" (click)="openDialog()">
-  + Add new candidate
-</div>
+<div class="recruitment-screen-wrapper" @fadeInAnimation>
 
-<div class="recruitment-cards-wrapper" @fadeInAnimation>
+  <div class="filter-dropdown">
+    <mat-form-field>
+      <mat-select [(value)]="selectedJobId" (selectionChange)="GetJobByIdWithCandidates()">
+        <mat-option *ngFor="let job of jobs" [value]="job.id">
+          {{ job.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="button-add" (click)="openDialog()">
+      + Add new candidate
+    </div>
+  </div>
+
+  <div class="recruitment-cards-wrapper" >
     <div *ngFor="let column of recruitmentStatuses" class="recruitment-column-wrapper">
       <div class="status-tab-wrapper">
-        <div class="status-text">{{ getStatusLabel(column.status) }}</div> <!-- Use getStatusLabel -->
+        <div class="status-text">{{ getStatusLabel(column.status) }}</div>
         <div class="status-text">{{ column.count }}</div>
       </div>
       <div class="recruitment-column-cards-wrapper">
@@ -17,4 +29,5 @@
         </ng-container>
       </div>
     </div>
+  </div>
 </div>

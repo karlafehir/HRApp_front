@@ -12,7 +12,6 @@ import { CandidateFormDialogComponent } from './candidate-form-dialog/candidate-
   styleUrls: ['./recruitment.component.scss'],
   animations: [fadeInAnimation]
 })
-
 export class RecruitmentComponent implements OnInit {
 
   recruitmentStatuses: { status: CandidateStatus, count: number, candidates: Candidate[] }[] = [
@@ -24,19 +23,40 @@ export class RecruitmentComponent implements OnInit {
   ];
 
   candidates: Candidate[] = [];
+  jobs: Job[] = []; 
+  selectedJobId: number | undefined = 4003; 
 
-  constructor(private jobService: JobService,  public dialog: MatDialog) {}
+  constructor(private jobService: JobService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.GetJobByIdWithCandidates();
+    this.loadAllJobs();
   }
 
-  GetJobByIdWithCandidates(){
-    this.jobService.getJobByIdWithCandidates(4003).subscribe(
+  loadAllJobs(): void {
+    this.jobService.getAllJobs().subscribe(
+      (jobs: Job[]) => {
+        this.jobs = jobs;
+        if (this.jobs.length > 0 && !this.selectedJobId) {
+          this.selectedJobId = this.jobs[0].id; 
+        }
+        this.GetJobByIdWithCandidates();
+      },
+      error => {
+        console.error('Error fetching jobs:', error);
+      }
+    );
+  }
+
+  GetJobByIdWithCandidates(): void {
+    if (!this.selectedJobId) {
+      console.error('No job selected');
+      return;
+    }
+
+    this.jobService.getJobByIdWithCandidates(this.selectedJobId).subscribe(
       (response: Job) => {
         this.candidates = response.candidates;
         this.groupCandidatesByStatus();
-        console.log(this.candidates);
       },
       error => {
         console.error('Error fetching candidates:', error);
@@ -44,7 +64,7 @@ export class RecruitmentComponent implements OnInit {
     );
   }
 
-  private groupCandidatesByStatus() {
+  private groupCandidatesByStatus(): void {
     this.recruitmentStatuses.forEach(status => {
       status.count = 0;
       status.candidates = [];
