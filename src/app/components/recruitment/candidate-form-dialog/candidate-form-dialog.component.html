@@ -45,7 +45,7 @@
     </div>
 
     <!-- Job Information Section -->
-    <h3>Job Information</h3>
+    <!-- <h3>Job Information</h3>
     <mat-form-field appearance="fill">
       <mat-label>Job</mat-label>
       <mat-select formControlName="jobId" required>
@@ -54,9 +54,9 @@
       <mat-error *ngIf="candidateForm.get('jobId')?.hasError('required')">
         Job is required.
       </mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
 
-    <mat-form-field appearance="fill">
+    <!-- <mat-form-field appearance="fill">
       <mat-label>Status</mat-label>
       <mat-select formControlName="status" required>
         <mat-option *ngFor="let status of candidateStatuses" [value]="status.value">
@@ -66,7 +66,7 @@
       <mat-error *ngIf="candidateForm.get('status')?.hasError('required')">
         Status is required.
       </mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
 
     <button mat-button type="submit">{{ isEdit ? 'Edit Candidate' : 'Add Candidate' }}</button>
 

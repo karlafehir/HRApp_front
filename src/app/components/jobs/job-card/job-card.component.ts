@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Job } from '../../../models/jobModel';
 import { JobPriority } from '../../../enums/jobPriority';
+import { CandidateFormDialogComponent } from '../../recruitment/candidate-form-dialog/candidate-form-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-job-card',
@@ -14,6 +16,8 @@ export class JobCardComponent {
 
   JobPriority = JobPriority; 
 
+  constructor( private dialog: MatDialog) {}
+
   onEditClick() {
     this.editJob.emit(this.job);
   }
@@ -21,4 +25,17 @@ export class JobCardComponent {
   onDeleteClick() {
     this.deleteJob.emit(this.job.id);
   }
+
+  openApplyDialog(): void {
+    const dialogRef = this.dialog.open(CandidateFormDialogComponent, {
+      data: { jobId: this.job.id }, // Pass jobId as part of data
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Dialog closed with result:', result);
+      }
+    });
+  }  
+
 }
