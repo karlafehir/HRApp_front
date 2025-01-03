@@ -1,20 +1,24 @@
-import { Component, Inject } from '@angular/core';
+import { resolve } from 'node:path';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DepartmentService } from '../../../services/department.service';
-import { Department } from '../../../models/employeeModel';
+import { Department, Employee } from '../../../models/employeeModel';
+import { EmployeeService } from '../../../services/employee.service';
 
 @Component({
   selector: 'app-department-form-dialog',
   templateUrl: './department-form-dialog.component.html',
 })
-export class DepartmentFormDialogComponent {
+export class DepartmentFormDialogComponent implements OnInit{
   departmentForm: FormGroup;
   isEdit: boolean = false;
+  employees: Employee [] = [];
 
   constructor(
     private fb: FormBuilder,
     private departmentService: DepartmentService,
+    private employeeService: EmployeeService,
     private dialogRef: MatDialogRef<DepartmentFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Department 
   ) {
@@ -25,6 +29,21 @@ export class DepartmentFormDialogComponent {
       managerId: [data?.managerId || 0, Validators.required],
       employees: [data?.employees || []], 
     });
+  }
+
+  ngOnInit() {
+    this.loadEmployees();
+  }
+
+  loadEmployees() {
+    this.employeeService.getAllEmployees().subscribe(
+      (response) => {
+        this.employees = response;
+      },
+      (error) => {
+        console.error('Error fetching employees:', error);
+      }
+    );
   }
 
   onSubmit() {

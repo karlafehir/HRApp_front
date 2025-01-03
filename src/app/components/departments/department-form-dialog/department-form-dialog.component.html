@@ -15,11 +15,10 @@
       
       <!-- Manager ID -->
       <mat-form-field appearance="fill" class="input-wide">
-        <mat-label>Manager ID</mat-label>
-        <input matInput type="number" formControlName="managerId" required>
-        <mat-error *ngIf="departmentForm.get('managerId')?.hasError('required')">
-          Manager ID is required.
-        </mat-error>
+        <mat-label>Manager</mat-label>
+        <mat-select formControlName="managerId">
+          <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.firstName + employee.lastName }}</mat-option>
+        </mat-select>
       </mat-form-field>
   
       <!-- Optional: Employees Array (Placeholder) -->
