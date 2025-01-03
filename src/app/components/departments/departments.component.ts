@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Department, Employee } from '../../models/employeeModel';
 import { Router } from '@angular/router';
 import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
-import { EmployeeService } from '../../services/employee.service';
-import { PayrollEmployee } from '../../models/payrollEmployeeModel'; // Ensure you import the model
 import { MatDialog } from '@angular/material/dialog';
 import { DepartmentService } from '../../services/department.service';
 import { DepartmentFormDialogComponent } from './department-form-dialog/department-form-dialog.component';
