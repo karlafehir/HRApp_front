@@ -36,4 +36,15 @@ export class PayrollComponent implements OnInit {
       (payroll.employee.firstName + ' ' + payroll.employee.lastName).toLowerCase().includes(this.searchText.toLowerCase())
     );
   }
+
+  updatePayroll(payroll: Payroll): void {
+    this.payrollService.updatePayroll(payroll).subscribe({
+      next: () => {
+        console.log('Payroll updated successfully');
+      },
+      error: (err) => {
+        console.error('Failed to update payroll:', err);
+      },
+    });
+  }
 }

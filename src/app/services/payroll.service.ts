@@ -15,4 +15,8 @@ export class PayrollService {
     getAllPayrolls(): Observable<Payroll[]> {
       return this.http.get<Payroll[]>(`${this.apiUrl}/Payroll/GetAllPayrolls`);
     }
+
+    updatePayroll(payroll: Payroll): Observable<void> {
+      return this.http.put<void>(`${this.apiUrl}/Payroll/UpdatePayroll/${payroll.id}`, payroll);
+    }
 }
