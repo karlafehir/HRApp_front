@@ -17,6 +17,7 @@ export interface Employee {
   salary?: number;
   employmentStatus: string;
   employeeLeaveRecord?: EmployeeLeaveRecord; 
+  role?: string;
 }
 
 export interface EmployeeLeaveRecord {

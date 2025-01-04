@@ -16,6 +16,11 @@ export class EmployeeService {
       return this.http.get<Employee[]>(`${this.apiUrl}/api/Employee/GetAllEmployees`);
     }
 
+    GetEmployeesWithRoles(roleName?: string): Observable<Employee[]> {
+      return this.http.get<Employee[]>(`${this.apiUrl}/api/Employee/GetEmployeesWithRoles?roleName=${roleName}`);
+    }
+
+
     getEmployeeById(id: number): Observable<Employee>{
       return this.http.get<Employee>(`${this.apiUrl}/api/Employee/GetEmployeeById/${id}`);
     }
