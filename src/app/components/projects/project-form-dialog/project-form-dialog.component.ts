@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProjectService } from '../../../services/project.service';
 import { Project } from '../../../models/projectModel';
+import { Employee } from '../../../models/employeeModel';
+import { EmployeeService } from '../../../services/employee.service';
 
 @Component({
   selector: 'app-project-form-dialog',
@@ -11,23 +13,41 @@ import { Project } from '../../../models/projectModel';
 export class ProjectFormDialogComponent implements OnInit {
   projectForm: FormGroup;
   isEdit: boolean = false;
+  managers: Employee [] = [];
+  
 
   constructor(
     private fb: FormBuilder,
     private projectService: ProjectService,
+    private employeeService: EmployeeService,
     private dialogRef: MatDialogRef<ProjectFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Project
   ) {
     this.isEdit = !!data;
     this.projectForm = this.fb.group({
       name: [data?.name || '', Validators.required],
+      managerId: [data?.managerId || 0, Validators.required],
       description: [data?.description || '', Validators.required],
       startDate: [data?.startDate || new Date().toISOString().split('T')[0], Validators.required],
       endDate: [data?.endDate || '']
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.GetEmployeesWithRoleManager();
+  }
+
+  GetEmployeesWithRoleManager() {
+    this.employeeService.GetEmployeesWithRoles("Manager").subscribe(
+      (response) => {
+        this.managers = response;
+        console.log(this.managers)
+      },
+      (error) => {
+        console.error('Error fetching employees:', error);
+      }
+    );
+  }
 
   onSubmit() {
     if (this.projectForm.valid) {
