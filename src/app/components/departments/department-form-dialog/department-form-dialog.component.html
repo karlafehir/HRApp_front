@@ -17,7 +17,7 @@
       <mat-form-field appearance="fill" class="input-wide">
         <mat-label>Manager</mat-label>
         <mat-select formControlName="managerId">
-          <mat-option *ngFor="let employee of employees" [value]="employee.id">{{ employee.firstName + employee.lastName }}</mat-option>
+          <mat-option *ngFor="let manager of managers" [value]="manager.id">{{ manager.firstName + ' ' + manager.lastName }}</mat-option>
         </mat-select>
       </mat-form-field>
   

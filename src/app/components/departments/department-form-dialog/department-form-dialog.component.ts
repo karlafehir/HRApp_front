@@ -13,7 +13,7 @@ import { EmployeeService } from '../../../services/employee.service';
 export class DepartmentFormDialogComponent implements OnInit{
   departmentForm: FormGroup;
   isEdit: boolean = false;
-  employees: Employee [] = [];
+  managers: Employee [] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -32,13 +32,14 @@ export class DepartmentFormDialogComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.loadEmployees();
+    this.GetEmployeesWithRoleManager();
   }
 
-  loadEmployees() {
-    this.employeeService.getAllEmployees().subscribe(
+  GetEmployeesWithRoleManager() {
+    this.employeeService.GetEmployeesWithRoles("Manager").subscribe(
       (response) => {
-        this.employees = response;
+        this.managers = response;
+        console.log(this.managers)
       },
       (error) => {
         console.error('Error fetching employees:', error);
