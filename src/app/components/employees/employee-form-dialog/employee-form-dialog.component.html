@@ -104,16 +104,16 @@
     <div formGroupName="employeeLeaveRecord">
       <mat-form-field appearance="fill">
         <mat-label>Annual Leave Days</mat-label>
-        <input matInput type="number" formControlName="annualLeaveDays" min="0">
-        <mat-error *ngIf="employeeForm.get('employeeLeaveRecord.annualLeaveDays')?.hasError('min')">
+        <input matInput type="number" formControlName="remainingAnnualLeave" min="0">
+        <mat-error *ngIf="employeeForm.get('employeeLeaveRecord.remainingAnnualLeave')?.hasError('min')">
           Annual Leave Days must be a non-negative number.
         </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Sick Leave Days</mat-label>
-        <input matInput type="number" formControlName="sickLeaveDays" min="0">
-        <mat-error *ngIf="employeeForm.get('employeeLeaveRecord.sickLeaveDays')?.hasError('min')">
+        <input matInput type="number" formControlName="remainingSickLeave" min="0">
+        <mat-error *ngIf="employeeForm.get('employeeLeaveRecord.remainingSickLeave')?.hasError('min')">
           Sick Leave Days must be a non-negative number.
         </mat-error>
       </mat-form-field>

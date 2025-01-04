@@ -42,7 +42,7 @@ export class EmployeeFormDialogComponent implements OnInit {
       dateOfHire: [data?.dateOfHire || new Date().toISOString().split('T')[0], Validators.required],
       jobId: [data?.jobId || null],
       departmentId: [data?.departmentId || null],
-      projectId: [data?.id || null],
+      projectId: [data?.projectId || null],
       jobTitle: [data?.jobTitle || ''],
       salary: [data?.salary || 0, Validators.min(0)],
       employmentStatus: [data?.employmentStatus || '', Validators.required],
