@@ -20,6 +20,10 @@ export class JobService {
       return this.http.get<Job>(`${this.apiUrl}/api/Jobs/GetJobByIdWithCandidates/${id}`);
     }
 
+    getJobById(id: number): Observable<Job> {
+      return this.http.get<Job>(`${this.apiUrl}/api/Jobs/GetJobById/${id}`);
+    }
+
     addJob(job: Job): Observable<Job> {
       return this.http.post<Job>(`${this.apiUrl}/api/Jobs/AddJob`, job);
     }
