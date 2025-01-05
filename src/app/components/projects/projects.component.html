@@ -1,8 +1,9 @@
-<div class="button-add" (click)="openProjectDialog()">
-  + Add new project
-</div>
-
 <div class="projects-cards-wrapper" @fadeInAnimation>
+  <div class="button-wrapper">
+    <div class="button-add" (click)="openProjectDialog()">
+      + Add new project
+    </div>
+  </div> 
     <div class="projects-column-wrapper">
         <div class="projects-column-cards-wrapper">
             <ng-container *ngFor="let project of projects">

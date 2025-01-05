@@ -8,6 +8,11 @@
     border-radius: 12px;
     height: 100vh;
 
+    .button-wrapper {
+        display: flex;
+        justify-content: flex-end;
+    }
+
     .projects-column-wrapper {
         display: flex;
         flex-direction: column;
