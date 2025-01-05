@@ -53,7 +53,7 @@ export class ProjectFormDialogComponent implements OnInit {
     if (this.projectForm.valid) {
       const projectData: Project = {
         ...this.projectForm.value,
-        projectId: this.isEdit ? this.data.id : 0 
+        id: this.isEdit ? this.data.id : 0 
       };
 
       if (this.isEdit) {
