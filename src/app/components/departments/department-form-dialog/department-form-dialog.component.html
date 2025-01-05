@@ -6,16 +6,16 @@
       
       <!-- Department Name -->
       <mat-form-field appearance="fill" class="input-wide">
-        <mat-label>Department Name</mat-label>
+        <mat-label>Ime odjela</mat-label>
         <input matInput formControlName="name" required>
         <mat-error *ngIf="departmentForm.get('name')?.hasError('required')">
-          Department Name is required.
+          Potrebno je ime odjela
         </mat-error>
       </mat-form-field>
       
       <!-- Manager ID -->
       <mat-form-field appearance="fill" class="input-wide">
-        <mat-label>Manager</mat-label>
+        <mat-label>Menadžer</mat-label>
         <mat-select formControlName="managerId">
           <mat-option *ngFor="let manager of managers" [value]="manager.id">{{ manager.firstName + ' ' + manager.lastName }}</mat-option>
         </mat-select>
@@ -23,7 +23,7 @@
   
       <!-- Optional: Employees Array (Placeholder) -->
       <div *ngIf="departmentForm.get('employees')?.value.length > 0">
-        <p>Employees: {{ departmentForm.get('employees')?.value.length }}</p>
+        <p>Zaposlenici: {{ departmentForm.get('employees')?.value.length }}</p>
       </div>
       
       <button mat-button type="submit">{{ isEdit ? 'Edit Department' : 'Add Department' }}</button>
