@@ -15,14 +15,14 @@ export class MenuComponent implements OnInit {
 
   menuItems = [
     // { name: 'Dashboard', icon: 'dashboard', route: '/' },
-    { name: 'Projects', icon: 'folder', route: '/projects' },
-    { name: 'Jobs', icon: 'work', route: '/jobs' },
-    { name: 'Recruitment', icon: 'group_add', route: '/recruitment' },
-    { name: 'Employees', icon: 'people', route: '/employees' },
-    { name: 'Payroll', icon: 'account_balance', route: '/payroll' },
+    { name: 'Projekti', icon: 'folder', route: '/projects' },
+    { name: 'Poslovi', icon: 'work', route: '/jobs' },
+    { name: 'Zapošljavanje', icon: 'group_add', route: '/recruitment' },
+    { name: 'Zaposlenici', icon: 'people', route: '/employees' },
+    { name: 'Plaće', icon: 'account_balance', route: '/payroll' },
     // { name: 'Reports', icon: 'assessment', route: '/' },
-    { name: 'Attendance', icon: 'card_travel', route: '/attendance' },
-    { name: 'Departments', icon: 'door_back', route: '/departments' },
+    { name: 'Odsutsva', icon: 'card_travel', route: '/attendance' },
+    { name: 'Odjeli', icon: 'door_back', route: '/departments' },
     // { name: 'Training', icon: 'auto_stories', route: '/' },
     // { name: 'Budget', icon: 'attach_money', route: '/' }
   ];
@@ -37,7 +37,7 @@ export class MenuComponent implements OnInit {
         return true; 
       }
       if (this.role === 'Manager') {
-        return item.name !== 'Payroll' && item.name !== 'Departments';
+        return item.name !== 'Plaće' && item.name !== 'Odjeli';
       }
       return false; 
     });

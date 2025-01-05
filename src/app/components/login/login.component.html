@@ -1,27 +1,26 @@
 <div class="login-form-wrapper" @fadeInAnimation>
   <div class="login-form-container">
-    <h2>Login</h2>
+    <h2>Prijava</h2>
     <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="form-wrapper">
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
         <input matInput type="email" id="email" [(ngModel)]="email" name="email" required>
         <mat-error *ngIf="loginForm.controls['email']?.invalid && loginForm.controls['email']?.touched">
-          Please enter a valid email.
+          Molimo unesite ispravnu email adresu.
         </mat-error>
       </mat-form-field>
   
       <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
+        <mat-label>Lozinka</mat-label>
         <input matInput type="password" id="password" [(ngModel)]="password" name="password" required>
         <mat-error *ngIf="loginForm.controls['password']?.invalid && loginForm.controls['password']?.touched">
-          Password is required.
+          Lozinka je obavezna.
         </mat-error>
       </mat-form-field>
   
       <div style="margin-top: 16px;">
-        <button type="submit" class="button-add">Login</button>
+        <button type="submit" class="button-add">Prijavi se</button>
       </div>
     </form>
   </div>
-  
 </div>
