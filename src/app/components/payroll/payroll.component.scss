@@ -16,3 +16,11 @@
     // }
 
 }
+
+td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-bonus.mat-column-bonus {
+    width: 0px !important;
+}
+
+.mat-mdc-form-field {
+    flex-direction: row !important;
+}
