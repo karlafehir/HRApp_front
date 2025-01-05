@@ -37,6 +37,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { ProjectCardComponent } from './components/projects/project-card/project-card.component';
 import { ProjectFormDialogComponent } from './components/projects/project-form-dialog/project-form-dialog.component';
 import { ProjectDetailsDialogComponent } from './components/projects/project-details-dialog/project-details-dialog.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { ProjectDetailsDialogComponent } from './components/projects/project-det
     MatButtonModule,
     ReactiveFormsModule, 
     MatSelect,
-    MatOption
+    MatOption,
+    MatProgressBarModule
   ],
   providers: [
     provideClientHydration()

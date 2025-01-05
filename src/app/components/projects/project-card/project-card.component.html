@@ -1,15 +1,28 @@
-<div class="project-card-wrapper" (click)="openProjectDetails()" style="cursor: pointer;">
+<div class="project-card-wrapper">
     <div class="project-card-title-wrapper">
-        <div class="img"></div>
-        <div class="title-wrapper">
-            <div class="card-title">{{ project.name }}</div>
-            <div class="card-subtitle">{{ project.description }}</div>
-            
-        </div>
+      <div class="img"></div>
+      <div class="title-wrapper">
+        <div class="card-title">{{ project.name }}</div>
+        <div class="card-subtitle">{{ project.description }}</div>
+      </div>
     </div>
+
+    <!-- Progress bar -->
+    <div class="progress-bar-wrapper">
+        <mat-progress-bar [value]="progressPercentage" mode="determinate"></mat-progress-bar>
+        <div class="progress-label">{{ progressPercentage }}%</div>
+    </div>
+
     <hr>
     <div class="details-wrapper">
-        <!-- <div class="card-subtitle link" (click)="viewDetails(project)">Details</div> -->
-        <!-- <mat-icon (click)="deleteProject(project)">delete</mat-icon> -->
-    </div>    
+      <!-- Weeks left section -->
+      <div class="time-left">
+        <mat-icon>access_time</mat-icon>
+        <span *ngIf="timeLeft > 0">{{ timeLeft }} {{ timeLeft > 1 ? 'weeks' : 'week' }} left</span>
+        <span *ngIf="timeLeft <= 0">Ended</span>
+      </div>
+  
+      <!-- Details button -->
+      <div class="card-subtitle link" (click)="openProjectDetails()">Detalji</div>
+    </div>
 </div>
