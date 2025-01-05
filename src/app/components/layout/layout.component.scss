@@ -10,13 +10,26 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+  
+.nav-bar {
+    flex-shrink: 0; /* Prevent the navbar from shrinking */
 }
 
 .main-content {
     display: flex;
     flex-grow: 1;
+    overflow: hidden; /* Ensure no overflow for the main-content */
+}
+
+.menu {
+    flex-shrink: 0; /* Prevent the menu from shrinking */
 }
 
 .loaded-component {
     flex-grow: 1;
+    overflow-y: auto; /* Enable vertical scrolling for the loaded-component */
+    padding: 16px; /* Optional padding for loaded components */
 }
