@@ -1,0 +1,38 @@
+.resume {
+    display: flex;
+    flex-direction: column;
+}
+
+.resume-upload {
+    margin: 20px 0;
+  
+    .resume-label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 16px;
+      color: #333;
+    }
+  
+    .resume-input {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      color: #333;
+      outline: none;
+      transition: border-color 0.3s;
+  
+      &:focus {
+        border-color: #007BFF;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+  
+      &:hover {
+        border-color: #888;
+      }
+    }
+  }
+  

@@ -7,6 +7,7 @@ import { CandidateStatus } from '../../../models/candidateModel';
 @Component({
   selector: 'app-candidate-form-dialog',
   templateUrl: './candidate-form-dialog.component.html',
+  styleUrls: ['./candidate-form-dialog.component.scss'],
 })
 export class CandidateFormDialogComponent implements OnInit {
   candidateForm: FormGroup;

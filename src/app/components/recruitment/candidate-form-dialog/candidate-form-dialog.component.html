@@ -1,74 +1,89 @@
-<h2 mat-dialog-title>{{ isEdit ? 'Edit Candidate' : 'Add New Candidate' }}</h2>
+<div class="form-wrapper">
 
-<mat-dialog-content>
-  <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+  <h2 mat-dialog-title>{{ isEdit ? 'Edit Candidate' : 'Add New Candidate' }}</h2>
 
-    <!-- Personal Information Section -->
-    <h3>Personal Information</h3>
-    <mat-form-field appearance="fill">
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="name" required>
-      <mat-error *ngIf="candidateForm.get('name')?.hasError('required')">
-        Name is required.
-      </mat-error>
-    </mat-form-field>
+  <mat-dialog-content>
+    <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+  
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="input-wide">
+          <mat-label>Ime i Prezime</mat-label>
+          <input matInput formControlName="name" required>
+          <mat-error *ngIf="candidateForm.get('name')?.hasError('required')">
+            Unesite Ime i Prezime.
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" required>
+          <mat-error *ngIf="candidateForm.get('email')?.hasError('email')">
+            Netočan email format.
+          </mat-error>
+        </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <input matInput type="email" formControlName="email" required>
-      <mat-error *ngIf="candidateForm.get('email')?.hasError('email')">
-        Invalid email format.
-      </mat-error>
-    </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Broj telefona</mat-label>
+          <input matInput type="tel" formControlName="phone" required>
+          <mat-error *ngIf="candidateForm.get('phone')?.hasError('required')">
+            Unesite Broj telefona.
+          </mat-error>
+        </mat-form-field>
+      </div>
+     
+      <!-- GitHub URL -->
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="input-wide">
+          <mat-label>GitHub URL</mat-label>
+          <input matInput formControlName="githubUrl" placeholder="https://github.com/username">
+          <mat-error *ngIf="candidateForm.get('githubUrl')?.hasError('pattern')">
+            Unesite ispravan GitHub URL.
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <!-- Resume File Upload -->
+      <h3>Životopis</h3>
+      <!-- <div class="resume">
+        <label for="resume">Resume File:</label>
+        <input id="resume" type="file" (change)="onFileSelected($event)">
+      </div> -->
 
-    <mat-form-field appearance="fill">
-      <mat-label>Phone</mat-label>
-      <input matInput type="tel" formControlName="phone" required>
-      <mat-error *ngIf="candidateForm.get('phone')?.hasError('required')">
-        Phone is required.
-      </mat-error>
-    </mat-form-field>
-
-    <!-- GitHub URL -->
-    <mat-form-field appearance="fill">
-      <mat-label>GitHub URL</mat-label>
-      <input matInput formControlName="githubUrl" placeholder="https://github.com/username">
-      <mat-error *ngIf="candidateForm.get('githubUrl')?.hasError('pattern')">
-        Please enter a valid GitHub URL.
-      </mat-error>
-    </mat-form-field>
-
-    <!-- Resume File Upload -->
-    <div>
-      <label for="resume">Resume File:</label>
-      <input id="resume" type="file" (change)="onFileSelected($event)">
-    </div>
-
-    <!-- Job Information Section -->
-    <!-- <h3>Job Information</h3>
-    <mat-form-field appearance="fill">
-      <mat-label>Job</mat-label>
-      <mat-select formControlName="jobId" required>
-        <mat-option *ngFor="let job of jobs" [value]="job.id">{{ job.title }}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="candidateForm.get('jobId')?.hasError('required')">
-        Job is required.
-      </mat-error>
-    </mat-form-field> -->
-
-    <!-- <mat-form-field appearance="fill">
-      <mat-label>Status</mat-label>
-      <mat-select formControlName="status" required>
-        <mat-option *ngFor="let status of candidateStatuses" [value]="status.value">
-          {{ status.label }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="candidateForm.get('status')?.hasError('required')">
-        Status is required.
-      </mat-error>
-    </mat-form-field> -->
-
-    <button mat-button type="submit">{{ isEdit ? 'Edit Candidate' : 'Add Candidate' }}</button>
-
-  </form>
-</mat-dialog-content>
+      <div class="resume-upload">
+        <label for="resume" class="resume-label">Učitajte svoj životopis</label>
+        <input id="resume" type="file" (change)="onFileSelected($event)" class="resume-input">
+      </div>
+      
+  
+      <!-- Job Information Section -->
+      <!-- <h3>Job Information</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>Job</mat-label>
+        <mat-select formControlName="jobId" required>
+          <mat-option *ngFor="let job of jobs" [value]="job.id">{{ job.title }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="candidateForm.get('jobId')?.hasError('required')">
+          Job is required.
+        </mat-error>
+      </mat-form-field> -->
+  
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" required>
+          <mat-option *ngFor="let status of candidateStatuses" [value]="status.value">
+            {{ status.label }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="candidateForm.get('status')?.hasError('required')">
+          Status is required.
+        </mat-error>
+      </mat-form-field> -->
+  
+      <button mat-button type="submit">{{ isEdit ? 'Edit Candidate' : 'Add Candidate' }}</button>
+  
+    </form>
+  </mat-dialog-content>
+  
+</div>
