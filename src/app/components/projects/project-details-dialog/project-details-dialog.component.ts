@@ -37,7 +37,6 @@ export class ProjectDetailsDialogComponent implements OnInit {
 
   editProject(): void {
     const dialogRef = this.dialog.open(ProjectFormDialogComponent, {
-      width: '400px',
       data: this.project
     });
 
@@ -59,6 +58,20 @@ export class ProjectDetailsDialogComponent implements OnInit {
           console.error('Error deleting project:', error);
         }
       );
+    }
+  }
+
+   get progressPercentage(): number {
+    const startDate = new Date(this.project.startDate).getTime();
+    const endDate = new Date(this.project.endDate).getTime();
+    const now = new Date().getTime();
+
+    if (now >= endDate) {
+      return 100; // Project completed
+    } else if (now <= startDate) {
+      return 0; // Project not started
+    } else {
+      return Math.round(((now - startDate) / (endDate - startDate)) * 100);
     }
   }
 }
