@@ -5,69 +5,69 @@
       
       <div class="form-row">
         <mat-form-field appearance="fill" class="input-wide">
-          <mat-label>Job Title</mat-label>
+          <mat-label>Naslov posla</mat-label>
           <input matInput formControlName="title" required>
           <mat-error *ngIf="jobForm.get('title')?.hasError('required')">
-            Job Title is required.
+            Potreban je naslov.
           </mat-error>
         </mat-form-field>
       </div>
   
       <div class="form-row">
         <mat-form-field appearance="fill" class="input-wide">
-          <mat-label>Job Description</mat-label>
+          <mat-label>Opis posla</mat-label>
           <textarea matInput formControlName="description" required></textarea>
           <mat-error *ngIf="jobForm.get('description')?.hasError('required')">
-            Job Description is required.
+            Potreban je opis.
           </mat-error>
         </mat-form-field>
       </div>
   
       <div class="form-row">
         <mat-form-field appearance="fill">
-          <mat-label>Department</mat-label>
+          <mat-label>Odjel</mat-label>
           <mat-select formControlName="departmentId">
             <mat-option *ngFor="let department of departmentOptions" [value]="department.id">
               {{ department.name }}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="jobForm.get('departmentId')?.hasError('required')">
-            Department is required.
+            Potreban je odjel.
           </mat-error>
         </mat-form-field>
     
         <!-- Priority -->
         <mat-form-field appearance="fill">
-          <mat-label>Priority</mat-label>
+          <mat-label>Prioritet</mat-label>
           <mat-select formControlName="priority" required>
             <mat-option *ngFor="let priority of priorityOptions" [value]="priority.value">
               {{ priority.label }}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="jobForm.get('priority')?.hasError('required')">
-            Priority is required.
+            Potreban je prioritet.
           </mat-error>
         </mat-form-field>
       </div>
   
       <div class="form-row">
         <mat-form-field appearance="fill">
-          <mat-label>Posted Date</mat-label>
+          <mat-label>Datum objave</mat-label>
           <input matInput type="date" formControlName="postedDate" required>
           <mat-error *ngIf="jobForm.get('postedDate')?.hasError('required')">
-            Posted Date is required.
+            Potreban je datum objave.
           </mat-error>
         </mat-form-field>
     
         <mat-form-field appearance="fill">
-          <mat-label>Closing Date</mat-label>
+          <mat-label>Datum zatvaranja</mat-label>
           <input matInput type="date" formControlName="closingDate">
           <mat-error *ngIf="jobForm.get('closingDate')?.hasError('dateAfter')">
-            Closing Date must be after the Posted Date.
+            Datum zatvaranja mora biti nakon datuma objave
           </mat-error>
         </mat-form-field>
       </div>  
-      <button mat-button type="submit">{{ isEdit ? 'Edit Job' : 'Add Job' }}</button>
+      <button mat-button type="submit">{{ isEdit ? 'Uredi Posao' : 'Dodaj Posao' }}</button>
     </form>
   </mat-dialog-content>
   

@@ -146,6 +146,10 @@ body {
   float: right;
 }
 
+span.mdc-button__label {
+  font-family: 'Poppins' !important;
+}
+
 .form-wrapper {
   display: flex;
   flex-direction: column;

@@ -5,8 +5,8 @@
             <div class="filter-dropdown">
                 <mat-form-field>
                     <mat-select [(value)]="selectedSortOption" (selectionChange)="onSortOptionChange($event)">
-                        <mat-option value="Newest">Newest</mat-option>
-                        <mat-option value="Oldest">Oldest</mat-option>
+                        <mat-option value="Newest">Najstariji</mat-option>
+                        <mat-option value="Oldest">Najnoviji</mat-option>
                         <mat-option value="A-Z">A-Z</mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -14,16 +14,16 @@
             <div class="filter-dropdown">
                 <mat-form-field>
                     <mat-select [(value)]="selectedPriorityOption" (selectionChange)="onPriorityOptionChange($event)">
-                      <mat-option [value]="null">All</mat-option>
-                      <mat-option [value]="1">High</mat-option>
-                      <mat-option [value]="2">Medium</mat-option>
-                      <mat-option [value]="3">Low</mat-option>
+                      <mat-option [value]="null">Sve</mat-option>
+                      <mat-option [value]="1">Visoko</mat-option>
+                      <mat-option [value]="2">Srednje</mat-option>
+                      <mat-option [value]="3">Nisko</mat-option>
                     </mat-select>
                   </mat-form-field>                  
             </div>
         </div>
         <div class="button-add" (click)="openDialog()">
-            + Add Job
+            + Dodaj posao
         </div>
     </div>
 
