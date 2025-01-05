@@ -13,53 +13,53 @@
     <div class="statistics-cards">
       <div class="statistics-card">
         <mat-icon>people</mat-icon>
-        <div class="card-title">Vacation Days Left</div>
+        <div class="card-title">Preostali Dani Godišnjeg Odmora</div>
         <div class="card-value">
           {{ employee.employeeLeaveRecord?.remainingAnnualLeave ?? 0 }} / {{ employee.employeeLeaveRecord?.annualLeaveDays ?? 0 }}
         </div>
       </div>
       <div class="statistics-card">
         <mat-icon>schedule</mat-icon>
-        <div class="card-title">Sick Days Left</div>
+        <div class="card-title">Preostali Dani Bolovanja</div>
         <div class="card-value">
           {{ employee.employeeLeaveRecord?.remainingSickLeave ?? 0 }} / {{ employee.employeeLeaveRecord?.sickLeaveDays ?? 0 }}
         </div>
       </div>
-      <div class="statistics-card">
+      <!-- <div class="statistics-card">
         <mat-icon>assignment</mat-icon>
-        <div class="card-title">Projects Completed</div>
+        <div class="card-title">Završeni Projekti</div>
         <div class="card-value">8 / 12</div>
-      </div>
+      </div> -->
     </div>
 
     <div class="profile-details">
       <div class="detail-group">
         <hr>
-        <div class="detail-label">Department</div>
+        <div class="detail-label">Odjel</div>
         <div class="detail-value">{{ 'N/A' }}</div>
       </div>
       <div class="detail-group">
         <hr>
-        <div class="detail-label">Location</div>
+        <div class="detail-label">Lokacija</div>
         <div class="detail-value">{{ employee.address }}</div>
       </div>
       <div class="detail-group">
         <hr>
-        <div class="detail-label">Manager</div>
+        <div class="detail-label">Menadžer</div>
         <div class="detail-value">{{ employee.managerId }}</div>
       </div>
       <div class="detail-group">
         <hr>
-        <div class="detail-label">Hire Date</div>
-        <div class="detail-value">{{ employee.dateOfHire | date: 'MM/dd/yyyy' }}</div>
+        <div class="detail-label">Datum Zapošljavanja</div>
+        <div class="detail-value">{{ employee.dateOfHire | date: 'dd.MM.yyyy' }}</div>
       </div>
       <div class="detail-group">
         <hr>
-        <div class="detail-label">Employee ID</div>
+        <div class="detail-label">ID Zaposlenika</div>
         <div class="detail-value">{{ employee.id }}</div>
         <hr>
       </div>
     </div>
-    <div class="button-add" mat-button (click)="openEditEmployeeDialog(employee)">Edit Employee</div>
+    <div class="button-add" mat-button (click)="openEditEmployeeDialog(employee)">Uredi Zaposlenika</div>
   </div>
 </div>
