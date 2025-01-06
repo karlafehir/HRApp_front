@@ -5,6 +5,7 @@ import { JobService } from '../../../services/job.service';
 import { DepartmentService } from '../../../services/department.service';
 import { Job } from '../../../models/jobModel';
 import { Department } from '../../../models/employeeModel';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-job-form-dialog',
@@ -24,6 +25,7 @@ export class JobFormDialogComponent implements OnInit {
     private fb: FormBuilder,
     private jobService: JobService,
     private departmentService: DepartmentService,
+    private notificationService: NotificationService,
     private dialogRef: MatDialogRef<JobFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Job
   ) {
@@ -64,20 +66,24 @@ export class JobFormDialogComponent implements OnInit {
 
         this.jobService.updateJob(jobData).subscribe(
           response => {
+            this.notificationService.showNotification("Oglas uspješno ažuriran", 'success')
             console.log('Job updated successfully:', response);
             this.dialogRef.close(true);
           },
           error => {
+            this.notificationService.showNotification("Neusješno ažuriranje oglasa, pokušajte ponovno", 'error')
             console.error('Error updating job:', error);
           }
         );
       } else {
         this.jobService.addJob(jobData).subscribe(
           response => {
+            this.notificationService.showNotification("Oglas uspješno dodan", 'success')
             console.log('Job added successfully:', response);
             this.dialogRef.close(true);
           },
           error => {
+            this.notificationService.showNotification("Neusješno dodavanje oglasa, pokušajte ponovno", 'error')
             console.error('Error adding job:', error);
           }
         );

@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/Auth.service';
 import { Component, OnInit } from '@angular/core';
 import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,11 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService, 
+    private router: Router,
+    private notificationService: NotificationService,
+  ) { }
 
   onLogin() {
     const credentials = {
@@ -25,6 +30,7 @@ export class LoginComponent {
   
     this.authService.login(credentials).subscribe(
       (response) => {
+        this.notificationService.showNotification("Uspješna prijava", 'success')
         console.log('Login successful', response);
         const role = this.authService.getRole();
         const employeeId = this.authService.getEmployeeId();
@@ -38,6 +44,7 @@ export class LoginComponent {
         }
       },
       (error) => {
+        this.notificationService.showNotification("Neuspješna prijava", 'error')
         console.error('Login error', error);
       }
     );

@@ -5,6 +5,7 @@ import { EmployeeService } from '../../../services/employee.service';
 import { fadeInAnimation } from '../../../shared/animations/fadeInAnimation';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeFormDialogComponent } from '../employee-form-dialog/employee-form-dialog.component';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-employee-profile',
@@ -18,6 +19,7 @@ export class EmployeeProfileComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private route: ActivatedRoute,
+    private notificationService: NotificationService,
     private dialog: MatDialog
   ) {}
 
@@ -36,6 +38,7 @@ export class EmployeeProfileComponent implements OnInit {
         this.employee = response;
       });
     } else {
+      this.notificationService.showNotification("Zaposlenik ne postoji", 'error')
       console.error('Employee ID is undefined or null');
     }
   }

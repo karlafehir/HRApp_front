@@ -8,6 +8,7 @@ import { Project } from '../../../models/projectModel';
 import { JobService } from '../../../services/job.service';
 import { DepartmentService } from '../../../services/department.service';
 import { ProjectService } from '../../../services/project.service';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-employee-form-dialog',
@@ -27,6 +28,7 @@ export class EmployeeFormDialogComponent implements OnInit {
     private jobService: JobService,
     private departmentService: DepartmentService,
     private projectService: ProjectService,
+    private notificationService: NotificationService,
     private dialogRef: MatDialogRef<EmployeeFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Employee
   ) {
@@ -108,10 +110,12 @@ export class EmployeeFormDialogComponent implements OnInit {
 
         this.employeeService.updateEmployee(employeeData).subscribe(
           (response) => {
+            this.notificationService.showNotification("Zaposlenik uspješno ažuriran", 'success')
             console.log('Employee updated successfully:', response);
             this.dialogRef.close(true);
           },
           (error) => {
+            this.notificationService.showNotification("Neuspješno ažuriranje zaposlenika, pokušajte ponovno", 'error')
             console.error('Error updating employee:', error);
           }
         );
@@ -120,10 +124,12 @@ export class EmployeeFormDialogComponent implements OnInit {
 
         this.employeeService.addEmployee(employeeData).subscribe(
           (response) => {
+            this.notificationService.showNotification("Zaposlenik uspješno dodan", 'success')
             console.log('Employee added successfully:', response);
             this.dialogRef.close(true);
           },
           (error) => {
+            this.notificationService.showNotification("Neuspješno dodavanje zaposlenika, pokušajte ponovno", 'error')
             console.error('Error adding employee:', error);
           }
         );

@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DepartmentService } from '../../../services/department.service';
 import { Department, Employee } from '../../../models/employeeModel';
 import { EmployeeService } from '../../../services/employee.service';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-department-form-dialog',
@@ -19,6 +20,7 @@ export class DepartmentFormDialogComponent implements OnInit{
     private fb: FormBuilder,
     private departmentService: DepartmentService,
     private employeeService: EmployeeService,
+    private notificationService: NotificationService,
     private dialogRef: MatDialogRef<DepartmentFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Department 
   ) {
@@ -57,19 +59,23 @@ export class DepartmentFormDialogComponent implements OnInit{
         this.departmentService.updateDepartment(departmentData).subscribe(
           response => {
             console.log('Department updated successfully:', response);
+            this.notificationService.showNotification("Odjel uspješno ažuriran", 'success')
             this.dialogRef.close(true);
           },
           error => {
+            this.notificationService.showNotification("Neusješno ažuriranje odjela, pokušajte ponovno", 'error')
             console.error('Error updating department:', error);
           }
         );
       } else {
         this.departmentService.addDepartment(departmentData).subscribe(
           response => {
+            this.notificationService.showNotification("Odjel uspješno dodan", 'success')
             console.log('Department added successfully:', response);
             this.dialogRef.close(true);
           },
           error => {
+            this.notificationService.showNotification("Neusješno dodavanje odjela, pokušajte ponovno", 'error')
             console.error('Error adding department:', error);
           }
         );
