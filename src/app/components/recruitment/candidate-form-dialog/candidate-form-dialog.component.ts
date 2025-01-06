@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CandidateService } from '../../../services/candidate.service';
 import { CandidateStatus } from '../../../models/candidateModel';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-candidate-form-dialog',
@@ -26,6 +27,7 @@ export class CandidateFormDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private candidateService: CandidateService,
+    private notificationService: NotificationService,
     private dialogRef: MatDialogRef<CandidateFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { jobId?: number } 
   ) {
@@ -69,10 +71,12 @@ export class CandidateFormDialogComponent implements OnInit {
 
       this.candidateService.addCandidateWithFile(formData).subscribe(
         (response) => {
+          this.notificationService.showNotification("Uspješno ste se prijavili na oglas", 'success')
           console.log('Candidate added successfully:', response);
           this.dialogRef.close(true);
         },
         (error) => {
+          this.notificationService.showNotification("Neusješno prijavljivanje na oglas, pokušajte ponovno", 'error')
           console.error('Error adding candidate:', error);
         }
       );

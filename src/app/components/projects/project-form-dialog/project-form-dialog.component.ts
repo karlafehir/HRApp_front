@@ -5,6 +5,7 @@ import { ProjectService } from '../../../services/project.service';
 import { Project } from '../../../models/projectModel';
 import { Employee } from '../../../models/employeeModel';
 import { EmployeeService } from '../../../services/employee.service';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-project-form-dialog',
@@ -20,6 +21,7 @@ export class ProjectFormDialogComponent implements OnInit {
     private fb: FormBuilder,
     private projectService: ProjectService,
     private employeeService: EmployeeService,
+    private notificationService: NotificationService,
     private dialogRef: MatDialogRef<ProjectFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Project
   ) {
@@ -59,20 +61,24 @@ export class ProjectFormDialogComponent implements OnInit {
       if (this.isEdit) {
         this.projectService.updateProject(projectData.id, projectData).subscribe(
           response => {
+            this.notificationService.showNotification("Projekt uspješno ažuriran", 'success')
             console.log('Project updated successfully:', response);
             this.dialogRef.close(true);
           },
           error => {
+            this.notificationService.showNotification("Neusješno ažuriranje projekta, pokušajte ponovno", 'error')
             console.error('Error updating project:', error);
           }
         );
       } else {
         this.projectService.addProject(projectData).subscribe(
           response => {
+            this.notificationService.showNotification("Projekt uspješno dodan", 'success')
             console.log('Project added successfully:', response);
             this.dialogRef.close(true);
           },
           error => {
+            this.notificationService.showNotification("Neusješno dodavanje projekta, pokušajte ponovno", 'error')
             console.error('Error adding project:', error);
           }
         );

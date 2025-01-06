@@ -4,6 +4,7 @@ import { ProjectService } from '../../services/project.service';
 import { Project } from '../../models/projectModel';
 import { ProjectFormDialogComponent } from './project-form-dialog/project-form-dialog.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-projects',
@@ -15,7 +16,11 @@ export class ProjectsComponent implements OnInit {
 
   projects: Project[] = [];
   errorMessage: string = '';
-  constructor(private projectService: ProjectService, private dialog: MatDialog) {}
+  constructor(
+    private projectService: ProjectService,
+    private dialog: MatDialog,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.GetAllProjects();
@@ -29,6 +34,7 @@ export class ProjectsComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching projects:', error);
+        this.notificationService.showNotification("Nije moguće dohvatiti projekte", 'error')
         this.errorMessage = 'Failed to load projects. Please try again later.';
       }
     );

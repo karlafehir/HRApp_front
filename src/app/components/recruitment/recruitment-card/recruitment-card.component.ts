@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Candidate, CandidateStatus } from '../../../models/candidateModel';
 import { CandidateService } from '../../../services/candidate.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-recruitment-card',
@@ -20,17 +21,23 @@ export class RecruitmentCardComponent {
     { value: CandidateStatus.Hired, label: 'Hired' }
   ];
 
-  constructor(private candidateService: CandidateService, private snackBar: MatSnackBar) {}
+  constructor(
+    private candidateService: CandidateService, 
+    private snackBar: MatSnackBar,
+    private notificationService: NotificationService,
+  ) {}
 
   @Output() statusUpdated = new EventEmitter<void>();
 
   updateStatus(candidate: Candidate): void {
     this.candidateService.updateCandidate(candidate).subscribe(
       () => {
+        this.notificationService.showNotification("Status kandidata uspješno ažuriran", 'success')
         console.log(`Status updated successfully for candidate ${candidate.name}`);
         this.statusUpdated.emit(); // Notify parent
       },
       (error) => {
+        this.notificationService.showNotification("Status kandidata neuspješno ažuriran, pokušajte ponovno", 'error')
         console.error(`Error updating status for candidate ${candidate.name}:`, error);
       }
     );
@@ -45,10 +52,7 @@ export class RecruitmentCardComponent {
         : `${baseUrl}${candidate.resumeUrl}`;
       window.open(fullUrl, '_blank');
     } else {
-      this.snackBar.open('No resume file uploaded for this candidate.', 'Close', {
-        duration: 3000,
-        verticalPosition: 'top',
-      });
+      this.notificationService.showNotification("Neuspješno otvaranje životopisa", 'error')
     }
   }
 
@@ -56,10 +60,7 @@ export class RecruitmentCardComponent {
     if (candidate.githubUrl) {
         window.open(candidate.githubUrl, '_blank');
     } else {
-        this.snackBar.open('No GitHub link provided for this candidate.', 'Close', {
-            duration: 3000,
-            verticalPosition: 'top',
-        });
+      this.notificationService.showNotification("Github profil ne postoji", 'error')
     }
   }
 

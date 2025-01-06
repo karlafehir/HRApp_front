@@ -5,6 +5,7 @@ import { JobService } from '../../services/job.service';
 import { Job } from '../../models/jobModel';
 import { MatDialog } from '@angular/material/dialog';
 import { CandidateFormDialogComponent } from './candidate-form-dialog/candidate-form-dialog.component';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-recruitment',
@@ -61,7 +62,11 @@ export class RecruitmentComponent implements OnInit {
   jobs: Job[] = []; 
   selectedJobId: number | undefined = 4003; 
 
-  constructor(private jobService: JobService, public dialog: MatDialog) {}
+  constructor(
+    private jobService: JobService, 
+    public dialog: MatDialog,
+    private notificationService: NotificationService,
+  ) {}
 
   ngOnInit(): void {
     this.loadAllJobs();
@@ -92,6 +97,9 @@ export class RecruitmentComponent implements OnInit {
       (response: Job) => {
         this.candidates = response.candidates;
         this.groupCandidatesByStatus();
+        if (this.candidates.length == 0){
+          this.notificationService.showNotification("Ne postoji lista kandidata", 'error')
+        }
       },
       error => {
         console.error('Error fetching candidates:', error);
