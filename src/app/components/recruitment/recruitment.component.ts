@@ -22,6 +22,41 @@ export class RecruitmentComponent implements OnInit {
     { status: CandidateStatus.Hired, count: 0, candidates: [] }
   ];
 
+  getStatusBackgroundColor(status: CandidateStatus): string {
+    switch (status) {
+      case CandidateStatus.NewApplied:
+        return 'var(--green-pastel)'; 
+      case CandidateStatus.Shortlisted:
+        return 'var(--yellow-pastel)'; 
+      case CandidateStatus.Interview:
+        return 'var(--blue-pastel)';
+      case CandidateStatus.Test:
+        return 'var(--purple-pastel)';
+      case CandidateStatus.Hired:
+        return 'var(--red-pastel)';
+      default:
+        return 'var(--secondary-color)';
+    }
+  }
+  
+  getStatusTextColor(status: CandidateStatus): string {
+    switch (status) {
+      case CandidateStatus.NewApplied:
+        return 'var(--green)';
+      case CandidateStatus.Shortlisted:
+        return 'var(--yellow)';
+      case CandidateStatus.Interview:
+        return 'var(--blue)'; 
+      case CandidateStatus.Test:
+        return 'var(--purple)';
+      case CandidateStatus.Hired:
+        return 'var(--red)';
+      default:
+        return 'var(--primary-color)';
+    }
+  }
+  
+
   candidates: Candidate[] = [];
   jobs: Job[] = []; 
   selectedJobId: number | undefined = 4003; 
