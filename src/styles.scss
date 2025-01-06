@@ -80,6 +80,42 @@ body {
   --red-pastel: #d01e2432;
 }
 
+.snack-bar-success {
+  background-color: var(--green-pastel) !important;
+  text-align: center;
+  border-radius: 20px;
+
+  .mdc-snackbar__label {
+    font-size: 16px !important;
+    color: var(--green) !important;
+  }
+}
+
+.snack-bar-error {
+  background-color: var(--red-pastel) !important;
+  text-align: center;
+  border-radius: 20px;
+
+  .mdc-snackbar__label {
+    color: var(--red) !important; 
+    font-size: 16px !important;
+  }
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+   background-color: transparent !important; 
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  box-shadow: none !important;
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__label {
+  font-family: 'Poppins' !important;
+  padding: 20px 26px 20px 32px !important;
+}
+
+
 .button-add{
   padding: 12px 32px;
   background-color: var(--purple);
