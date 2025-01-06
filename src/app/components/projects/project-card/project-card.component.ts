@@ -70,7 +70,6 @@ export class ProjectCardComponent {
 
   openProjectDetails(): void {
     const dialogRef = this.dialog.open(ProjectDetailsDialogComponent, {
-      width: '500px',
       data: this.project
     });
 

@@ -181,3 +181,20 @@ h3 {
 .filter-dropdown{
   display: flex;
 }
+
+.employee-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  cursor: pointer;
+}
+
+*{
+  font-family: 'Poppins';
+}
+
+mat-icon{
+  font-size: 20px;
+  cursor: pointer;
+}

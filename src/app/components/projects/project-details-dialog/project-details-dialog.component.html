@@ -1,28 +1,51 @@
-<h2 mat-dialog-title>Project Details</h2>
+<!-- <h2 mat-dialog-title>{{project.name}}</h2> -->
 
-<mat-dialog-content>
-  <div class="project-details">
-    <p><strong>Project Name:</strong> {{ project.name }}</p>
-    <p><strong>Description:</strong> {{ project.description }}</p>
-    <p><strong>Start Date:</strong> {{ project.startDate | date }}</p>
-    <p><strong>End Date:</strong> {{ project.endDate ? (project.endDate | date) : 'Ongoing' }}</p>
-  </div>
+  <mat-dialog-content class="dialog-container">
 
-  <h3>Employees in this Project</h3>
-  <div class="employee-list" *ngIf="employees.length > 0; else noEmployees">
-    <div class="employee-card" *ngFor="let employee of employees">
-      <p><strong>{{ employee.firstName }} {{ employee.lastName }}</strong></p>
-      <p>{{ employee.email }}</p>
-      <p><em>{{ employee.jobTitle }}</em></p>
+    <div class="title-container">
+      <div class="project-title">{{project.name}}</div>
+      <div class="action-buttons">
+        <mat-icon (click)="editProject()">edit</mat-icon>
+        <mat-icon (click)="deleteProject()">delete</mat-icon>
+      </div>
     </div>
-  </div>
 
-  <ng-template #noEmployees>
-    <p>No employees are assigned to this project.</p>
-  </ng-template>
-
-  <div class="action-buttons">
-    <button mat-button color="primary" (click)="editProject()">Edit</button>
-    <button mat-button color="warn" (click)="deleteProject()">Delete</button>
-  </div>
-</mat-dialog-content>
+    <div class="project-detail-container">
+      <div class="project-details">
+        <div class="date-progress-container">
+          <div class="date-details">
+            <div> {{ project.startDate | date }}</div>
+            <div class="separator">-</div>
+            <div> {{ project.endDate ? (project.endDate | date) : 'Ongoing' }}</div>
+          </div>
+          <!-- Progress bar -->
+          <div class="progress-bar-wrapper">
+            <mat-progress-bar [value]="progressPercentage" mode="determinate"></mat-progress-bar>
+            <div class="progress-label">{{ progressPercentage }}%</div>
+          </div>   
+        </div>
+        <div class="project-description">{{ project.description }}</div>
+      </div>
+  
+      <div class="employees-container">
+        <div class="employee-list" *ngIf="employees.length > 0; else noEmployees">
+          <div class="employee-card" *ngFor="let employee of employees">
+            <div class="employee-avatar"></div>
+            <div class="employee-name-wrapper">
+              <div class="employee-name">{{ employee.firstName }} {{ employee.lastName }}</div>
+              <div class="employee-mail">{{ employee.email }}</div>
+            </div>
+          </div>
+        </div>
+        <ng-template #noEmployees>
+          <p>No employees are assigned to this project.</p>
+        </ng-template>
+      </div>
+    </div>
+    
+    <!-- <div class="action-buttons">
+      <button mat-button color="primary" (click)="editProject()">Edit</button>
+      <button mat-button color="warn" (click)="deleteProject()">Delete</button>
+    </div> -->
+  </mat-dialog-content>
+  
