@@ -68,11 +68,16 @@ body {
   --hover-text-color: white;
   --border-color: #ECECEC;
   --text-50-color: #00000080;
+  --purple: #6C5DEE;
+  --blue: #4665D2;
+  --green: #129F6B;
+  --yellow: #FC9722;
+  --red: #D01E25;
 }
 
 .button-add{
   padding: 12px 32px;
-  background-color: var(--primary-color);
+  background-color: var(--purple);
   color: white;
   height: fit-content;
   border-radius: 12px;
@@ -138,7 +143,7 @@ body {
 
 .mat-mdc-button  {
   padding: 12px 32px !important;
-  background-color: var(--primary-color) !important;
+  background-color: var(--purple) !important;
   color: white !important;
   height: fit-content !important;
   border-radius: 12px !important;
