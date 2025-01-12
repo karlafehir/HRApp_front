@@ -4,7 +4,7 @@
     background-color: white;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 300px;
+    width: 360px;
     margin: 20px 40px 20px 0;
   
     &:hover {
@@ -17,6 +17,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 15px;
+      height: 60px;
 
       .icon-title-wrapper{
         display: flex;

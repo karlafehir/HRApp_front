@@ -1,6 +1,6 @@
 <div class="form-wrapper">
 
-  <h2 mat-dialog-title>{{ isEdit ? 'Edit Candidate' : 'Add New Candidate' }}</h2>
+  <h2 mat-dialog-title>{{ data.jobTitle }}</h2>
 
   <mat-dialog-content>
     <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
@@ -81,7 +81,7 @@
         </mat-error>
       </mat-form-field> -->
   
-      <button mat-button type="submit">{{ isEdit ? 'Edit Candidate' : 'Add Candidate' }}</button>
+      <button mat-button type="submit">Prijavi se</button>
   
     </form>
   </mat-dialog-content>

@@ -15,6 +15,7 @@ export class CandidateFormDialogComponent implements OnInit {
   isEdit: boolean = false;
   selectedFile: File | null = null;
   jobId!: number; 
+  jobTitle: string;
 
   candidateStatuses = [
     { value: CandidateStatus.NewApplied, label: 'New Applied' },
@@ -29,9 +30,11 @@ export class CandidateFormDialogComponent implements OnInit {
     private candidateService: CandidateService,
     private notificationService: NotificationService,
     private dialogRef: MatDialogRef<CandidateFormDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { jobId?: number } 
+    @Inject(MAT_DIALOG_DATA) public data: { jobId?: number; jobTitle?: string }
+
   ) {
     this.jobId = data.jobId!;
+    this.jobTitle = data.jobTitle!;
     this.isEdit = false; 
 
     this.candidateForm = this.fb.group({
@@ -46,7 +49,10 @@ export class CandidateFormDialogComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.notificationService.showNotification("Uspješno ste se prijavili na oglas", 'success')
+
+  }
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
