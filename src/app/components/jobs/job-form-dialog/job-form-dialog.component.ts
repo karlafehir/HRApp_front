@@ -34,14 +34,28 @@ export class JobFormDialogComponent implements OnInit {
       title: [data?.title || '', Validators.required],
       description: [data?.description || '', Validators.required],
       departmentId: [data?.departmentId || '', Validators.required],
-      postedDate: [data?.postedDate || new Date().toISOString().split('T')[0], Validators.required],
-      closingDate: [data?.closingDate || ''],
-      priority: [data?.priority || 2, Validators.required], // Default: Medium (2)
-    });
+      postedDate: [
+        data?.postedDate ? this.formatDate(data.postedDate) : new Date().toISOString().split('T')[0],
+        Validators.required,
+      ],
+      closingDate: [
+        data?.closingDate ? this.formatDate(data.closingDate) : '',
+      ],
+      priority: [data?.priority || 2, Validators.required],
+      location: [data?.location || '', Validators.required],
+    });    
   }
 
   ngOnInit(): void {
     this.loadDepartments();
+  }
+
+  formatDate(date: Date | string): string {
+    if (date instanceof Date) {
+      return date.toISOString().split('T')[0]; // Format as yyyy-MM-dd
+    } else {
+      return new Date(date).toISOString().split('T')[0]; // Convert string to Date, then format
+    }
   }
 
   loadDepartments(): void {

@@ -22,9 +22,9 @@
           </mat-error>
         </mat-form-field>
       </div>
-  
+
       <div class="form-row">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="input-wide">
           <mat-label>Odjel</mat-label>
           <mat-select formControlName="departmentId">
             <mat-option *ngFor="let department of departmentOptions" [value]="department.id">
@@ -33,6 +33,20 @@
           </mat-select>
           <mat-error *ngIf="jobForm.get('departmentId')?.hasError('required')">
             Potreban je odjel.
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-row">      
+        <mat-form-field appearance="fill">
+          <mat-label>Lokacija</mat-label>
+          <mat-select formControlName="location" required>
+            <mat-option value="Remote">Remote</mat-option>
+            <mat-option value="Office">Office</mat-option>
+            <mat-option value="Hybrid">Hybrid</mat-option>
+          </mat-select>
+          <mat-error *ngIf="jobForm.get('location')?.hasError('required')">
+            Potrebna je lokacija.
           </mat-error>
         </mat-form-field>
     
