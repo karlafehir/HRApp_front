@@ -18,7 +18,7 @@ export class DepartmentsComponent implements OnInit {
 
   departments: Department[] = [];
   searchText: string = '';
-  displayedColumns: string[] = ['id', 'name', 'managerName', 'managerPhone', 'employeesCount']; // Adjusted columns
+  displayedColumns: string[] = [ 'name', 'managerName', 'managerPhone', 'employeesCount']; // Adjusted columns
 
   constructor(private router: Router, private departmentService: DepartmentService, public dialog: MatDialog) {}
 
@@ -42,7 +42,15 @@ export class DepartmentsComponent implements OnInit {
   }
 
   goToDepartmentDetail(department: Department): void {
-    this.router.navigate(['department-detail', department.id]);
+    const dialogRef = this.dialog.open(DepartmentFormDialogComponent, {
+      data: department, 
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getAllDepartments();
+      }
+    });
   }
 
   openDialog(): void {

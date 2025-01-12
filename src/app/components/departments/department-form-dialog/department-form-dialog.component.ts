@@ -51,35 +51,65 @@ export class DepartmentFormDialogComponent implements OnInit{
 
   onSubmit() {
     if (this.departmentForm.valid) {
-      const departmentData: Department = {
-        ...this.departmentForm.value,
-        manager: this.data?.manager || null, 
-      };
-      if (this.isEdit) {
-        this.departmentService.updateDepartment(departmentData).subscribe(
-          response => {
-            console.log('Department updated successfully:', response);
-            this.notificationService.showNotification("Odjel uspješno ažuriran", 'success')
-            this.dialogRef.close(true);
-          },
-          error => {
-            this.notificationService.showNotification("Neusješno ažuriranje odjela, pokušajte ponovno", 'error')
-            console.error('Error updating department:', error);
+      const managerId = this.departmentForm.get('managerId')?.value;
+  
+      this.employeeService.getEmployeeById(managerId).subscribe(
+        (manager: Employee) => {
+          const departmentData: Department = {
+            ...this.departmentForm.value,
+            manager: this.data?.manager || null, 
+          };
+  
+          if (this.isEdit) {
+            departmentData.id = this.data.id,
+            this.updateDepartment(departmentData);
+          } else {
+            this.addDepartment(departmentData);
           }
-        );
-      } else {
-        this.departmentService.addDepartment(departmentData).subscribe(
-          response => {
-            this.notificationService.showNotification("Odjel uspješno dodan", 'success')
-            console.log('Department added successfully:', response);
-            this.dialogRef.close(true);
-          },
-          error => {
-            this.notificationService.showNotification("Neusješno dodavanje odjela, pokušajte ponovno", 'error')
-            console.error('Error adding department:', error);
-          }
-        );
-      }
+        },
+        error => {
+          console.error('Error fetching manager:', error);
+          this.notificationService.showNotification(
+            'Greška pri dohvaćanju menadžera, pokušajte ponovno.',
+            'error'
+          );
+        }
+      );
     }
   }
+
+  private updateDepartment(departmentData: Department): void {
+    this.departmentService.updateDepartment(departmentData).subscribe(
+      response => {
+        console.log('Department updated successfully:', response);
+        this.notificationService.showNotification('Odjel uspješno ažuriran', 'success');
+        this.dialogRef.close(true);
+      },
+      error => {
+        console.error('Error updating department:', error);
+        this.notificationService.showNotification(
+          'Neuspješno ažuriranje odjela, pokušajte ponovno.',
+          'error'
+        );
+      }
+    );
+  }
+  
+  private addDepartment(departmentData: Department): void {
+    this.departmentService.addDepartment(departmentData).subscribe(
+      response => {
+        console.log('Department added successfully:', response);
+        this.notificationService.showNotification('Odjel uspješno dodan', 'success');
+        this.dialogRef.close(true);
+      },
+      error => {
+        console.error('Error adding department:', error);
+        this.notificationService.showNotification(
+          'Neuspješno dodavanje odjela, pokušajte ponovno.',
+          'error'
+        );
+      }
+    );
+  }
+  
 }
