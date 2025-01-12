@@ -9,6 +9,7 @@ import { JobService } from '../../../services/job.service';
 import { DepartmentService } from '../../../services/department.service';
 import { ProjectService } from '../../../services/project.service';
 import { NotificationService } from '../../../services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-form-dialog',
@@ -30,6 +31,7 @@ export class EmployeeFormDialogComponent implements OnInit {
     private projectService: ProjectService,
     private notificationService: NotificationService,
     private dialogRef: MatDialogRef<EmployeeFormDialogComponent>,
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: Employee
   ) {
     this.isEdit = !!data;
@@ -96,6 +98,33 @@ export class EmployeeFormDialogComponent implements OnInit {
         console.error('Error fetching projects:', error);
       }
     );
+  }
+
+  onDeleteClick() {
+    if (this.data?.id !== undefined) {
+      if (confirm('Are you sure you want to delete this employee?')) {
+        this.employeeService.deleteEmployee(this.data.id).subscribe({
+          next: (response) => {
+            this.notificationService.showNotification('Employee successfully deleted.', 'success');
+          },
+          error: (error) => {
+            if (error.status === 200) {
+              // Handle the case where the status is 200 but Angular treats it as an error
+              console.warn('Handled 200 OK error:', error);
+              this.notificationService.showNotification('Employee successfully deleted.', 'success');
+              this.dialogRef.close(true);
+            } else {
+              console.error('Error deleting employee:', error);
+              this.notificationService.showNotification('Failed to delete employee. Please try again.', 'error');
+            }
+          }
+        });
+        this.router.navigate(['/employees'])
+      }
+    } else {
+      console.error('Employee ID is undefined.');
+      this.notificationService.showNotification('Employee ID is missing. Unable to delete.', 'error');
+    }
   }
 
   onSubmit() {
