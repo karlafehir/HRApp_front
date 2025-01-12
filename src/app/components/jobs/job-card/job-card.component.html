@@ -7,10 +7,10 @@
                 <div class="card-subtitle">{{ job.location }}</div>
             </div>
         </div>
-        <div class="icons-wrapper">
+        <div class="icons-wrapper" *ngIf="role === 'Admin' || role === 'Manager'">
             <mat-icon class="icon" (click)="onEditClick()">edit</mat-icon>
-            <mat-icon class="icon" (click)="onDeleteClick()">delete</mat-icon>            
-        </div>
+            <mat-icon class="icon" (click)="onDeleteClick()">delete</mat-icon>
+          </div>
     </div>
 
     <div class="details-wrapper">
