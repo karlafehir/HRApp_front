@@ -30,9 +30,22 @@ export class ProjectFormDialogComponent implements OnInit {
       name: [data?.name || '', Validators.required],
       managerId: [data?.managerId || 0, Validators.required],
       description: [data?.description || '', Validators.required],
-      startDate: [data?.startDate || new Date().toISOString().split('T')[0], Validators.required],
-      endDate: [data?.endDate || '']
+      startDate: [
+        data?.startDate ? this.formatDate(data.startDate) : new Date().toISOString().split('T')[0],
+        Validators.required,
+      ],
+      endDate: [
+        data?.endDate ? this.formatDate(data.endDate) : '',
+      ],
     });
+  }
+
+  formatDate(date: Date | string): string {
+    if (date instanceof Date) {
+      return date.toISOString().split('T')[0]; // Format as yyyy-MM-dd
+    } else {
+      return new Date(date).toISOString().split('T')[0]; // Convert string to Date, then format
+    }
   }
 
   ngOnInit(): void {
