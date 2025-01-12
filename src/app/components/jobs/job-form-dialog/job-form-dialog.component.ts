@@ -15,9 +15,9 @@ export class JobFormDialogComponent implements OnInit {
   jobForm: FormGroup;
   isEdit: boolean = false;
   priorityOptions = [
-    { value: 1, label: 'High' },
-    { value: 2, label: 'Medium' },
-    { value: 3, label: 'Low' }
+    { value: 1, label: 'Visok' },
+    { value: 2, label: 'Srednji' },
+    { value: 3, label: 'Nizak' }
   ];
   departmentOptions: Department[] = [];
 
