@@ -1,7 +1,7 @@
 <div class="navbar">
-  <div class="menu-title">Workflow</div>
+  <div class="menu-title">RadniFlow</div>
   <div class="nav-left">
-    <div class="nav-item" *ngIf="!isLoggedIn" (click)="navigateToJobs()">Jobs</div>
+    <div class="nav-item" *ngIf="!isLoggedIn" (click)="navigateToJobs()">Oglasi</div>
     <div *ngIf="isLoggedIn; else loginTemplate" class="employee-info-wrapper">
       <div class="employee-info">
         <div class="employee-name">{{ displayName }}</div>
@@ -16,7 +16,7 @@
     <ng-template #loginTemplate>
       <div class="btn-logout" (click)="onLogin()">
         <mat-icon>login</mat-icon>
-        Login
+        Prijavi se
       </div>
     </ng-template>
   </div>
