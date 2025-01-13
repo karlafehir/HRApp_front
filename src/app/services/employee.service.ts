@@ -36,5 +36,10 @@ export class EmployeeService {
     updateEmployee(employee: Employee): Observable<Employee> {
       return this.http.put<Employee>(`${this.apiUrl}/api/Employee/UpdateEmployee/${employee.id}`, employee);
     }
+
+    assignRole(email: string, role: string): Observable<any> {
+      const url = `${this.apiUrl}/api/Roles/AssignRole?email=${email}&newRole=${role}`;
+      return this.http.post(url, null); 
+    }
     
 }

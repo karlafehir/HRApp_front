@@ -94,6 +94,19 @@
       </mat-error>
     </mat-form-field>
 
+    <div class="form-group">
+      <h3>Promjena Uloge</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>Odaberi ulogu</mat-label>
+        <mat-select [(value)]="selectedRole" (selectionChange)="changeRole(employeeForm.get('email')?.value)">
+          <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!selectedRole">
+          Uloga je obavezna.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    
     <!-- Leave Details Section -->
     <h3>Podaci o Godišnjem i Bolovanju</h3>
     <div formGroupName="employeeLeaveRecord">
