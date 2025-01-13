@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Employee, EmployeeLeaveRecord } from '../../../models/employeeModel';
+import { Employee } from '../../../models/employeeModel';
 import { EmployeeService } from '../../../services/employee.service';
-import { fadeInAnimation } from '../../../shared/animations/fadeInAnimation';
+import { DepartmentService } from '../../../services/department.service';
+import { ProjectService } from '../../../services/project.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeFormDialogComponent } from '../employee-form-dialog/employee-form-dialog.component';
 import { NotificationService } from '../../../services/notification.service';
@@ -11,13 +12,16 @@ import { NotificationService } from '../../../services/notification.service';
   selector: 'app-employee-profile',
   templateUrl: './employee-profile.component.html',
   styleUrls: ['./employee-profile.component.scss'],
-  animations: [fadeInAnimation],
 })
 export class EmployeeProfileComponent implements OnInit {
   employee?: Employee;
+  department?: any;
+  project?: any;
 
   constructor(
     private employeeService: EmployeeService,
+    private departmentService: DepartmentService,
+    private projectService: ProjectService,
     private route: ActivatedRoute,
     private notificationService: NotificationService,
     private dialog: MatDialog
@@ -32,15 +36,28 @@ export class EmployeeProfileComponent implements OnInit {
     });
   }
 
-  getEmployeeById(id?: number): void {
-    if (id !== undefined && id !== null) {
-      this.employeeService.getEmployeeById(id).subscribe((response: Employee) => {
-        this.employee = response;
-      });
-    } else {
-      this.notificationService.showNotification("Zaposlenik ne postoji", 'error')
-      console.error('Employee ID is undefined or null');
-    }
+  getEmployeeById(id: number): void {
+    this.employeeService.getEmployeeById(id).subscribe((response: Employee) => {
+      this.employee = response;
+      if (response.departmentId) {
+        this.getDepartmentById(response.departmentId);
+      }
+      if (response.projectId) {
+        this.getProjectById(response.projectId);
+      }
+    });
+  }
+
+  getDepartmentById(departmentId: number): void {
+    this.departmentService.getDepartmentById(departmentId).subscribe((response) => {
+      this.department = response;
+    });
+  }
+
+  getProjectById(projectId: number): void {
+    this.projectService.getProjectById(projectId).subscribe((response) => {
+      this.project = response;
+    });
   }
 
   openEditEmployeeDialog(employee: Employee) {

@@ -5,7 +5,7 @@
     </div>
     <div class="employee-info">
       <div class="employee-name">{{ employee.firstName }} {{ employee.lastName }}</div>
-      <div class="employee-position">{{ employee.jobTitle }}</div>
+      <div class="employee-position">{{ employee.job?.title }}</div>
     </div>
   </div>
 
@@ -25,18 +25,18 @@
           {{ employee.employeeLeaveRecord?.remainingSickLeave ?? 0 }} / {{ employee.employeeLeaveRecord?.sickLeaveDays ?? 0 }}
         </div>
       </div>
-      <!-- <div class="statistics-card">
-        <mat-icon>assignment</mat-icon>
-        <div class="card-title">Završeni Projekti</div>
-        <div class="card-value">8 / 12</div>
-      </div> -->
     </div>
 
     <div class="profile-details">
       <div class="detail-group">
         <hr>
         <div class="detail-label">Odjel</div>
-        <div class="detail-value">{{ 'N/A' }}</div>
+        <div class="detail-value">{{ department?.name || 'N/A' }}</div>
+      </div>
+      <div class="detail-group">
+        <hr>
+        <div class="detail-label">Projekt</div>
+        <div class="detail-value">{{ project?.name || 'N/A' }}</div>
       </div>
       <div class="detail-group">
         <hr>
@@ -45,8 +45,18 @@
       </div>
       <div class="detail-group">
         <hr>
-        <div class="detail-label">Menadžer</div>
-        <div class="detail-value">{{ employee.managerId }}</div>
+        <div class="detail-label">Telefon</div>
+        <div class="detail-value">{{ employee.phoneNumber }}</div>
+      </div>
+      <div class="detail-group">
+        <hr>
+        <div class="detail-label">Email</div>
+        <div class="detail-value">{{ employee.email }}</div>
+      </div>
+      <div class="detail-group">
+        <hr>
+        <div class="detail-label">Plaća</div>
+        <div class="detail-value">{{ employee.salary | currency: 'EUR' }}</div>
       </div>
       <div class="detail-group">
         <hr>
