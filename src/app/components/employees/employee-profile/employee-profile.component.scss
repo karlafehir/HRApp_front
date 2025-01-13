@@ -8,8 +8,14 @@
   .profile-header {
     display: flex;
     align-items: center;
-    gap: 32px;
+    justify-content: space-between;
     margin-bottom: 48px;
+
+    .employee-avatar-name-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
     .profile-picture {
       height: 120px;

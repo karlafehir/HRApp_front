@@ -1,12 +1,15 @@
 <div class="employee-profile" @fadeInAnimation>
   <div class="profile-header" *ngIf="employee">
-    <div class="profile-picture">
-      <img src="/assets/icons/default-avatar.png" alt="{{ employee.firstName }} {{ employee.lastName }}">
+    <div class="employee-avatar-name-wrapper">
+      <div class="profile-picture">
+        <img src="/assets/icons/default-avatar.png" alt="{{ employee.firstName }} {{ employee.lastName }}">
+      </div>
+      <div class="employee-info">
+        <div class="employee-name">{{ employee.firstName }} {{ employee.lastName }}</div>
+        <div class="employee-position">{{ employee.job?.title }}</div>
+      </div>
     </div>
-    <div class="employee-info">
-      <div class="employee-name">{{ employee.firstName }} {{ employee.lastName }}</div>
-      <div class="employee-position">{{ employee.job?.title }}</div>
-    </div>
+    <div class="button-add" mat-button (click)="openEditEmployeeDialog(employee)">Uredi Zaposlenika</div>
   </div>
 
   <div class="profile-body" *ngIf="employee">
@@ -70,6 +73,5 @@
         <hr>
       </div>
     </div>
-    <div class="button-add" mat-button (click)="openEditEmployeeDialog(employee)">Uredi Zaposlenika</div>
   </div>
 </div>
