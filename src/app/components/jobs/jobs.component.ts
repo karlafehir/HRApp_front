@@ -4,6 +4,8 @@ import { Job } from '../../models/jobModel';
 import { JobService } from '../../services/job.service';
 import { MatDialog } from '@angular/material/dialog';
 import { JobFormDialogComponent } from './job-form-dialog/job-form-dialog.component';
+import { NotificationService } from '../../services/notification.service';
+import { AuthService } from '../../services/auth/Auth.service';
 
 @Component({
   selector: 'app-jobs',
@@ -18,11 +20,19 @@ export class JobsComponent implements OnInit{
   sortedJobs: Job[] = [];
   selectedSortOption: string = 'Newest';
   selectedPriorityOption: number | null = null;
+  role: string | null = null;
 
-  constructor(private jobService: JobService, private dialog: MatDialog) {}
+  constructor(
+    private jobService: JobService, 
+    private dialog: MatDialog,
+    private authService: AuthService,
+    private notificationService: NotificationService
+    ) {}
 
   ngOnInit(): void {
     this.getAllJobs();
+    // this.notificationService.showNotification("Uspješna prijava", 'success');
+    this.role = this.authService.getRole();
   }
 
   getAllJobs() {

@@ -22,7 +22,7 @@
                   </mat-form-field>                  
             </div>
         </div>
-        <div class="button-add" (click)="openDialog()">
+        <div class="button-add" (click)="openDialog()" *ngIf="role === 'Admin' || role === 'Manager'">
             + Dodaj posao
         </div>
     </div>
