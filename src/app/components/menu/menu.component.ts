@@ -37,7 +37,7 @@ export class MenuComponent implements OnInit {
         return true; 
       }
       if (this.role === 'Manager') {
-        return item.name !== 'Plaće' && item.name !== 'Odjeli';
+        return item.name !== 'Plaće' && item.name !== 'Odjeli' && item.name !== 'Odsutsva';
       }
       return false; 
     });
