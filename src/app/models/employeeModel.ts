@@ -11,6 +11,7 @@ export interface Employee {
   phoneNumber?: string;
   dateOfHire: Date;
   jobId?: number;
+  job?: Job;
   departmentId?: number;
   managerId?: number;
   jobTitle?: string;
