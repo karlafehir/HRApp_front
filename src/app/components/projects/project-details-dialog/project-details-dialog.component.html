@@ -30,7 +30,9 @@
       <div class="employees-container">
         <div class="employee-list" *ngIf="employees.length > 0; else noEmployees">
           <div class="employee-card" *ngFor="let employee of employees">
-            <div class="employee-avatar"></div>
+            <div class="employee-avatar">
+              <img src="/assets/icons/default-avatar.png" alt="{{ employee.firstName }} {{ employee.lastName }}">
+            </div>
             <div class="employee-name-wrapper">
               <div class="employee-name">{{ employee.firstName }} {{ employee.lastName }}</div>
               <div class="employee-mail">{{ employee.email }}</div>

@@ -83,3 +83,17 @@
     }
 }
 
+.employee-avatar {
+    // height: 120px;
+    // width: 120px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    overflow: hidden;
+  
+    img {
+      height: 112%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+}
