@@ -16,47 +16,46 @@ import { NotificationService } from '../../services/notification.service';
 export class RecruitmentComponent implements OnInit {
 
   recruitmentStatuses: { status: CandidateStatus, count: number, candidates: Candidate[] }[] = [
-    { status: CandidateStatus.NewApplied, count: 0, candidates: [] },
-    { status: CandidateStatus.Shortlisted, count: 0, candidates: [] },
-    { status: CandidateStatus.Interview, count: 0, candidates: [] },
-    { status: CandidateStatus.Test, count: 0, candidates: [] },
-    { status: CandidateStatus.Hired, count: 0, candidates: [] }
+    { status: CandidateStatus.Prijavljen, count: 0, candidates: [] },
+    { status: CandidateStatus.Intervju, count: 0, candidates: [] },
+    { status: CandidateStatus.Onboarding, count: 0, candidates: [] },
+    { status: CandidateStatus.Zaposlen, count: 0, candidates: [] },
+    { status: CandidateStatus.Odbijen, count: 0, candidates: [] }
   ];
 
   getStatusBackgroundColor(status: CandidateStatus): string {
     switch (status) {
-      case CandidateStatus.NewApplied:
-        return 'var(--green-pastel)'; 
-      case CandidateStatus.Shortlisted:
-        return 'var(--yellow-pastel)'; 
-      case CandidateStatus.Interview:
-        return 'var(--blue-pastel)';
-      case CandidateStatus.Test:
-        return 'var(--purple-pastel)';
-      case CandidateStatus.Hired:
-        return 'var(--red-pastel)';
-      default:
-        return 'var(--secondary-color)';
+        case CandidateStatus.Prijavljen:
+            return 'var(--green-pastel)'; 
+        case CandidateStatus.Intervju:
+            return 'var(--blue-pastel)'; 
+        case CandidateStatus.Onboarding:
+            return 'var(--yellow-pastel)'; 
+        case CandidateStatus.Zaposlen:
+            return 'var(--purple-pastel)'; 
+        case CandidateStatus.Odbijen:
+            return 'var(--red-pastel)';
+        default:
+            return 'var(--secondary-color)';
     }
   }
   
   getStatusTextColor(status: CandidateStatus): string {
     switch (status) {
-      case CandidateStatus.NewApplied:
-        return 'var(--green)';
-      case CandidateStatus.Shortlisted:
-        return 'var(--yellow)';
-      case CandidateStatus.Interview:
-        return 'var(--blue)'; 
-      case CandidateStatus.Test:
-        return 'var(--purple)';
-      case CandidateStatus.Hired:
-        return 'var(--red)';
-      default:
-        return 'var(--primary-color)';
+        case CandidateStatus.Prijavljen:
+            return 'var(--green)'; 
+        case CandidateStatus.Intervju:
+            return 'var(--blue)';
+        case CandidateStatus.Onboarding:
+            return 'var(--yellow)'; 
+        case CandidateStatus.Zaposlen:
+            return 'var(--purple)'; 
+        case CandidateStatus.Odbijen:
+            return 'var(--red)';
+        default:
+            return 'var(--primary-color)';
     }
   }
-  
 
   candidates: Candidate[] = [];
   jobs: Job[] = []; 
@@ -123,7 +122,20 @@ export class RecruitmentComponent implements OnInit {
   }
 
   getStatusLabel(status: CandidateStatus): string {
-    return CandidateStatus[status];
+    switch (status) {
+        case CandidateStatus.Prijavljen:
+            return 'Prijavljen';
+        case CandidateStatus.Intervju:
+            return 'Intervju';
+        case CandidateStatus.Onboarding:
+            return 'Onboarding';
+        case CandidateStatus.Zaposlen:
+            return 'Zaposlen';
+        case CandidateStatus.Odbijen:
+            return 'Odbijen';
+        default:
+            return 'Nepoznat status';
+    }
   }
 
   openDialog(): void {

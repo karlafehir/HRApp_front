@@ -29,6 +29,8 @@
     }
 
     .title-wrapper {
+      width: 200px;
+
       .card-title {
         font-size: 16px;
       }
@@ -57,4 +59,8 @@
       cursor: pointer;
     }
   }
+}
+
+.status-dropdown{
+  margin-top: 10px;
 }

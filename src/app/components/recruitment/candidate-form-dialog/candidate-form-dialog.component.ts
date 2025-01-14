@@ -18,11 +18,11 @@ export class CandidateFormDialogComponent implements OnInit {
   jobTitle: string;
 
   candidateStatuses = [
-    { value: CandidateStatus.NewApplied, label: 'New Applied' },
-    { value: CandidateStatus.Shortlisted, label: 'Shortlisted' },
-    { value: CandidateStatus.Interview, label: 'Interview' },
-    { value: CandidateStatus.Test, label: 'Test' },
-    { value: CandidateStatus.Hired, label: 'Hired' },
+    { value: CandidateStatus.Prijavljen, label: 'Prijavljen' },
+    { value: CandidateStatus.Intervju, label: 'Intervju' },
+    { value: CandidateStatus.Onboarding, label: 'Onboarding' },
+    { value: CandidateStatus.Zaposlen, label: 'Zaposlen' },
+    { value: CandidateStatus.Odbijen, label: 'Osbijen' }
   ];
 
   constructor(
@@ -45,13 +45,12 @@ export class CandidateFormDialogComponent implements OnInit {
         '',
         Validators.pattern('^(https?://)?(www.)?github.com/([a-zA-Z0-9_-]+)$'),
       ],
-      status: [CandidateStatus.NewApplied, Validators.required],
+      status: [CandidateStatus.Prijavljen, Validators.required],
     });
   }
 
   ngOnInit(): void {
-    this.notificationService.showNotification("Uspješno ste se prijavili na oglas", 'success')
-
+    // this.notificationService.showNotification("Uspješno ste se prijavili na oglas", 'success')
   }
 
   onFileSelected(event: any): void {

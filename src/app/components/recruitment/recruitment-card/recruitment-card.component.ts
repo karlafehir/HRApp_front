@@ -14,11 +14,11 @@ export class RecruitmentCardComponent {
   @Input() candidate! : Candidate;
 
   candidateStatuses = [
-    { value: CandidateStatus.NewApplied, label: 'New Applied' },
-    { value: CandidateStatus.Shortlisted, label: 'Shortlisted' },
-    { value: CandidateStatus.Interview, label: 'Interview' },
-    { value: CandidateStatus.Test, label: 'Test' },
-    { value: CandidateStatus.Hired, label: 'Hired' }
+    { value: CandidateStatus.Prijavljen, label: 'Prijavljen' },
+    { value: CandidateStatus.Intervju, label: 'Intervju' },
+    { value: CandidateStatus.Onboarding, label: 'Onboarding' },
+    { value: CandidateStatus.Zaposlen, label: 'Zaposlen' },
+    { value: CandidateStatus.Odbijen, label: 'Osbijen' }
   ];
 
   constructor(
