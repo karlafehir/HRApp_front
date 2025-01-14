@@ -19,4 +19,9 @@ export class PayrollService {
     updatePayroll(payroll: Payroll): Observable<void> {
       return this.http.put<void>(`${this.apiUrl}/Payroll/UpdatePayroll/${payroll.id}`, payroll);
     }
+
+    GenerateMonthlyPayroll(): Observable<Payroll[]> {
+      return this.http.post<Payroll[]>(`${this.apiUrl}/Payroll/GenerateMonthlyPayroll`, null);
+    }
+
 }

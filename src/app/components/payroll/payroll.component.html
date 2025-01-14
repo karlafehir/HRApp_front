@@ -5,6 +5,9 @@
         <mat-label>Pretraži plaće</mat-label>
         <input matInput [(ngModel)]="searchText" placeholder="Enter employee name">
       </mat-form-field>
+      <div class="button-add" (click)="GenerateMonthlyPayroll()">
+        + Generiraj plaće za tekući mjesec
+      </div>
     </div>
 
     <table mat-table [dataSource]="payrolls">

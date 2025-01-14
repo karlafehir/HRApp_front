@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
 import { PayrollService } from '../../services/payroll.service';
 import { Payroll } from '../../models/payrollModel';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-payroll',
@@ -15,7 +16,11 @@ export class PayrollComponent implements OnInit {
   searchText: string = '';
   displayedColumns: string[] = ['name', 'salary', 'bonus', 'isComplete'];
 
-  constructor(private router: Router, private payrollService: PayrollService) {}
+  constructor(
+    private router: Router, 
+    private payrollService: PayrollService,
+    private notificationService : NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.getAllPayrolls();
@@ -45,6 +50,18 @@ export class PayrollComponent implements OnInit {
       error: (err) => {
         console.error('Failed to update payroll:', err);
       },
+    });
+  }
+
+  GenerateMonthlyPayroll() {
+    this.payrollService.GenerateMonthlyPayroll().subscribe({
+      next: (response) => {
+        this.getAllPayrolls();
+        this.notificationService.showNotification("Uspješno generirane plaće", "success")
+      },
+      error: (err) => {
+        this.notificationService.showNotification("Neuspješno generirane plaće", "error")      
+      }
     });
   }
 }
