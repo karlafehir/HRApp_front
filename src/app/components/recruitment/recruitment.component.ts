@@ -59,7 +59,7 @@ export class RecruitmentComponent implements OnInit {
 
   candidates: Candidate[] = [];
   jobs: Job[] = []; 
-  selectedJobId: number | undefined = 4003; 
+  selectedJobId: number | undefined = 6009; 
 
   constructor(
     private jobService: JobService, 

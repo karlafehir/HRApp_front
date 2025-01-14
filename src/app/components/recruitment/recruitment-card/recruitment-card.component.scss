@@ -4,7 +4,7 @@
   background-color: white;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 300px;
+  width: 260px;
 
   hr{
     margin:0;
@@ -18,7 +18,7 @@
   .job-card-title-wrapper {
     display: flex;
     align-items: center;
-    padding: 15px;
+    padding: 20px 16px 0 24px;
 
     .img {
       background-color: var(--secondary-color);

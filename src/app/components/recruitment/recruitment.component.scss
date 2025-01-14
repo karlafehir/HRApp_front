@@ -11,7 +11,7 @@
 
     .recruitment-cards-wrapper{
         display: flex;
-        gap: 30px;
+        gap: 20px;
 
         .recruitment-column-wrapper{
             display: flex;
@@ -21,7 +21,7 @@
             .status-tab-wrapper {
                 display: flex;
                 justify-content: space-between;
-                width: 260px;
+                width: 220px;
                 border-radius: 8px;
                 padding: 6px 20px;
                 background-color: var(--secondary-color);
