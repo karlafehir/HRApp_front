@@ -7,6 +7,7 @@ import { ProjectService } from '../../../services/project.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeFormDialogComponent } from '../employee-form-dialog/employee-form-dialog.component';
 import { NotificationService } from '../../../services/notification.service';
+import { AuthService } from '../../../services/auth/Auth.service';
 
 @Component({
   selector: 'app-employee-profile',
@@ -17,11 +18,13 @@ export class EmployeeProfileComponent implements OnInit {
   employee?: Employee;
   department?: any;
   project?: any;
+  role: string | null = null;
 
   constructor(
     private employeeService: EmployeeService,
     private departmentService: DepartmentService,
     private projectService: ProjectService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private notificationService: NotificationService,
     private dialog: MatDialog
@@ -34,6 +37,7 @@ export class EmployeeProfileComponent implements OnInit {
         this.getEmployeeById(id);
       }
     });
+    this.role = this.authService.getRole();
   }
 
   getEmployeeById(id: number): void {

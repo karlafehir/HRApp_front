@@ -9,7 +9,9 @@
         <div class="employee-position">{{ employee.job?.title }}</div>
       </div>
     </div>
-    <div class="button-add" mat-button (click)="openEditEmployeeDialog(employee)">Uredi Zaposlenika</div>
+    <div *ngIf="role === 'Admin'" class="button-add" mat-button (click)="openEditEmployeeDialog(employee)">
+      Uredi Zaposlenika
+    </div>
   </div>
 
   <div class="profile-body" *ngIf="employee">
