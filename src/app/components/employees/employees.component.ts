@@ -7,6 +7,7 @@ import { DepartmentService } from '../../services/department.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeFormDialogComponent } from './employee-form-dialog/employee-form-dialog.component';
 import { Department } from '../../models/employeeModel';
+import { AuthService } from '../../services/auth/Auth.service';
 
 @Component({
   selector: 'app-employees',
@@ -20,15 +21,19 @@ export class EmployeesComponent implements OnInit {
   searchText: string = '';
   displayedColumns: string[] = [ 'name', 'phoneNumber', 'department', 'job']; // Adjusted columns
 
+  role: string | null = null;
+
   constructor(
     private router: Router,
     private employeeService: EmployeeService,
+    private authService: AuthService,
     private departmentService: DepartmentService,
     public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.loadData();
+    this.role = this.authService.getRole();
   }
 
   loadData(): void {

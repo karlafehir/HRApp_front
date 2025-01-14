@@ -5,7 +5,7 @@
         <mat-label>Pretraži Zaposlenika</mat-label>
         <input matInput [(ngModel)]="searchText" placeholder="Unesite ime zaposlenika">
       </mat-form-field>
-      <div class="button-add" (click)="openDialog()">
+      <div *ngIf="role === 'Admin'" class="button-add" (click)="openDialog()" >
         + Dodaj novog zaposlenika
       </div>
     </div>
