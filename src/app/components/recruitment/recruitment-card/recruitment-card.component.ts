@@ -58,10 +58,16 @@ export class RecruitmentCardComponent {
 
   viewGithub(candidate: Candidate): void {
     if (candidate.githubUrl) {
-        window.open(candidate.githubUrl, '_blank');
+      let githubUrl = candidate.githubUrl.trim(); 
+      if (!githubUrl.startsWith('http://') && !githubUrl.startsWith('https://')) {
+        githubUrl = `https://${githubUrl}`;
+      }
+  
+      window.open(githubUrl, '_blank');
     } else {
-      this.notificationService.showNotification("Github profil ne postoji", 'error')
+      this.notificationService.showNotification("Github profil ne postoji", 'error');
     }
   }
+  
 
 }
