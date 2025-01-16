@@ -15,7 +15,7 @@ export class AttendanceComponent implements OnInit {
 
   employees: Employee[] = [];
   searchText: string = '';
-  displayedColumns: string[] = ['id', 'name', 'email', 'phoneNumber', 'sickLeaveDays', 'remainingSickLeave', 'annualLeaveDays', 'remainingAnnualLeave'];
+  displayedColumns: string[] = ['name', 'email', 'phoneNumber', 'sickLeave', 'annualLeave'];
 
   constructor(private router: Router, private employeeService: EmployeeService, public dialog: MatDialog) {}
 
