@@ -1,7 +1,7 @@
 <div class="job-card-wrapper">
     <div class="job-card-title-wrapper">
         <div class="icon-title-wrapper">
-            <div class="img"></div>
+            <img [src]="getDepartmentImage(job.departmentId)" alt="department image" class="department-img" />
             <div class="title-wrapper">
                 <div class="card-title">{{ job.title }}</div>
                 <div class="card-subtitle">{{ job.location }}</div>

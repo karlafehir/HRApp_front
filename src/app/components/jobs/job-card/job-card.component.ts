@@ -44,4 +44,21 @@ export class JobCardComponent implements OnInit{
     });
   }  
 
+  getDepartmentImage(departmentId: number): string {
+    const imageMap: { [key: number]: string } = {
+      3002: 'assets/icons/finance.png',
+      3004: 'assets/icons/marketing.png',
+      4003: 'assets/icons/developer.png',
+      4011: 'assets/icons/sales.png',
+      4012: 'assets/icons/hr.png',
+      4013: 'assets/icons/finance.png',
+      4021: 'assets/icons/design.png',
+      4023: 'assets/icons/project-manager.png',
+      4022: 'assets/icons/developer.png',
+      4024: 'assets/icons/security.png',
+    };
+
+    return imageMap[departmentId] || 'assets/icons/default.png'; // Fallback to a default image
+  }
+
 }
