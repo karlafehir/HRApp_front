@@ -7,7 +7,10 @@
         <div class="employee-name">{{ displayName }}</div>
         <div class="employee-department">{{ displayJobTitle }}</div>
       </div>
-      <div class="employee-avatar" (click)="navigateToProfile()"></div>
+      <div class="small-profile-picture" (click)="navigateToProfile()">
+        <img src="/assets/icons/default-avatar.png">
+      </div>
+      <!-- <div class="employee-avatar" (click)="navigateToProfile()"></div> -->
       <div class="btn-logout" (click)="onLogout()">
         <mat-icon>logout</mat-icon>
       </div>
