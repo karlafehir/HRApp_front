@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
     { name: 'Zaposlenici', icon: 'people', route: '/employees' },
     { name: 'Plaće', icon: 'account_balance', route: '/payroll' },
     // { name: 'Reports', icon: 'assessment', route: '/' },
-    { name: 'Odsutsva', icon: 'card_travel', route: '/attendance' },
+    { name: 'Odsustva', icon: 'card_travel', route: '/attendance' },
     { name: 'Odjeli', icon: 'door_back', route: '/departments' },
     // { name: 'Training', icon: 'auto_stories', route: '/' },
     // { name: 'Budget', icon: 'attach_money', route: '/' }
@@ -37,7 +37,7 @@ export class MenuComponent implements OnInit {
         return true; 
       }
       if (this.role === 'Manager') {
-        return item.name !== 'Plaće' && item.name !== 'Odjeli' && item.name !== 'Odsutsva';
+        return item.name !== 'Plaće' && item.name !== 'Odjeli' && item.name !== 'Odsustva';
       }
       return false; 
     });
