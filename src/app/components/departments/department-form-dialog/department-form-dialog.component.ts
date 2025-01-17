@@ -57,7 +57,7 @@ export class DepartmentFormDialogComponent implements OnInit{
         (manager: Employee) => {
           const departmentData: Department = {
             ...this.departmentForm.value,
-            manager: this.data?.manager || null, 
+            manager: null, 
           };
   
           if (this.isEdit) {
